@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[BusinessCategory]
+(
+	[id] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(),
+	[name] VARCHAR(30) NOT NULL
+)

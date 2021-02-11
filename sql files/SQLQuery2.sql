@@ -1,0 +1,1 @@
+﻿select dbo.BusinessEmployeeAccess.*, [dbo].[BusinessUser].[id] userId, [dbo].[BusinessUser].[name] userName, [dbo].[BusinessUser].[email] userEmail, [dbo].[BusinessUser].[phone] userPhone from dbo.BusinessEmployeeAccess INNER JOIN dbo.BusinessUser ON dbo.BusinessEmployeeAccess.userId = dbo.BusinessUser.id where businessId = '1aec5ee5-5e0d-4928-8fd9-fd166ccc5eab'

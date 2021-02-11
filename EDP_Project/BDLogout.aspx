@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BDLogout.aspx.cs" Inherits="EDP_Project.BDLogout" %>

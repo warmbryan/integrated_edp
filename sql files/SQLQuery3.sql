@@ -1,0 +1,1 @@
+﻿INSERT INTO [dbo].[Business] ([name], registrationNumber, [type], [url], [userId]) VALUES (@Name, @RegistrationNumber, @Type, @Url, @CustomerId);

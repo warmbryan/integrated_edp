@@ -1,0 +1,74 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminDashboard.master.cs" Inherits="EDP_Project.AdminDashboard" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <meta charset="utf-8" dir="ltr" />
+    <meta http-equiv="X-UA-Compatible"  content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="Content/fontawesome-all.min.css" rel="stylesheet" />
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/pinpoint/admin/main.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="color:white;">
+            <header id="header">
+                <div class="container-fluid pt-3">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="profilePhotoContainerVertical mr-3">
+                            <img src="Public/Image/keefe.png" alt="keefe" class="profilePhotoVertical" />
+                            <div class="overlayVertical d-flex justify-content-center align-items-center">
+                                <div class="textVertical"><i class="fas fa-cog fa-4x profilePhotoCogVertical"></i></div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <h2 class="longText"><asp:Literal runat="server" ID="staffName">Soh Wei Rong</asp:Literal></h2>
+                            <p class="p-0 m-0">Staff</p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="tyHr"/>
+                <div class="container-fluid">
+                    <div class="tyNav">
+                        <asp:HyperLink runat="server" CssClass="tyNav-link" NavigateUrl="#">
+                            <div class="tyNavHeader d-flex align-items-center">
+                                <div style="width:20%">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                <p class="tyNav-text longText">Dashboard</p>
+                            </div>
+                        </asp:HyperLink>
+                        <asp:HyperLink runat="server" CssClass="tyNav-link" NavigateUrl="#">
+                            <div class="tyNavHeader d-flex align-items-center">
+                                <div style="width:20%">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </div>
+                                <p class="tyNav-text longText">Exit</p>
+                            </div>
+                        </asp:HyperLink>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <main role="main" id="main" class="main">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+    </form>
+
+    <script src="Scripts/jquery-3.5.1.min.js"></script>
+    
+    <script src="Scripts/popper.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+
+    <script src="Scripts/fontawesome/all.min.js"></script>
+</body>
+</html>

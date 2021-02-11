@@ -1,0 +1,1 @@
+﻿SELECT * FROM [dbo].[Business] WHERE [userId] = '0bc768f7-10cf-413f-93ee-6a143efc296e';
