@@ -370,3 +370,5 @@ FodyWeavers.xsd
 *.zip
 /EDP_Project/assets/Documents
 /EDP_Project/assets/Logos
+
+packages/
