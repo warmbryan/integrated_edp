@@ -27,6 +27,12 @@ namespace DBService
             return b.SelectAllByUserId(userId);
         }
 
+        public List<BusinessUser> SelectAllBusiness()
+        {
+            BusinessUser business = new BusinessUser();
+            return business.SelectAllBusiness();
+        }
+
         public Business GetSingleBusinessByBusinessId(string businessId)
         {
             Business b = new Business();
@@ -79,7 +85,8 @@ namespace DBService
         // BusinessUser
         public bool CreateBusinessUser(string name, string email, string password, string phone)
         {
-            return BusinessUser.Create(name, email, password, phone);
+            BusinessUser tmp = new BusinessUser(name,email,password,phone);
+            return tmp.Create();
         }
 
         public bool BusinessUserExists(string email)
@@ -143,11 +150,11 @@ namespace DBService
             }
             else if (Role == "Business")
             {
-                AdminClass admin = new AdminClass();
-                admin = admin.SelectOneAdmin(UserName);
-                if (admin != null)
+                BusinessUser business = new BusinessUser();
+                business = business.SelectOneByEmail(UserName);
+                if (business != null)
                 {
-                    return admin.decryptHashPassword(Password);
+                    return business.decryptHashPassword(Password);
                 }
                 else
                 {
@@ -239,6 +246,7 @@ namespace DBService
             BlackListClass tmpClass = new BlackListClass();
             return tmpClass.UpdateBlacklist(ID, customerId, status);
         }
+
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)
         {

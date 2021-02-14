@@ -15,10 +15,10 @@ namespace EDP_Project
         protected void Page_Load(object sender, EventArgs e)
         {
             Service1Client client = new Service1Client();
-            List<CustomerClass> eList = client.SelectAllCustomer().ToList<CustomerClass>();
+            List<CustomerClass> cList = client.SelectAllCustomer().ToList<CustomerClass>();
 
             gvUsers.Visible = true;
-            gvUsers.DataSource = eList;
+            gvUsers.DataSource = cList;
             gvUsers.DataBind();
         }
 
@@ -34,7 +34,34 @@ namespace EDP_Project
         protected void gvUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             string Email = gvUsers.SelectedRow.Cells[2].Text;
-            Response.Redirect("~/Administrator/UserDetailed?Email=" + Email);
+            Response.Redirect("~/AdminiUserDetailed?Email=" + Email);
+        }
+
+        protected void filterBtn_Click(object sender, EventArgs e)
+        {
+            String tmpValue = dpMenu.SelectedValue.Trim();
+            if (tmpValue == "0")
+            {
+                Service1Client client = new Service1Client();
+                List<CustomerClass> cList = client.SelectAllCustomer().ToList<CustomerClass>();
+
+                gvUsers.Visible = true;
+                gvUsers.DataSource = cList;
+                gvUsers.DataBind();
+                gvAdmin.DataSource = null;
+                gvAdmin.DataBind();
+            }
+            else if (tmpValue == "2")
+            {
+                Service1Client client = new Service1Client();
+                List<AdminClass> cList = client.SelectAllAdmin().ToList<AdminClass>();
+
+                gvAdmin.Visible = true;
+                gvAdmin.DataSource = cList;
+                gvAdmin.DataBind();
+                gvUsers.DataSource = null;
+                gvUsers.DataBind();
+            }
         }
     }
 }

@@ -209,6 +209,11 @@ namespace DBService
 
         [OperationContract]
         List<BlackListClass> SelectAllBlacklist(String customerId);
+
+        [OperationContract]
+        List<AdminClass> SelectAllAdmin();
+        [OperationContract]
+        List<BusinessUser> SelectAllBusiness();
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

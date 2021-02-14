@@ -44,7 +44,7 @@ namespace DBService.Models
         {
             if (this.created == true && this.Role != "Main")
             {
-                using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+                using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
                 {
                     using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                     {
@@ -102,7 +102,7 @@ namespace DBService.Models
 
         public AdminClass SelectOneAdmin(String userName)
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {
@@ -168,7 +168,7 @@ namespace DBService.Models
 
         public List<AdminClass> SelectAllAdmin()
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {
@@ -220,7 +220,7 @@ namespace DBService.Models
 
         public Int16 UpdateAdminPassword(String Username, String Password)
         {
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 Int16 result = 0;
                 AdminClass tmpClass = new AdminClass();
@@ -259,7 +259,7 @@ namespace DBService.Models
 
         public Int16 UpdateAdminRole(String Username, String Role)
         {
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 Int16 result = 0;
                 AdminClass tmpClass = new AdminClass();
@@ -298,7 +298,7 @@ namespace DBService.Models
 
         public Int16 DeleteAdmin(String Username)
         {
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 Int16 result = 0;
                 AdminClass tmpClass = new AdminClass();

@@ -36,7 +36,7 @@ namespace EDP_Project
                         Boolean result = false;
                         smtpemail.addEmail(Email);
                         smtpemail.addSubject("Welcome!");
-                        String link = $"https://localhost:44376/Customer/VerifyEmail?email={Email}";
+                        String link = $"https://localhost:53968/CustomerVerifyEmail?email={Email}";
                         smtpemail.addBody($"<a href='{link}'> Click here to verify your account</a>");
                         smtpemail.SetHTML(true);
                         result = smtpemail.sendEmail();
@@ -99,7 +99,7 @@ namespace EDP_Project
                 }
                 if (result == 1)
                 {
-                    Response.Redirect("~/Customer/Login?Feedback=1");
+                    Response.Redirect("~/CustomerLogin?Feedback=1");
                 }
                 else
                 {

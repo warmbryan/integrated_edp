@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WRCustomerLogin.Master" AutoEventWireup="true" CodeBehind="CustomerRegistration.aspx.cs" Inherits="EDP_Project.CustomerRegistration" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WRSite.Master" AutoEventWireup="true" CodeBehind="CustomerRegistration.aspx.cs" Inherits="EDP_Project.CustomerRegistration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="extraHead" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"></div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2"></div>
+        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
             <div class="card">
                 <div class="card-header">
                     <div class="text-center mb-3" style="font-size: 2.0rem;">
@@ -22,7 +22,6 @@
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                                     <asp:TextBox runat="server" TextMode="SingleLine" placeholder="First Name" ID="tbFirstName" CssClass="form-control" MaxLength="100"/>
-                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbFirstName" ForeColor="Red" Display="Dynamic" Font-Bold="true" CssClass="incorrect" ErrorMessage=" First name is required!" />
                                 </div>
                             </div>
                         </div>
@@ -33,7 +32,6 @@
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                                     <asp:TextBox runat="server" TextMode="SingleLine" placeholder="Last Name" ID="tbLastName" CssClass="form-control" MaxLength="100"/>
-                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLastName" ForeColor="Red" Display="Dynamic" Font-Bold="true" CssClass="incorrect" ErrorMessage=" Last name is required!" />
                                 </div>
                             </div>
                         </div>
@@ -43,14 +41,8 @@
                                     <asp:Label runat="server">Email: <span style="color:red">*</span></asp:Label>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox runat="server" TextMode="Email" OnTextChanged="tbEmail_TextChanged" placeholder="Email" ID="tbEmail" CssClass="form-control" AutoPostBack="true"/>
-                                            <asp:Label runat="server" ForeColor="Red" ID="lbEmaiLExists" Visible="false"/>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
-                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbEmail" ForeColor="Red" Display="Dynamic" Font-Bold="true" CssClass="incorrect" ErrorMessage=" Email is required!" />
-                                    <asp:RegularExpressionValidator runat="server" ControlToValidate="tbEmail" ForeColor="Red" Display="Dynamic" Font-Bold="true" CssClass="incorrect" ErrorMessage=" Email is not in the correct format" ValidationExpression="^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$" />
+                                        <asp:TextBox runat="server" TextMode="Email" placeholder="Email" ID="tbEmail" CssClass="form-control"/>
+                                        <asp:Label runat="server" ForeColor="Red" ID="lbEmaiLExists" Visible="false"/>
                                 </div>
                             </div>
                         </div>
@@ -61,8 +53,6 @@
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                                     <asp:TextBox runat="server" TextMode="Password" placeholder="Password" ID="tbPassword" CssClass="form-control" />
-                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPassword" ForeColor="Red" Display="Dynamic" Font-Bold="true" CssClass="incorrect" ErrorMessage=" Password is required!" />
-                                    <asp:RegularExpressionValidator runat="server" ControlToValidate="tbPassword" ForeColor="Red" Font-Bold="true" CssClass="incorrect" ErrorMessage="  Invalid password!" Display="Dynamic" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,20}" />
                                 </div>
                             </div>
                             <div class="row">
@@ -93,8 +83,6 @@
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                                     <asp:TextBox runat="server" TextMode="Password" placeholder="Confirm Password" ID="tbPasswordCfm" CssClass="form-control" />
-                                    <asp:CompareValidator runat="server" ControlToCompare="tbPassword" ControlToValidate="tbPasswordCfm" ForeColor="Red" Display="Dynamic" Font-Bold="true" CssClass="incorrect" ErrorMessage=" Password does not match" />
-                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPasswordCfm" ForeColor="Red" Display="Dynamic" Font-Bold="true" CssClass="incorrect" ErrorMessage=" Confirm password is required!" />
                                 </div>
                             </div>
                         </div>
@@ -105,7 +93,6 @@
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                                     <asp:TextBox runat="server" TextMode="Phone" placeholder="Phone Number" ID="tbPhoneNumber" CssClass="form-control" />
-                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPhoneNumber" ForeColor="Red" Display="Dynamic" Font-Bold="true" CssClass="incorrect" ErrorMessage=" Phone number is required!" />
                                 </div>
                             </div>
                         </div>
@@ -116,8 +103,6 @@
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                                     <asp:TextBox runat="server" TextMode="Date" placeholder="Birth Date" ID="tbBirthDate" CssClass="form-control" />
-                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbBirthDate" ForeColor="Red" Display="Dynamic" Font-Bold="true" CssClass="incorrect" ErrorMessage=" Birth date is required!" />
-                                    <asp:RangeValidator runat="server" ControlToValidate="tbBirthDate" ForeColor="Red" Font-Bold="true" CssClass="incorrect" ErrorMessage="  Date must be within 1/1/1753 to today's date" MinimumValue="1/1/1753" MaximumValue="31/12/9999" Type="Date" Display="Dynamic" />
                                 </div>
                             </div>
                         </div>
@@ -137,11 +122,11 @@
                         </div>
                 </div>
                 <div class="card-footer text-center">
-                    <p class="text-muted p-0">Already have an account? <a runat="server" href="~/Customer/Login">Click here</a></p>
+                    <p class="text-muted p-0">Already have an account? <a runat="server" href="~/CustomerLogin">Click here</a></p>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"></div>
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2"></div>
     </div>
     <script type="text/javascript">
         $(document).ready(() => {

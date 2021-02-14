@@ -134,9 +134,8 @@ namespace EDP_Project.App_Code
             Client.EnableSsl = true;
             Client.UseDefaultCredentials = false;
             Client.Credentials = CredentialCache.DefaultNetworkCredentials;
-            Client.Credentials = new NetworkCredential("191382S@mymail.nyp.edu.sg", "NY21k9M2H6L0a4b");
+            Client.Credentials = new NetworkCredential("191382S@mymail.nyp.edu.sg", "NY21k9M2H6L0b4a");
             Client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            Client.EnableSsl = true;
             try
             {
                 Client.Send(Msg);

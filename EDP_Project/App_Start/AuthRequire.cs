@@ -5,6 +5,15 @@ namespace EDP_Project
 {
     public class AuthRequire
     {
+        public static String RetrieveUserRole()
+        {
+            if (HttpContext.Current.Session["r"] != null)
+            {
+                String role = HttpContext.Current.Session["r"].ToString();
+                return role;
+            }
+            return "";
+        }
         public static void Logout()
         {
             if (HttpContext.Current.Session["di"] != null &&
@@ -28,7 +37,7 @@ namespace EDP_Project
                     HttpContext.Current.Session.Abandon();
                     HttpContext.Current.Session.RemoveAll();
 
-                    HttpContext.Current.Response.Redirect("~/Customer/Login");
+                    HttpContext.Current.Response.Redirect("~/CustomerLogin");
                 }
             }
         }
@@ -38,6 +47,7 @@ namespace EDP_Project
             try
             {
                 HttpContext.Current.Session["di"] = ID;
+                HttpContext.Current.Session["userId"] = ID;
                 HttpContext.Current.Session["ae"] = Email;
                 string guid = Guid.NewGuid().ToString();
                 HttpContext.Current.Session["ta"] = guid;

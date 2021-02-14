@@ -8,29 +8,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible"  content="IE=edge" />
     <title><%: Page.Title %></title>
-
-    <asp:PlaceHolder runat="server">
-    </asp:PlaceHolder>
-
-    <link href="Content/fontawesome-all.min.css" rel="stylesheet" />
-
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="Content/main.css" rel="stylesheet" />
-
+    
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="Content/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/pinpoint/admin/main.css" rel="stylesheet" />
     
     <asp:ContentPlaceHolder ID="extraHead" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <style>
-        .powerClass {
-            padding-left:7em!important;padding-right:7em !important; background-color: #2EA9F5; color:black
-        }
-    </style>
     <form id="form" runat="server">
-        <nav class="navbar navbar-expand-lg sticky-top powerClass">
+
+        <script src="Scripts/jquery-3.5.1.min.js"></script>
+    
+    <script src="Scripts/popper.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+
+    <script src="Scripts/fontawesome/all.min.js"></script>
+
+        <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand" runat="server" href="~/">PinPoint</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,8 +50,8 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a runat="server" class="dropdown-item" href="~/Customer/Profile">Profile</a></li>
-                                <li><a runat="server" class="dropdown-item" href="~/Business/Registration">List Business</a></li>
+                                <li><a runat="server" class="dropdown-item" style="color:white;" href="~/Customer/Profile">Profile</a></li>
+                                <li><a runat="server" class="dropdown-item" href="~/BusinessRegistration">List Business</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -72,11 +70,6 @@
         </div>
     </form>
 
-    <script src="Scripts/jquery-3.5.1.min.js"></script>
     
-    <script src="Scripts/popper.min.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
-
-    <script src="Scripts/fontawesome/all.min.js"></script>
 </body>
 </html>

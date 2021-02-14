@@ -46,7 +46,7 @@ namespace DBService.Models
         {
             if (this.created == true)
             {
-                using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+                using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
                 {
                     using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                     {
@@ -106,7 +106,7 @@ namespace DBService.Models
 
         public CustomerClass VerifyUser(String emailVal)
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {
@@ -169,7 +169,7 @@ namespace DBService.Models
 
         public Int16 FullDeleteCustomer(Guid ID, String Email, DateTime deleteDate)
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {
@@ -224,7 +224,7 @@ namespace DBService.Models
 
         public Int16 UpdateCustomer(Guid ID, String PastEmail, String firstName, String lastName, String email, String PhoneNumber, DateTime dateOfBirth)
         {
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 Int16 result = 0;
                 CustomerClass tmpClass = new CustomerClass();
@@ -236,10 +236,7 @@ namespace DBService.Models
                     cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
                     cmd.Parameters.AddWithValue("@FirstName", tmpClass.generateEncryptor(firstName));
                     cmd.Parameters.AddWithValue("@LastName", tmpClass.generateEncryptor(lastName));
-                    if (email != PastEmail)
-                    {
-                        cmd.Parameters.AddWithValue("@NewEmail", email);
-                    }
+                    cmd.Parameters.AddWithValue("@NewEmail", email);
                     cmd.Parameters.AddWithValue("@PhoneNumber", tmpClass.generateEncryptor(PhoneNumber));
                     cmd.Parameters.AddWithValue("@BirthDate", tmpClass.generateEncryptor(dateOfBirth.ToString()));
                     try
@@ -247,7 +244,7 @@ namespace DBService.Models
                         conn.Open();
                         BlackListClass tmpPower = new BlackListClass();
                         result = tmpPower.UpdateBlacklistEmails(PastEmail, email);
-                        if (result != 1)
+                        if (result < 0)
                         {
                             throw new OverflowException();
                         }
@@ -266,7 +263,7 @@ namespace DBService.Models
                         Console.WriteLine(err);
                         result = -3;
                     }
-                    catch (OverflowException)
+                    catch (OverflowException err)
                     {
                         result = -2;
                     }
@@ -285,7 +282,7 @@ namespace DBService.Models
 
         public Int16 UpdateCustomerPassword(Guid ID, String PastEmail, String Password)
         {
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 Int16 result = 0;
                 CustomerClass tmpClass = new CustomerClass();
@@ -325,7 +322,7 @@ namespace DBService.Models
 
         public Int16 UpdateCustomerStatus(Guid ID, String PastEmail, String purpose, Boolean status)
         {
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 Int16 result = 0;
                 CustomerClass tmpClass = new CustomerClass();
@@ -435,7 +432,7 @@ namespace DBService.Models
 
         public List<CustomerClass> SelectAllCustomers()
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {
@@ -492,7 +489,7 @@ namespace DBService.Models
 
         public CustomerClass SelectOneCustomer(String Email)
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {

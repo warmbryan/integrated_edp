@@ -1048,4 +1048,28 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SelectAllAdmin">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectAllAdminResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllAdminResult" nillable="true" type="q46:ArrayOfAdminClass" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectAllBusiness">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SelectAllBusinessResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllBusinessResult" nillable="true" type="q47:ArrayOfBusinessUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

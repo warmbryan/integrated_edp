@@ -27,7 +27,7 @@ namespace EDP_Project
                 }
                 else
                 {
-                    Response.Redirect("~/Customer/Login");
+                    Response.Redirect("~/CustomerLogin");
                 }
             }
 
@@ -115,7 +115,7 @@ namespace EDP_Project
                 lbOldPasswordError.Text = errorMsg;
             }
             Service1Client client = new Service1Client();
-            Boolean tmpResult = client.VerifyPassword(Session["ae"].ToString(), Password, "Customer");
+            Boolean tmpResult = client.VerifyPassword(Session["ae"].ToString(), OldPassword, "Customer");
             if (!tmpResult)
             {
                 String errorMsg = " Invalid Password";
@@ -240,6 +240,7 @@ namespace EDP_Project
                 if (cust != null)
                 {
                     client.UpdateCustomerPassword(cust.ID, cust.Email, password);
+                    AuthRequire.Logout();
                 }
             }
         }

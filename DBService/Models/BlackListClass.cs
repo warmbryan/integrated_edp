@@ -41,7 +41,7 @@ namespace DBService.Models
         {
             if (this.created == true)
             {
-                using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+                using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
                 {
                     using (SqlCommand cmdOne = new SqlCommand("InsertBlackList", connOne))
                     {
@@ -97,7 +97,7 @@ namespace DBService.Models
 
         public BlackListClass SelectOneBlacklist(Guid ID, String customerId)
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 using (SqlCommand cmdOne = new SqlCommand("SelectOneBlackList", connOne))
                 {
@@ -139,7 +139,7 @@ namespace DBService.Models
 
         public List<BlackListClass> SelectAllBlacklist(String customerId)
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {
@@ -178,7 +178,7 @@ namespace DBService.Models
 
         public Int16 UpdateBlacklistEmails(String oldId, String customerId)
         {
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 Int16 result = 0;
                 using (SqlCommand cmd = new SqlCommand("UpdateBlacklistEmail", conn))
@@ -215,7 +215,7 @@ namespace DBService.Models
 
         public Int16 UpdateBlacklist(Guid ID, String customerId, Boolean status)
         {
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
                 Int16 result = 0;
                 using (SqlCommand cmd = new SqlCommand("UpdateBlacklistDeleted", conn))
