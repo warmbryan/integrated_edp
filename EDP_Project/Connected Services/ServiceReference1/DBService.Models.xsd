@@ -63,6 +63,7 @@
       <xs:element minOccurs="0" name="ID" type="ser:guid" />
       <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="blackListed" type="xs:boolean" />
       <xs:element minOccurs="0" name="delete" type="xs:boolean" />
       <xs:element minOccurs="0" name="deleteDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="emailVerified" type="xs:boolean" />
@@ -116,4 +117,34 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfBusinessRole" nillable="true" type="tns:ArrayOfBusinessRole" />
+  <xs:complexType name="AdminClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdminName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Role" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AdminClass" nillable="true" type="tns:AdminClass" />
+  <xs:complexType name="BlackListClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CustomerID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="EndedAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="created" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BlackListClass" nillable="true" type="tns:BlackListClass" />
+  <xs:complexType name="ArrayOfBlackListClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BlackListClass" nillable="true" type="tns:BlackListClass" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBlackListClass" nillable="true" type="tns:ArrayOfBlackListClass" />
 </xs:schema>

@@ -18,7 +18,7 @@ namespace EDP_Project
                 CustomerClass cust = client.VerifyCustomer(email);
                 if (cust != null)
                 {
-                    result = client.UpdateCustomer(cust.ID, cust.Email, "verifyEmail", true, null);
+                    result = client.UpdateCustomerStatus(cust.ID, cust.Email, "emailStatus", true);
                 }
                 else
                 {

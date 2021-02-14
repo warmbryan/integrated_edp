@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace DBService.Models
 {
-    class Appointment
+    public class Appointment
     {
         public string aptDate { get; set; }
         public string aptTime { get; set; }

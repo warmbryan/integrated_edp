@@ -20,6 +20,7 @@ namespace DBService.Models
         public Boolean emailVerified { get; set; }
         public Boolean delete { get; set; }
         public DateTime deleteDate { get; set; }
+        public Boolean blackListed { get; set; }
         protected Boolean created { get; set; }
         protected String salt { get; set; }
         protected byte[] key { get; set; }
@@ -45,7 +46,7 @@ namespace DBService.Models
         {
             if (this.created == true)
             {
-                using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
+                using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
                 {
                     using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                     {
@@ -105,7 +106,7 @@ namespace DBService.Models
 
         public CustomerClass VerifyUser(String emailVal)
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {
@@ -131,6 +132,7 @@ namespace DBService.Models
                                         tmpClass.Password = (String)reader["password"];
                                         tmpClass.delete = (Boolean)reader["delete"];
                                         tmpClass.deleteDate = (DateTime)reader["deleteDate"];
+                                        tmpClass.blackListed = (Boolean)reader["blackListed"];
                                     }
                                 }
                                 connTwo.Open();
@@ -167,7 +169,7 @@ namespace DBService.Models
 
         public Int16 FullDeleteCustomer(Guid ID, String Email, DateTime deleteDate)
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {
@@ -175,9 +177,8 @@ namespace DBService.Models
                     {
                         using (SqlCommand cmdTwo = new SqlCommand("DeleteEncryption", connTwo))
                         {
-                            Int16 timeDiff = (Int16)(DateTime.Now - deleteDate).Days;
                             Int16 result = 0;
-                            if (timeDiff >= 30)
+                            if (DateTime.Now.CompareTo(deleteDate) > 0)
                             {
                                 cmdOne.CommandType = CommandType.StoredProcedure;
                                 cmdTwo.CommandType = CommandType.StoredProcedure;
@@ -221,230 +222,129 @@ namespace DBService.Models
             }
         }
 
-        public Int16 UpdateCustomer(Guid ID, String PastEmail, String purpose, Object valueOne, Object valueTwo)
+        public Int16 UpdateCustomer(Guid ID, String PastEmail, String firstName, String lastName, String email, String PhoneNumber, DateTime dateOfBirth)
         {
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
             {
                 Int16 result = 0;
                 CustomerClass tmpClass = new CustomerClass();
-                tmpClass = tmpClass.SelectOneCustomer(ID, PastEmail);
-                purpose = purpose.ToLower().Trim().Replace(" ", "");
-                if (purpose == "name")
+                tmpClass = tmpClass.SelectOneCustomer(PastEmail);
+                using (SqlCommand cmd = new SqlCommand("UpdateCustomerParticulars", conn))
                 {
-                    using (SqlCommand cmd = new SqlCommand("UpdateCustomerName", conn))
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ID", ID);
+                    cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
+                    cmd.Parameters.AddWithValue("@FirstName", tmpClass.generateEncryptor(firstName));
+                    cmd.Parameters.AddWithValue("@LastName", tmpClass.generateEncryptor(lastName));
+                    if (email != PastEmail)
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@ID", ID);
-                        cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
-                        cmd.Parameters.AddWithValue("@ValueOne", tmpClass.generateEncryptor((String)valueOne));
-                        cmd.Parameters.AddWithValue("@ValueTwo", tmpClass.generateEncryptor((String)valueTwo));
-                        try
+                        cmd.Parameters.AddWithValue("@NewEmail", email);
+                    }
+                    cmd.Parameters.AddWithValue("@PhoneNumber", tmpClass.generateEncryptor(PhoneNumber));
+                    cmd.Parameters.AddWithValue("@BirthDate", tmpClass.generateEncryptor(dateOfBirth.ToString()));
+                    try
+                    {
+                        conn.Open();
+                        BlackListClass tmpPower = new BlackListClass();
+                        result = tmpPower.UpdateBlacklistEmails(PastEmail, email);
+                        if (result != 1)
                         {
-                            conn.Open();
-                            result = (Int16)cmd.ExecuteNonQuery();
+                            throw new OverflowException();
                         }
-                        catch (SqlException)
+                        result = (Int16)cmd.ExecuteNonQuery();
+                        if (result != 1)
                         {
-                            result = -3;
+                            throw new OverflowException();
                         }
-                        catch (OverflowException)
+                        if (email != PastEmail)
                         {
-                            result = -2;
-                        }
-                        catch
-                        {
-                            result = -1;
-                        }
-                        finally
-                        {
-                            conn.Close();
+                            result = UpdateCustomerStatus(ID, PastEmail, "emailStatus", false);
                         }
                     }
-                }
-                else if (purpose == "email")
-                {
-                    using (SqlCommand cmd = new SqlCommand("UpdateCustomerEmail", conn))
+                    catch (SqlException err)
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@ID", ID);
-                        cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
-                        cmd.Parameters.AddWithValue("@ValueOne", (String)valueOne);
-                        try
-                        {
-                            conn.Open();
-                            result = (Int16)cmd.ExecuteNonQuery();
-                        }
-                        catch (SqlException)
-                        {
-                            result = -3;
-                        }
-                        catch (OverflowException)
-                        {
-                            result = -2;
-                        }
-                        catch
-                        {
-                            result = -1;
-                        }
-                        finally
-                        {
-                            conn.Close();
-                        }
+                        Console.WriteLine(err);
+                        result = -3;
                     }
-                }
-                else if (purpose == "phonenumber")
-                {
-                    using (SqlCommand cmd = new SqlCommand("UpdateCustomerPhoneNumber", conn))
+                    catch (OverflowException)
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@ID", ID);
-                        cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
-                        cmd.Parameters.AddWithValue("@ValueOne", tmpClass.generateEncryptor((String)valueOne));
-                        try
-                        {
-                            conn.Open();
-                            result = (Int16)cmd.ExecuteNonQuery();
-                        }
-                        catch (SqlException)
-                        {
-                            result = -3;
-                        }
-                        catch (OverflowException)
-                        {
-                            result = -2;
-                        }
-                        catch
-                        {
-                            result = -1;
-                        }
-                        finally
-                        {
-                            conn.Close();
-                        }
+                        result = -2;
                     }
-                }
-                else if (purpose == "date")
-                {
-                    using (SqlCommand cmd = new SqlCommand("UpdateCustomerDateOfBirth", conn))
+                    catch
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@ID", ID);
-                        cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
-                        cmd.Parameters.AddWithValue("@ValueOne", tmpClass.generateEncryptor((String)valueOne));
-                        try
-                        {
-                            conn.Open();
-                            result = (Int16)cmd.ExecuteNonQuery();
-                        }
-                        catch (SqlException)
-                        {
-                            result = -3;
-                        }
-                        catch (OverflowException)
-                        {
-                            result = -2;
-                        }
-                        catch
-                        {
-                            result = -1;
-                        }
-                        finally
-                        {
-                            conn.Close();
-                        }
+                        result = -1;
                     }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                    return result;
                 }
-                else if (purpose == "password")
-                {
+            }
+        }
 
-                    using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
-                    {
-                        using (SqlCommand cmd = new SqlCommand("UpdateCustomerPassword", conn))
-                        {
-                            using (SqlCommand cmdTwo = new SqlCommand("UpdateEncryptionHash", connTwo))
-                            {
-                                cmd.CommandType = CommandType.StoredProcedure;
-                                cmdTwo.CommandType = CommandType.StoredProcedure;
-                                cmd.Parameters.AddWithValue("@ID", ID);
-                                cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
-                                tmpClass.hashingAlgorithm((String)valueOne);
-                                cmd.Parameters.AddWithValue("@ValueOne", tmpClass.Password);
-                                cmdTwo.Parameters.AddWithValue("@Salt", tmpClass.salt);
-                                cmdTwo.Parameters.AddWithValue("@Identity", tmpClass.Email);
-                                try
-                                {
-                                    conn.Open();
-                                    connTwo.Open();
-                                    result = (Int16)cmd.ExecuteNonQuery();
-                                    result = (Int16)cmdTwo.ExecuteNonQuery();
-                                }
-                                catch (SqlException)
-                                {
-                                    result = -3;
-                                }
-                                catch (OverflowException)
-                                {
-                                    result = -2;
-                                }
-                                catch
-                                {
-                                    result = -1;
-                                }
-                                finally
-                                {
-                                    conn.Close();
-                                    connTwo.Close();
-                                }
-                            }
-                        }
-                    }
-                }
-                else if (purpose == "verifyemail")
+        public Int16 UpdateCustomerPassword(Guid ID, String PastEmail, String Password)
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            {
+                Int16 result = 0;
+                CustomerClass tmpClass = new CustomerClass();
+                tmpClass = tmpClass.SelectOneCustomer(PastEmail);
+                using (SqlCommand cmd = new SqlCommand("UpdateCustomerPassword", conn))
                 {
-                    using (SqlCommand cmd = new SqlCommand("UpdateCustomerEmailVerified", conn))
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ID", ID);
+                    cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
+                    cmd.Parameters.AddWithValue("@ValueOne", tmpClass.updateHashPassword(Password));
+                    try
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@ID", ID);
-                        cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
-                        cmd.Parameters.AddWithValue("@ValueOne", (Boolean)valueOne);
-                        try
-                        {
-                            conn.Open();
-                            result = (Int16)cmd.ExecuteNonQuery();
-                        }
-                        catch (SqlException)
-                        {
-                            result = -3;
-                        }
-                        catch (OverflowException)
-                        {
-                            result = -2;
-                        }
-                        catch
-                        {
-                            result = -1;
-                        }
-                        finally
-                        {
-                            conn.Close();
-                        }
+                        conn.Open();
+                        result = (Int16)cmd.ExecuteNonQuery();
                     }
+                    catch (SqlException err)
+                    {
+                        Console.WriteLine(err);
+                        result = -3;
+                    }
+                    catch (OverflowException)
+                    {
+                        result = -2;
+                    }
+                    catch
+                    {
+                        result = -1;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                    return result;
                 }
-                else if (purpose == "deletestatus")
+            }
+        }
+
+        public Int16 UpdateCustomerStatus(Guid ID, String PastEmail, String purpose, Boolean status)
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
+            {
+                Int16 result = 0;
+                CustomerClass tmpClass = new CustomerClass();
+                if (purpose == "deleteStatus")
                 {
                     using (SqlCommand cmd = new SqlCommand("UpdateCustomerDeleteStatus", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@ID", ID);
                         cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
-                        cmd.Parameters.AddWithValue("@ValueOne", (Boolean)valueOne);
+                        cmd.Parameters.AddWithValue("@ValueOne", status);
                         try
                         {
                             conn.Open();
                             result = (Int16)cmd.ExecuteNonQuery();
                         }
-                        catch (SqlException)
+                        catch (SqlException err)
                         {
+                            Console.WriteLine(err);
                             result = -3;
                         }
                         catch (OverflowException)
@@ -459,15 +359,83 @@ namespace DBService.Models
                         {
                             conn.Close();
                         }
+                        return result;
+                    }
+                }
+                else if (purpose == "emailStatus")
+                {
+                    using (SqlCommand cmd = new SqlCommand("UpdateCustomerEmailVerified", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@ID", ID);
+                        cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
+                        cmd.Parameters.AddWithValue("@ValueOne", status);
+                        try
+                        {
+                            conn.Open();
+                            result = (Int16)cmd.ExecuteNonQuery();
+                        }
+                        catch (SqlException err)
+                        {
+                            Console.WriteLine(err);
+                            result = -3;
+                        }
+                        catch (OverflowException)
+                        {
+                            result = -2;
+                        }
+                        catch
+                        {
+                            result = -1;
+                        }
+                        finally
+                        {
+                            conn.Close();
+                        }
+                        return result;
+                    }
+                }
+                else if (purpose == "blackListedStatus")
+                {
+                    using (SqlCommand cmd = new SqlCommand("UpdateCustomerBlackListed", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@ID", ID);
+                        cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
+                        cmd.Parameters.AddWithValue("@ValueOne", status);
+                        try
+                        {
+                            conn.Open();
+                            result = (Int16)cmd.ExecuteNonQuery();
+                        }
+                        catch (SqlException err)
+                        {
+                            Console.WriteLine(err);
+                            result = -3;
+                        }
+                        catch (OverflowException)
+                        {
+                            result = -2;
+                        }
+                        catch
+                        {
+                            result = -1;
+                        }
+                        finally
+                        {
+                            conn.Close();
+                        }
+                        return result;
                     }
                 }
                 return result;
+
             }
         }
 
         public List<CustomerClass> SelectAllCustomers()
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {
@@ -486,12 +454,14 @@ namespace DBService.Models
                             CustomerClass tmpClass = new CustomerClass();
                             tmpClass.ID = (Guid)row["id"];
                             tmpClass.Email = (String)row["email"];
-                            tmpClass.deleteDate = DateTime.Parse((String)row["deleteDate"]);
+                            tmpClass.deleteDate = (DateTime)row["deleteDate"];
                             tmpClass.emailVerified = (Boolean)row["emailVerified"];
                             tmpClass.delete = (Boolean)row["delete"];
+                            tmpClass.blackListed = (Boolean)row["blackListed"];
                             using (SqlCommand cmdTwo = new SqlCommand("SelectOneEncryption", connTwo))
                             {
-                                cmdTwo.Parameters.AddWithValue("@ForeignKeyId", this.ID);
+                                cmdTwo.CommandType = CommandType.StoredProcedure;
+                                cmdTwo.Parameters.AddWithValue("@Identity", tmpClass.Email);
                                 using (SqlDataReader reader = cmdTwo.ExecuteReader())
                                 {
                                     if (reader.Read())
@@ -512,15 +482,17 @@ namespace DBService.Models
                             tmpClass.key = new byte[0];
                             custList.Add(tmpClass);
                         }
+                        connOne.Close();
+                        connTwo.Close();
                         return custList;
                     }
                 }
             }
         }
 
-        public CustomerClass SelectOneCustomer(Guid ID, String Email)
+        public CustomerClass SelectOneCustomer(String Email)
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDB"].ConnectionString.ToString()))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {
@@ -531,7 +503,6 @@ namespace DBService.Models
                             CustomerClass tmpClass = new CustomerClass();
                             cmdOne.CommandType = CommandType.StoredProcedure;
                             cmdTwo.CommandType = CommandType.StoredProcedure;
-                            cmdOne.Parameters.AddWithValue("@ID", ID);
                             cmdOne.Parameters.AddWithValue("@Email", Email);
                             cmdTwo.Parameters.AddWithValue("@Identity", Email);
                             try
@@ -551,6 +522,7 @@ namespace DBService.Models
                                         tmpClass.emailVerified = (Boolean)reader["emailVerified"];
                                         tmpClass.deleteDate = (DateTime)reader["deleteDate"];
                                         tmpClass.delete = (Boolean)reader["delete"];
+                                        tmpClass.blackListed = (Boolean)reader["blackListed"];
                                         tmpFirstName = (String)reader["firstName"];
                                         tmpLastName = (String)reader["lastName"];
                                         tmpPhoneNumber = (String)reader["phoneNumber"];
@@ -601,6 +573,12 @@ namespace DBService.Models
             this.Password = BCrypt.Net.BCrypt.EnhancedHashPassword(this.Password + this.salt, workFactor: rounds);
         }
 
+        protected String updateHashPassword(String Password)
+        {
+            Int16 rounds = 15;
+            return BCrypt.Net.BCrypt.EnhancedHashPassword(Password + this.salt, workFactor: rounds);
+        }
+
         public Boolean decryptHashPassword(String Password)
         {
             Boolean result;
@@ -622,7 +600,7 @@ namespace DBService.Models
             return result;
         }
 
-        protected String generateEncryptor(String value)
+        public String generateEncryptor(String value)
         {
             using (Aes myAes = Aes.Create())
             {
@@ -652,7 +630,7 @@ namespace DBService.Models
             }
         }
 
-        protected String generateDecryptor(String value)
+        public String generateDecryptor(String value)
         {
             using (Aes myAes = Aes.Create())
             {

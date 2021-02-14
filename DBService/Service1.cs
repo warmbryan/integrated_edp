@@ -107,10 +107,10 @@ namespace DBService
             return cust.InsertIntoDatabase();
         }
 
-        public CustomerClass SelectOneCustomer(Guid ID, String Email)
+        public CustomerClass SelectOneCustomer(String Email)
         {
             CustomerClass cust = new CustomerClass();
-            return cust.SelectOneCustomer(ID, Email);
+            return cust.SelectOneCustomer(Email);
         }
 
         public List<CustomerClass> SelectAllCustomer()
@@ -125,13 +125,47 @@ namespace DBService
             return cust.VerifyUser(Email);
         }
 
-        public Boolean VerifyPassword(String Email, String Password)
+
+        public Boolean VerifyPassword(String UserName, String Password, String Role)
         {
-            CustomerClass cust = new CustomerClass();
-            cust = cust.VerifyUser(Email);
-            if (cust != null)
+            if (Role == "Customer")
             {
-                return cust.decryptHashPassword(Password);
+                CustomerClass cust = new CustomerClass();
+                cust = cust.VerifyUser(UserName);
+                if (cust != null)
+                {
+                    return cust.decryptHashPassword(Password);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (Role == "Business")
+            {
+                AdminClass admin = new AdminClass();
+                admin = admin.SelectOneAdmin(UserName);
+                if (admin != null)
+                {
+                    return admin.decryptHashPassword(Password);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (Role == "Admin")
+            {
+                AdminClass admin = new AdminClass();
+                admin = admin.SelectOneAdmin(UserName);
+                if (admin != null)
+                {
+                    return admin.decryptHashPassword(Password);
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
@@ -139,16 +173,71 @@ namespace DBService
             }
         }
 
-        public Int16 UpdateCustomer(Guid ID, String PastEmail, String purpose, Object valueOne, Object valueTwo)
+        public Int16 UpdateCustomer(Guid ID, String PastEmail, String firstName, String lastName, String email, String PhoneNumber, DateTime dateOfBirth)
         {
             CustomerClass cust = new CustomerClass();
-            return (Int16)cust.UpdateCustomer(ID, PastEmail, purpose, valueOne, valueTwo);
+            return (Int16)cust.UpdateCustomer(ID, PastEmail, firstName, lastName, email, PhoneNumber, dateOfBirth);
+        }
+
+        public Int16 UpdateCustomerPassword(Guid ID, String PastEmail, String Password)
+        {
+            CustomerClass cust = new CustomerClass();
+            return (Int16)cust.UpdateCustomerPassword(ID, PastEmail, Password);
+        }
+
+        public Int16 UpdateCustomerStatus(Guid ID, String PastEmail, String purpose, Boolean status)
+        {
+            CustomerClass cust = new CustomerClass();
+            return (Int16)cust.UpdateCustomerStatus(ID, PastEmail, purpose, status);
         }
 
         public Int16 DeleteCustomer(Guid ID, String Email, DateTime deleteDate)
         {
             CustomerClass cust = new CustomerClass();
             return cust.FullDeleteCustomer(ID, Email, deleteDate);
+        }
+
+        //Admin
+        public Int16 InsertAdmin(String adminName, String userName, String password, String role)
+        {
+            AdminClass admin = new AdminClass(adminName, userName, password, role);
+            return admin.InsertIntoDatabase();
+        }
+
+        public AdminClass SelectOneAdmin(String userName)
+        {
+            AdminClass admin = new AdminClass();
+            return admin.SelectOneAdmin(userName);
+        }
+
+        public List<AdminClass> SelectAllAdmin()
+        {
+            AdminClass admin = new AdminClass();
+            return admin.SelectAllAdmin();
+        }
+
+        public Int16 InsertOneBlacklist(Int32 duration, String reason, String customerId, String customerName)
+        {
+            BlackListClass tmp = new BlackListClass(duration, reason, customerId, customerName);
+            return tmp.InsertIntoDatabase();
+        }
+
+        public BlackListClass SelectOneBlacklist(Guid ID, String customerId)
+        {
+            BlackListClass tmp = new BlackListClass();
+            return tmp.SelectOneBlacklist(ID, customerId);
+        }
+
+        public List<BlackListClass> SelectAllBlacklist(String customerId)
+        {
+            BlackListClass tmp = new BlackListClass();
+            return tmp.SelectAllBlacklist(customerId);
+        }
+
+        public Int16 UpdateBlacklistDeleted(Guid ID, String customerId, Boolean status)
+        {
+            BlackListClass tmpClass = new BlackListClass();
+            return tmpClass.UpdateBlacklist(ID, customerId, status);
         }
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)

@@ -242,6 +242,8 @@
     <Content Include="Properties\DataSources\DBService.Models.BusinessRole.datasource" />
     <Content Include="Properties\DataSources\DBService.Models.Branch.datasource" />
     <Content Include="Properties\DataSources\DBService.Models.Review.datasource" />
+    <Content Include="Properties\DataSources\DBService.Models.AdminClass.datasource" />
+    <Content Include="Properties\DataSources\DBService.Models.BlackListClass.datasource" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />

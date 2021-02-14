@@ -1,6 +1,10 @@
-﻿using DBService.Models;
+﻿using System;
+using System.Web;
+using System.Web.UI.WebControls;
+using System.Collections.Generic;
+using System.Linq;
+using DBService.Models;
 using EDP_Project.ServiceReference1;
-using System;
 
 namespace EDP_Project
 {
@@ -22,7 +26,7 @@ namespace EDP_Project
                         Boolean setSession = true;
                         if (cust.blackListed)
                         {
-                            List<BlackListClass> resultOne = client.SelectAllBlacklist(username).ToList<BlackListClass>();
+                            List<BlackListClass> resultOne = client.SelectAllBlacklist(username).ToList();
                             for (int i = 0; i < resultOne.Count; i++)
                             {
                                 if (resultOne[i].Deleted == false)

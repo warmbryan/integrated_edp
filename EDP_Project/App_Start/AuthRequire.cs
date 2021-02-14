@@ -32,7 +32,8 @@ namespace EDP_Project
                 }
             }
         }
-        public static Boolean SetUserSession(Guid ID, String Email)
+        
+        public static Boolean SetUserSession(Guid ID, String Email, String Role)
         {
             try
             {
@@ -40,6 +41,7 @@ namespace EDP_Project
                 HttpContext.Current.Session["ae"] = Email;
                 string guid = Guid.NewGuid().ToString();
                 HttpContext.Current.Session["ta"] = guid;
+                HttpContext.Current.Session["r"] = Role;
                 HttpContext.Current.Response.Cookies.Add(new HttpCookie("ta", guid));
                 return true;
             }
@@ -48,6 +50,7 @@ namespace EDP_Project
                 return false;
             }
         }
+
         public static Boolean CheckIfUserLoggedIn()
         {
             if (HttpContext.Current.Session["di"] != null &&

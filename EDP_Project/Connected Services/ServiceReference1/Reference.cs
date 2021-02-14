@@ -112,10 +112,10 @@ namespace EDP_Project.ServiceReference1 {
         System.Threading.Tasks.Task<short> InsertCustomerAsync(string firstName, string lastName, string email, string password, string phoneNumber, System.DateTime dateOfBirth);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectOneCustomer", ReplyAction="http://tempuri.org/IService1/SelectOneCustomerResponse")]
-        DBService.Models.CustomerClass SelectOneCustomer(System.Guid ID, string Email);
+        DBService.Models.CustomerClass SelectOneCustomer(string Email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectOneCustomer", ReplyAction="http://tempuri.org/IService1/SelectOneCustomerResponse")]
-        System.Threading.Tasks.Task<DBService.Models.CustomerClass> SelectOneCustomerAsync(System.Guid ID, string Email);
+        System.Threading.Tasks.Task<DBService.Models.CustomerClass> SelectOneCustomerAsync(string Email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectAllCustomer", ReplyAction="http://tempuri.org/IService1/SelectAllCustomerResponse")]
         DBService.Models.CustomerClass[] SelectAllCustomer();
@@ -130,28 +130,28 @@ namespace EDP_Project.ServiceReference1 {
         System.Threading.Tasks.Task<DBService.Models.CustomerClass> VerifyCustomerAsync(string Email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/VerifyPassword", ReplyAction="http://tempuri.org/IService1/VerifyPasswordResponse")]
-        bool VerifyPassword(string Email, string Password);
+        bool VerifyPassword(string Email, string Password, string Role);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/VerifyPassword", ReplyAction="http://tempuri.org/IService1/VerifyPasswordResponse")]
-        System.Threading.Tasks.Task<bool> VerifyPasswordAsync(string Email, string Password);
+        System.Threading.Tasks.Task<bool> VerifyPasswordAsync(string Email, string Password, string Role);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateCustomer", ReplyAction="http://tempuri.org/IService1/UpdateCustomerResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.Business[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.Business))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.BusinessEmployeeAccess[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.BusinessEmployeeAccess))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.BusinessUser))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.CustomerClass))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.CustomerClass[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.Branch))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.Review))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.BusinessRole))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.BusinessRole[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
-        short UpdateCustomer(System.Guid ID, string PastEmail, string purpose, object valueOne, object valueTwo);
+        short UpdateCustomer(System.Guid ID, string PastEmail, string firstName, string lastName, string email, string PhoneNumber, System.DateTime dateOfBirth);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateCustomer", ReplyAction="http://tempuri.org/IService1/UpdateCustomerResponse")]
-        System.Threading.Tasks.Task<short> UpdateCustomerAsync(System.Guid ID, string PastEmail, string purpose, object valueOne, object valueTwo);
+        System.Threading.Tasks.Task<short> UpdateCustomerAsync(System.Guid ID, string PastEmail, string firstName, string lastName, string email, string PhoneNumber, System.DateTime dateOfBirth);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateCustomerPassword", ReplyAction="http://tempuri.org/IService1/UpdateCustomerPasswordResponse")]
+        short UpdateCustomerPassword(System.Guid ID, string PastEmail, string Password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateCustomerPassword", ReplyAction="http://tempuri.org/IService1/UpdateCustomerPasswordResponse")]
+        System.Threading.Tasks.Task<short> UpdateCustomerPasswordAsync(System.Guid ID, string PastEmail, string Password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateCustomerStatus", ReplyAction="http://tempuri.org/IService1/UpdateCustomerStatusResponse")]
+        short UpdateCustomerStatus(System.Guid ID, string PastEmail, string purpose, bool status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateCustomerStatus", ReplyAction="http://tempuri.org/IService1/UpdateCustomerStatusResponse")]
+        System.Threading.Tasks.Task<short> UpdateCustomerStatusAsync(System.Guid ID, string PastEmail, string purpose, bool status);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteCustomer", ReplyAction="http://tempuri.org/IService1/DeleteCustomerResponse")]
         short DeleteCustomer(System.Guid ID, string Email, System.DateTime deleteDate);
@@ -350,6 +350,42 @@ namespace EDP_Project.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBusinessRoles", ReplyAction="http://tempuri.org/IService1/GetBusinessRolesResponse")]
         System.Threading.Tasks.Task<DBService.Models.BusinessRole[]> GetBusinessRolesAsync(string businessId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsertAdmin", ReplyAction="http://tempuri.org/IService1/InsertAdminResponse")]
+        short InsertAdmin(string adminName, string userName, string password, string role);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsertAdmin", ReplyAction="http://tempuri.org/IService1/InsertAdminResponse")]
+        System.Threading.Tasks.Task<short> InsertAdminAsync(string adminName, string userName, string password, string role);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectOneAdmin", ReplyAction="http://tempuri.org/IService1/SelectOneAdminResponse")]
+        DBService.Models.AdminClass SelectOneAdmin(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectOneAdmin", ReplyAction="http://tempuri.org/IService1/SelectOneAdminResponse")]
+        System.Threading.Tasks.Task<DBService.Models.AdminClass> SelectOneAdminAsync(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsertOneBlacklist", ReplyAction="http://tempuri.org/IService1/InsertOneBlacklistResponse")]
+        short InsertOneBlacklist(int duration, string reason, string customerId, string customerName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsertOneBlacklist", ReplyAction="http://tempuri.org/IService1/InsertOneBlacklistResponse")]
+        System.Threading.Tasks.Task<short> InsertOneBlacklistAsync(int duration, string reason, string customerId, string customerName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateBlacklistDeleted", ReplyAction="http://tempuri.org/IService1/UpdateBlacklistDeletedResponse")]
+        short UpdateBlacklistDeleted(System.Guid ID, string customerId, bool status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateBlacklistDeleted", ReplyAction="http://tempuri.org/IService1/UpdateBlacklistDeletedResponse")]
+        System.Threading.Tasks.Task<short> UpdateBlacklistDeletedAsync(System.Guid ID, string customerId, bool status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectOneBlacklist", ReplyAction="http://tempuri.org/IService1/SelectOneBlacklistResponse")]
+        DBService.Models.BlackListClass SelectOneBlacklist(System.Guid ID, string customerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectOneBlacklist", ReplyAction="http://tempuri.org/IService1/SelectOneBlacklistResponse")]
+        System.Threading.Tasks.Task<DBService.Models.BlackListClass> SelectOneBlacklistAsync(System.Guid ID, string customerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectAllBlacklist", ReplyAction="http://tempuri.org/IService1/SelectAllBlacklistResponse")]
+        DBService.Models.BlackListClass[] SelectAllBlacklist(string customerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectAllBlacklist", ReplyAction="http://tempuri.org/IService1/SelectAllBlacklistResponse")]
+        System.Threading.Tasks.Task<DBService.Models.BlackListClass[]> SelectAllBlacklistAsync(string customerId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -507,12 +543,12 @@ namespace EDP_Project.ServiceReference1 {
             return base.Channel.InsertCustomerAsync(firstName, lastName, email, password, phoneNumber, dateOfBirth);
         }
         
-        public DBService.Models.CustomerClass SelectOneCustomer(System.Guid ID, string Email) {
-            return base.Channel.SelectOneCustomer(ID, Email);
+        public DBService.Models.CustomerClass SelectOneCustomer(string Email) {
+            return base.Channel.SelectOneCustomer(Email);
         }
         
-        public System.Threading.Tasks.Task<DBService.Models.CustomerClass> SelectOneCustomerAsync(System.Guid ID, string Email) {
-            return base.Channel.SelectOneCustomerAsync(ID, Email);
+        public System.Threading.Tasks.Task<DBService.Models.CustomerClass> SelectOneCustomerAsync(string Email) {
+            return base.Channel.SelectOneCustomerAsync(Email);
         }
         
         public DBService.Models.CustomerClass[] SelectAllCustomer() {
@@ -531,20 +567,36 @@ namespace EDP_Project.ServiceReference1 {
             return base.Channel.VerifyCustomerAsync(Email);
         }
         
-        public bool VerifyPassword(string Email, string Password) {
-            return base.Channel.VerifyPassword(Email, Password);
+        public bool VerifyPassword(string Email, string Password, string Role) {
+            return base.Channel.VerifyPassword(Email, Password, Role);
         }
         
-        public System.Threading.Tasks.Task<bool> VerifyPasswordAsync(string Email, string Password) {
-            return base.Channel.VerifyPasswordAsync(Email, Password);
+        public System.Threading.Tasks.Task<bool> VerifyPasswordAsync(string Email, string Password, string Role) {
+            return base.Channel.VerifyPasswordAsync(Email, Password, Role);
         }
         
-        public short UpdateCustomer(System.Guid ID, string PastEmail, string purpose, object valueOne, object valueTwo) {
-            return base.Channel.UpdateCustomer(ID, PastEmail, purpose, valueOne, valueTwo);
+        public short UpdateCustomer(System.Guid ID, string PastEmail, string firstName, string lastName, string email, string PhoneNumber, System.DateTime dateOfBirth) {
+            return base.Channel.UpdateCustomer(ID, PastEmail, firstName, lastName, email, PhoneNumber, dateOfBirth);
         }
         
-        public System.Threading.Tasks.Task<short> UpdateCustomerAsync(System.Guid ID, string PastEmail, string purpose, object valueOne, object valueTwo) {
-            return base.Channel.UpdateCustomerAsync(ID, PastEmail, purpose, valueOne, valueTwo);
+        public System.Threading.Tasks.Task<short> UpdateCustomerAsync(System.Guid ID, string PastEmail, string firstName, string lastName, string email, string PhoneNumber, System.DateTime dateOfBirth) {
+            return base.Channel.UpdateCustomerAsync(ID, PastEmail, firstName, lastName, email, PhoneNumber, dateOfBirth);
+        }
+        
+        public short UpdateCustomerPassword(System.Guid ID, string PastEmail, string Password) {
+            return base.Channel.UpdateCustomerPassword(ID, PastEmail, Password);
+        }
+        
+        public System.Threading.Tasks.Task<short> UpdateCustomerPasswordAsync(System.Guid ID, string PastEmail, string Password) {
+            return base.Channel.UpdateCustomerPasswordAsync(ID, PastEmail, Password);
+        }
+        
+        public short UpdateCustomerStatus(System.Guid ID, string PastEmail, string purpose, bool status) {
+            return base.Channel.UpdateCustomerStatus(ID, PastEmail, purpose, status);
+        }
+        
+        public System.Threading.Tasks.Task<short> UpdateCustomerStatusAsync(System.Guid ID, string PastEmail, string purpose, bool status) {
+            return base.Channel.UpdateCustomerStatusAsync(ID, PastEmail, purpose, status);
         }
         
         public short DeleteCustomer(System.Guid ID, string Email, System.DateTime deleteDate) {
@@ -809,6 +861,54 @@ namespace EDP_Project.ServiceReference1 {
         
         public System.Threading.Tasks.Task<DBService.Models.BusinessRole[]> GetBusinessRolesAsync(string businessId) {
             return base.Channel.GetBusinessRolesAsync(businessId);
+        }
+        
+        public short InsertAdmin(string adminName, string userName, string password, string role) {
+            return base.Channel.InsertAdmin(adminName, userName, password, role);
+        }
+        
+        public System.Threading.Tasks.Task<short> InsertAdminAsync(string adminName, string userName, string password, string role) {
+            return base.Channel.InsertAdminAsync(adminName, userName, password, role);
+        }
+        
+        public DBService.Models.AdminClass SelectOneAdmin(string userName) {
+            return base.Channel.SelectOneAdmin(userName);
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.AdminClass> SelectOneAdminAsync(string userName) {
+            return base.Channel.SelectOneAdminAsync(userName);
+        }
+        
+        public short InsertOneBlacklist(int duration, string reason, string customerId, string customerName) {
+            return base.Channel.InsertOneBlacklist(duration, reason, customerId, customerName);
+        }
+        
+        public System.Threading.Tasks.Task<short> InsertOneBlacklistAsync(int duration, string reason, string customerId, string customerName) {
+            return base.Channel.InsertOneBlacklistAsync(duration, reason, customerId, customerName);
+        }
+        
+        public short UpdateBlacklistDeleted(System.Guid ID, string customerId, bool status) {
+            return base.Channel.UpdateBlacklistDeleted(ID, customerId, status);
+        }
+        
+        public System.Threading.Tasks.Task<short> UpdateBlacklistDeletedAsync(System.Guid ID, string customerId, bool status) {
+            return base.Channel.UpdateBlacklistDeletedAsync(ID, customerId, status);
+        }
+        
+        public DBService.Models.BlackListClass SelectOneBlacklist(System.Guid ID, string customerId) {
+            return base.Channel.SelectOneBlacklist(ID, customerId);
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.BlackListClass> SelectOneBlacklistAsync(System.Guid ID, string customerId) {
+            return base.Channel.SelectOneBlacklistAsync(ID, customerId);
+        }
+        
+        public DBService.Models.BlackListClass[] SelectAllBlacklist(string customerId) {
+            return base.Channel.SelectAllBlacklist(customerId);
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.BlackListClass[]> SelectAllBlacklistAsync(string customerId) {
+            return base.Channel.SelectAllBlacklistAsync(customerId);
         }
     }
 }

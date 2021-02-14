@@ -135,6 +135,18 @@
   <wsdl:message name="IService1_UpdateCustomer_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateCustomerResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_UpdateCustomerPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerPassword" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateCustomerPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateCustomerStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerStatus" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateCustomerStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerStatusResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_DeleteCustomer_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteCustomer" />
   </wsdl:message>
@@ -333,6 +345,42 @@
   <wsdl:message name="IService1_GetBusinessRoles_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetBusinessRolesResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_InsertAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IService1_InsertAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectOneAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectOneAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectOneAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectOneAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_InsertOneBlacklist_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOneBlacklist" />
+  </wsdl:message>
+  <wsdl:message name="IService1_InsertOneBlacklist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertOneBlacklistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateBlacklistDeleted_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBlacklistDeleted" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateBlacklistDeleted_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBlacklistDeletedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectOneBlacklist_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectOneBlacklist" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectOneBlacklist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectOneBlacklistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectAllBlacklist_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectAllBlacklist" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectAllBlacklist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectAllBlacklistResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="CreateBusiness">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateBusiness" message="tns:IService1_CreateBusiness_InputMessage" />
@@ -417,6 +465,14 @@
     <wsdl:operation name="UpdateCustomer">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateCustomer" message="tns:IService1_UpdateCustomer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateCustomerResponse" message="tns:IService1_UpdateCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCustomerPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateCustomerPassword" message="tns:IService1_UpdateCustomerPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateCustomerPasswordResponse" message="tns:IService1_UpdateCustomerPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCustomerStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateCustomerStatus" message="tns:IService1_UpdateCustomerStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateCustomerStatusResponse" message="tns:IService1_UpdateCustomerStatus_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteCustomer">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteCustomer" message="tns:IService1_DeleteCustomer_InputMessage" />
@@ -549,6 +605,30 @@
     <wsdl:operation name="GetBusinessRoles">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBusinessRoles" message="tns:IService1_GetBusinessRoles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBusinessRolesResponse" message="tns:IService1_GetBusinessRoles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/InsertAdmin" message="tns:IService1_InsertAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/InsertAdminResponse" message="tns:IService1_InsertAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectOneAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectOneAdmin" message="tns:IService1_SelectOneAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectOneAdminResponse" message="tns:IService1_SelectOneAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertOneBlacklist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/InsertOneBlacklist" message="tns:IService1_InsertOneBlacklist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/InsertOneBlacklistResponse" message="tns:IService1_InsertOneBlacklist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBlacklistDeleted">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateBlacklistDeleted" message="tns:IService1_UpdateBlacklistDeleted_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateBlacklistDeletedResponse" message="tns:IService1_UpdateBlacklistDeleted_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectOneBlacklist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectOneBlacklist" message="tns:IService1_SelectOneBlacklist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectOneBlacklistResponse" message="tns:IService1_SelectOneBlacklist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllBlacklist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectAllBlacklist" message="tns:IService1_SelectAllBlacklist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectAllBlacklistResponse" message="tns:IService1_SelectAllBlacklist_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -735,6 +815,24 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateCustomer">
       <soap:operation soapAction="http://tempuri.org/IService1/UpdateCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCustomerPassword">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateCustomerPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCustomerStatus">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateCustomerStatus" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1032,6 +1130,60 @@
     </wsdl:operation>
     <wsdl:operation name="GetBusinessRoles">
       <soap:operation soapAction="http://tempuri.org/IService1/GetBusinessRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertAdmin">
+      <soap:operation soapAction="http://tempuri.org/IService1/InsertAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectOneAdmin">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectOneAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertOneBlacklist">
+      <soap:operation soapAction="http://tempuri.org/IService1/InsertOneBlacklist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBlacklistDeleted">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateBlacklistDeleted" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectOneBlacklist">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectOneBlacklist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllBlacklist">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectAllBlacklist" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using EDP_Project.ServiceReference1;
+using DBService.Models;
 
 namespace EDP_Project
 {

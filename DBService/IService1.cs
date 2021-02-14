@@ -59,12 +59,13 @@ namespace DBService
         [OperationContract]
         BusinessUser GetBusinessUserByEmail(string email);
 
+        // START WEI RONG
         // Customer
         [OperationContract]
         Int16 InsertCustomer(String firstName, String lastName, String email, String password, String phoneNumber, DateTime dateOfBirth);
 
         [OperationContract]
-        CustomerClass SelectOneCustomer(Guid ID, String Email);
+        CustomerClass SelectOneCustomer(String Email);
 
         [OperationContract]
         List<CustomerClass> SelectAllCustomer();
@@ -73,13 +74,20 @@ namespace DBService
         CustomerClass VerifyCustomer(String Email);
 
         [OperationContract]
-        Boolean VerifyPassword(String Email, String Password);
+        Boolean VerifyPassword(String Email, String Password, String Role);
 
         [OperationContract]
-        Int16 UpdateCustomer(Guid ID, String PastEmail, String purpose, Object valueOne, Object valueTwo);
+        Int16 UpdateCustomer(Guid ID, String PastEmail, String firstName, String lastName, String email, String PhoneNumber, DateTime dateOfBirth);
+
+        [OperationContract]
+        Int16 UpdateCustomerPassword(Guid ID, String PastEmail, String Password);
+
+        [OperationContract]
+        Int16 UpdateCustomerStatus(Guid ID, String PastEmail, String purpose, Boolean status);
 
         [OperationContract]
         Int16 DeleteCustomer(Guid ID, String Email, DateTime deleteDate);
+        // END WEI RONG
 
         //----------------------Branch--------------------
         [OperationContract]
@@ -182,6 +190,25 @@ namespace DBService
 
         [OperationContract]
         List<BusinessRole> GetBusinessRoles(string businessId);
+
+        // Admin
+        [OperationContract]
+        Int16 InsertAdmin(String adminName, String userName, String password, String role);
+
+        [OperationContract]
+        AdminClass SelectOneAdmin(String userName);
+
+        [OperationContract]
+        Int16 InsertOneBlacklist(Int32 duration, String reason, String customerId, String customerName);
+
+        [OperationContract]
+        Int16 UpdateBlacklistDeleted(Guid ID, String customerId, Boolean status);
+
+        [OperationContract]
+        BlackListClass SelectOneBlacklist(Guid ID, String customerId);
+
+        [OperationContract]
+        List<BlackListClass> SelectAllBlacklist(String customerId);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

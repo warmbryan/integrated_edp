@@ -81,7 +81,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IService1.cs" />
+    <Compile Include="Models\AdminClass.cs" />
     <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\BlackListClass.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Business.cs" />
     <Compile Include="Models\BusinessEmployeeAccess.cs" />
