@@ -45,7 +45,7 @@ namespace DBService.Models
         {
             if (this.created == true)
             {
-                using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+                using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
                 {
                     using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                     {
@@ -105,7 +105,7 @@ namespace DBService.Models
 
         public CustomerClass VerifyUser(String emailVal)
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {
@@ -167,7 +167,7 @@ namespace DBService.Models
 
         public Int16 FullDeleteCustomer(Guid ID, String Email, DateTime deleteDate)
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {
@@ -223,7 +223,7 @@ namespace DBService.Models
 
         public Int16 UpdateCustomer(Guid ID, String PastEmail, String purpose, Object valueOne, Object valueTwo)
         {
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 Int16 result = 0;
                 CustomerClass tmpClass = new CustomerClass();
@@ -467,7 +467,7 @@ namespace DBService.Models
 
         public List<CustomerClass> SelectAllCustomers()
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {
@@ -520,7 +520,7 @@ namespace DBService.Models
 
         public CustomerClass SelectOneCustomer(Guid ID, String Email)
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {

@@ -59,7 +59,10 @@
 <body>
     <style>
         .powerClass {
-            padding-left:7em!important;padding-right:7em !important; background-color: #2EA9F5; color:black
+            padding-left: 7em !important;
+            padding-right: 7em !important;
+            background-color: #2EA9F5;
+            color: black
         }
     </style>
     <form id="form" runat="server">

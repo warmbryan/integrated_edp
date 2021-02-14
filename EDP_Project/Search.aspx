@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Public.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="EDP_Project.Search" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .myAutoComplete {
@@ -176,28 +177,23 @@
         <br />
         <div class="row">
             <div class="col-11 autocomplete">
-                <asp:TextBox ID="tbSearch" runat="server" placeholder="Search.." Width="100%" autocomplete="off"></asp:TextBox>
+                <asp:TextBox ID="tbSearch" runat="server" placeholder="Search.." Width="100%" autocomplete="off" CssClass="form-control"></asp:TextBox>
 
             </div>
             <div class="col-1">
-                <asp:LinkButton runat="server" ID="btnSearch" OnClick="btnSearch_Click" Width="100%">
-                    <span class="fa fa-search"></span>
+                <asp:LinkButton runat="server" ID="btnSearch" OnClick="btnSearch_Click" Width="100%" CssClass="btn btn-primary">
+                    <i class="fas fa-search"></i>
                 </asp:LinkButton>
             </div>
 
             <div class="col-11" style="margin-top: 10px;">
                 Location: &nbsp;<asp:DropDownList ID="DropDownListLocation" runat="server" OnSelectedIndexChanged="DropDownListLocation_SelectedIndexChanged" AutoPostBack="True">
                 </asp:DropDownList>
-                <%--&nbsp;
-                Category: &nbsp;<asp:DropDownList ID="DropDownList1" runat="server">
-                    <asp:ListItem>All</asp:ListItem>
-                    <asp:ListItem>Retail Store</asp:ListItem>
-                    <asp:ListItem>Restaurant</asp:ListItem>
-                    <asp:ListItem>Salon</asp:ListItem>
-                </asp:DropDownList>--%>
+                Category: &nbsp;<asp:DropDownList ID="DropDownListCategory" runat="server" OnSelectedIndexChanged="DropDownListCategory_SelectedIndexChanged" AutoPostBack="True">
+                </asp:DropDownList>
             </div>
-            <div>
-                <asp:LinkButton Style="color: gray; margin-top: 10px;" ID="LinkButtonHistory" runat="server" OnClick="LinkButtonHistory_Click">History</asp:LinkButton>
+            <div class="col-1" style="margin-top: 10px;">
+                <asp:LinkButton Style="color: gray;" ID="LinkButtonHistory" runat="server" OnClick="LinkButtonHistory_Click">History</asp:LinkButton>
             </div>
         </div>
         <br />
@@ -206,7 +202,17 @@
             <EmptyDataTemplate>
                 <table>
                     <tr>
-                        <td>No Result was returned.</td>
+                        <td>Your search did not match any documents.
+                                <br />
+                            <br />
+                            Suggestions:
+                                <br />
+                            <br />
+                            - Make sure that all words are spelled correctly.<br />
+                            - Try different keywords.<br />
+                            - Try more general keywords.<br />
+                            - Try fewer keywords<br />
+                        </td>
                     </tr>
                 </table>
             </EmptyDataTemplate>
@@ -214,50 +220,76 @@
                 <td />
             </EmptyItemTemplate>
             <ItemTemplate>
-                <div class="col-5 text-center border border-dark" style="padding: 5px; height: 200px">
-                    <img alt="Image" src="/Public/Image/SearchBG.png" class="img-fluid" style="max-height: 100%; max-width: 100%;" />
-                </div>
-                <div class="col-7 border border-dark" style="overflow-y: auto; height: 200px;">
-                    <b><%# Eval("shopName") %></b>
-                    <div class="row" style="min-height: 130px;">
-                        <div class="col-1">
-                            <span class="fa fa-location"></span>
-                        </div>
-                        <div class="col-11 text-primary">
-                            <%# Eval("branchLocation") %>
-                        </div>
-                        <div class="col-1">
-                            <span class="fa fa-map-marked"></span>
-                        </div>
-                        <div class="col-11 text-primary">
-                            <%# Eval("branchAddress") %>
-                        </div>
-                        <div class="col-1">
-                            <span class="fa fa-list"></span>
-                        </div>
-                        <div class="col-11 text-primary">
-                            <%# Eval("description") %>
-                        </div>
-                        <div class="col-1">
-                            <span class="fa fa-phone"></span>
-                        </div>
-                        <div class="col-11">
-                            <%# Eval("phoneNumber") %>
-                        </div>
+                <div class="card">
+                    <div class="card-header">
+                        <b><%# Eval("name") %></b><span class="text-muted" style="font-size: smaller;"> <%# Eval("avgRating") %></span>
+                        <%--<span class="text-muted" style="font-size:smaller;">
+                            Rating: <%# Eval("rating") %></span></div>--%>
+                        <div class="card-body">
+                            <%-- <h5 class="card-title"><%# Eval("Title") %></h5>--%>
+                            <div class="row">
+                                <div class="col-4 text-center" style="padding: 5px; height: 200px">
+                                    <img alt="Image" src="/assets/Image/SearchBG.png" class="img-fluid" style="max-height: 100%; max-width: 100%;" />
+                                </div>
+                                <div class="col-8">
+                                    <div class="row" style="height: 155px; overflow: auto; margin-bottom: 5px;">
+                                        <div class="col-1">
+                                            <span class="fa fa-location"></span>
+                                        </div>
+                                        <div class="col-3">
+                                            <%# Eval("city") %>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="fa fa-list-ul"></span>
+                                        </div>
+                                        <div class="col-3">
+                                            <%# Eval("category") %>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="fa fa-building"></span>
+                                        </div>
+                                        <div class="col-3">
+                                            <%# Eval("businessName") %>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="fa fa-map-marked"></span>
+                                        </div>
+                                        <div class="col-11 ">
+                                            <%# Eval("address") %>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="fa fa-sticky-note"></span>
+                                        </div>
+                                        <div class="col-11 ">
+                                            <%# Eval("description") %>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="fa fa-phone"></span>
+                                        </div>
+                                        <div class="col-3">
+                                            <%# Eval("phone") %>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="fa fa-envelope"></span>
+                                        </div>
+                                        <div class="col-3">
+                                            <%# Eval("email") %>
+                                        </div>
+                                    </div>
+                                    <asp:Button ID="Button1" runat="server" Text="More Information" CommandArgument='<%#Eval("id")%>' OnClick="ButtonMoreInfomation_Click" CssClass="float-right btn btn-primary" Style="margin-bottom: 5px;" />
 
-                        <%--<br /><span class="fa fa-location"></span> <%# Eval("branchLocation") %> 
-                        <br /><span class="fa fa-map-marked"></span> <%# Eval("branchAddress") %> 
-                        <br /><span class="fa fa-list"></span> <%# Eval("description") %>
-                        <br /><span class="fa fa-phone"></span> <%# Eval("phoneNumber") %>--%>
+                                </div>
+
+
+                            </div>
+                        </div>
                     </div>
-
-                    <asp:Button ID="ButtonMoreInfomation" runat="server" Text="More Information" CommandArgument='<%#Eval("id")%>' OnClick="ButtonMoreInfomation_Click" CssClass="float-right btn btn-primary" Style="margin-bottom: 5px;" />
                 </div>
+
             </ItemTemplate>
             <LayoutTemplate>
-                <div class="row">
-                    <asp:PlaceHolder runat="server" ID="PlaceHolderResult"></asp:PlaceHolder>
-                </div>
+
+                <asp:PlaceHolder runat="server" ID="PlaceHolderResult"></asp:PlaceHolder>
             </LayoutTemplate>
         </asp:ListView>
 

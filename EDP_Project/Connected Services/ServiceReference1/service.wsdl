@@ -153,11 +153,23 @@
   <wsdl:message name="IService1_SelectDistinctLocationFromBranch_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectDistinctLocationFromBranchResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_SelectDistinctCategoryFromBranch_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectDistinctCategoryFromBranch" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectDistinctCategoryFromBranch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectDistinctCategoryFromBranchResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_SearchFromBranch_InputMessage">
     <wsdl:part name="parameters" element="tns:SearchFromBranch" />
   </wsdl:message>
   <wsdl:message name="IService1_SearchFromBranch_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchFromBranchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectByIdFromBranch_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectByIdFromBranch" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectByIdFromBranch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectByIdFromBranchResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_CreateSearch_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateSearch" />
@@ -218,6 +230,108 @@
   </wsdl:message>
   <wsdl:message name="IService1_DeleteFromView_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteFromViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_InsertReview_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertReview" />
+  </wsdl:message>
+  <wsdl:message name="IService1_InsertReview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertReviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectByBranchIdFromReview_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectByBranchIdFromReview" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectByBranchIdFromReview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectByBranchIdFromReviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectAllByBranchIdFromReview_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectAllByBranchIdFromReview" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectAllByBranchIdFromReview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectAllByBranchIdFromReviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_HaveExistingReview_InputMessage">
+    <wsdl:part name="parameters" element="tns:HaveExistingReview" />
+  </wsdl:message>
+  <wsdl:message name="IService1_HaveExistingReview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HaveExistingReviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateReview_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateReview" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateReview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateReviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteReview_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteReview" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteReview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteReviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectByCustomerIdFromReview_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectByCustomerIdFromReview" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectByCustomerIdFromReview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectByCustomerIdFromReviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectRatingByBranchIdFromReview_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectRatingByBranchIdFromReview" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectRatingByBranchIdFromReview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectRatingByBranchIdFromReviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectReportedReview_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectReportedReview" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectReportedReview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectReportedReviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddNumReportToReview_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNumReportToReview" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddNumReportToReview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNumReportToReviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ResetNumReportToReview_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetNumReportToReview" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ResetNumReportToReview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetNumReportToReviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateAppointment_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAppointment" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateAppointment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateBusinessRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateBusinessRole" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateBusinessRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateBusinessRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBusinessRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBusinessRole" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBusinessRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBusinessRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateBusinessRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBusinessRole" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateBusinessRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBusinessRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteBusinessRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBusinessRole" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteBusinessRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBusinessRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBusinessRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBusinessRoles" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBusinessRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBusinessRolesResponse" />
   </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="CreateBusiness">
@@ -316,9 +430,17 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectDistinctLocationFromBranch" message="tns:IService1_SelectDistinctLocationFromBranch_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectDistinctLocationFromBranchResponse" message="tns:IService1_SelectDistinctLocationFromBranch_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SelectDistinctCategoryFromBranch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectDistinctCategoryFromBranch" message="tns:IService1_SelectDistinctCategoryFromBranch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectDistinctCategoryFromBranchResponse" message="tns:IService1_SelectDistinctCategoryFromBranch_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SearchFromBranch">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SearchFromBranch" message="tns:IService1_SearchFromBranch_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SearchFromBranchResponse" message="tns:IService1_SearchFromBranch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectByIdFromBranch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectByIdFromBranch" message="tns:IService1_SelectByIdFromBranch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectByIdFromBranchResponse" message="tns:IService1_SelectByIdFromBranch_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CreateSearch">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateSearch" message="tns:IService1_CreateSearch_InputMessage" />
@@ -359,6 +481,74 @@
     <wsdl:operation name="DeleteFromView">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteFromView" message="tns:IService1_DeleteFromView_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteFromViewResponse" message="tns:IService1_DeleteFromView_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertReview">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/InsertReview" message="tns:IService1_InsertReview_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/InsertReviewResponse" message="tns:IService1_InsertReview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectByBranchIdFromReview">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectByBranchIdFromReview" message="tns:IService1_SelectByBranchIdFromReview_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectByBranchIdFromReviewResponse" message="tns:IService1_SelectByBranchIdFromReview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllByBranchIdFromReview">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectAllByBranchIdFromReview" message="tns:IService1_SelectAllByBranchIdFromReview_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectAllByBranchIdFromReviewResponse" message="tns:IService1_SelectAllByBranchIdFromReview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HaveExistingReview">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/HaveExistingReview" message="tns:IService1_HaveExistingReview_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/HaveExistingReviewResponse" message="tns:IService1_HaveExistingReview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReview">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateReview" message="tns:IService1_UpdateReview_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateReviewResponse" message="tns:IService1_UpdateReview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteReview">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteReview" message="tns:IService1_DeleteReview_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteReviewResponse" message="tns:IService1_DeleteReview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectByCustomerIdFromReview">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectByCustomerIdFromReview" message="tns:IService1_SelectByCustomerIdFromReview_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectByCustomerIdFromReviewResponse" message="tns:IService1_SelectByCustomerIdFromReview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectRatingByBranchIdFromReview">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectRatingByBranchIdFromReview" message="tns:IService1_SelectRatingByBranchIdFromReview_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectRatingByBranchIdFromReviewResponse" message="tns:IService1_SelectRatingByBranchIdFromReview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectReportedReview">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectReportedReview" message="tns:IService1_SelectReportedReview_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectReportedReviewResponse" message="tns:IService1_SelectReportedReview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNumReportToReview">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddNumReportToReview" message="tns:IService1_AddNumReportToReview_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddNumReportToReviewResponse" message="tns:IService1_AddNumReportToReview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetNumReportToReview">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ResetNumReportToReview" message="tns:IService1_ResetNumReportToReview_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ResetNumReportToReviewResponse" message="tns:IService1_ResetNumReportToReview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAppointment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateAppointment" message="tns:IService1_CreateAppointment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateAppointmentResponse" message="tns:IService1_CreateAppointment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateBusinessRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateBusinessRole" message="tns:IService1_CreateBusinessRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateBusinessRoleResponse" message="tns:IService1_CreateBusinessRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBusinessRole" message="tns:IService1_GetBusinessRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBusinessRoleResponse" message="tns:IService1_GetBusinessRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBusinessRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateBusinessRole" message="tns:IService1_UpdateBusinessRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateBusinessRoleResponse" message="tns:IService1_UpdateBusinessRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBusinessRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteBusinessRole" message="tns:IService1_DeleteBusinessRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteBusinessRoleResponse" message="tns:IService1_DeleteBusinessRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBusinessRoles" message="tns:IService1_GetBusinessRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBusinessRolesResponse" message="tns:IService1_GetBusinessRoles_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -579,8 +769,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SelectDistinctCategoryFromBranch">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectDistinctCategoryFromBranch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SearchFromBranch">
       <soap:operation soapAction="http://tempuri.org/IService1/SearchFromBranch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectByIdFromBranch">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectByIdFromBranch" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -671,6 +879,159 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteFromView">
       <soap:operation soapAction="http://tempuri.org/IService1/DeleteFromView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertReview">
+      <soap:operation soapAction="http://tempuri.org/IService1/InsertReview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectByBranchIdFromReview">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectByBranchIdFromReview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllByBranchIdFromReview">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectAllByBranchIdFromReview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HaveExistingReview">
+      <soap:operation soapAction="http://tempuri.org/IService1/HaveExistingReview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReview">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateReview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteReview">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteReview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectByCustomerIdFromReview">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectByCustomerIdFromReview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectRatingByBranchIdFromReview">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectRatingByBranchIdFromReview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectReportedReview">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectReportedReview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNumReportToReview">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddNumReportToReview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetNumReportToReview">
+      <soap:operation soapAction="http://tempuri.org/IService1/ResetNumReportToReview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAppointment">
+      <soap:operation soapAction="http://tempuri.org/IService1/CreateAppointment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBusinessRole">
+      <soap:operation soapAction="http://tempuri.org/IService1/CreateBusinessRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessRole">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBusinessRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBusinessRole">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateBusinessRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBusinessRole">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteBusinessRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessRoles">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBusinessRoles" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

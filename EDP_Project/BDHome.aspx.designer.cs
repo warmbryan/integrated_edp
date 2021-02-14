@@ -11,7 +11,7 @@ namespace EDP_Project
 {
 
 
-    public partial class WebForm1
+    public partial class BDHome
     {
     }
 }

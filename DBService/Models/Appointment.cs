@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.Data;
+﻿using System.Configuration;
 using System.Data.SqlClient;
-
-using System.Configuration;
 
 namespace DBService.Models
 {
@@ -29,7 +21,7 @@ namespace DBService.Models
         }
         public int Insert()
         {
-            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString;
+            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString;
             SqlConnection myConn = new SqlConnection(MYDBConnectionString);
             string sqlStmt = "INSERT INTO Appointment(aptTime, aptDate, bookTime, bookDate, partySize) VALUES(@paraaptTime, @paraaptDate, @parabookTime, @parabookDate, @parapartySize)";
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);

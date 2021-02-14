@@ -15,13 +15,13 @@ namespace EDP_Project
     {
 
         /// <summary>
-        /// head control.
+        /// extraHead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder extraHead;
 
         /// <summary>
         /// form1 control.
@@ -33,21 +33,30 @@ namespace EDP_Project
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// staffName control.
+        /// lbWelcomeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal staffName;
+        protected global::System.Web.UI.WebControls.Label lbWelcomeName;
 
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// logout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.Button logout;
+
+        /// <summary>
+        /// MainContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
     }
 }

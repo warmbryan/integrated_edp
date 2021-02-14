@@ -46,7 +46,7 @@ namespace DBService.Models
 
             try
             {
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand(queryString, con))
                     {
@@ -81,7 +81,7 @@ namespace DBService.Models
         public Business SelectOne(string businessId)
         {
             Business business;
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM [dbo].[Business] WHERE [id] = @BusinessId;", con))
                 {
@@ -120,7 +120,7 @@ namespace DBService.Models
         {
             List<Business> businesses = new List<Business>();
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM [dbo].[Business];", con))
                 {
@@ -161,7 +161,7 @@ namespace DBService.Models
         {
             List<Business> businesses = new List<Business>();
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM [dbo].[Business] WHERE [userId] = @UserId;", con))
                 {
@@ -207,7 +207,7 @@ namespace DBService.Models
                 "WHERE [id] = @BusinessId;";
             try
             {
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand(queryString, con))
                     {
@@ -250,7 +250,7 @@ namespace DBService.Models
                 "WHERE [id] = @BusinessId;";
             try
             {
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand(queryString, con))
                     {

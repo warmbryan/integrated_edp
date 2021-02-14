@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace DBService.Models
 {
-    class Search
+    public class Search
     {
         public string SearchString { get; set; }
         public Guid CustomerId { get; set; }
@@ -20,12 +20,11 @@ namespace DBService.Models
 
         public int Insert()
         {
-            string SQL = "insertSearch";
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            string SQL = "INSERT INTO dbo.SearchHistory (searchString, searchDateTime, customerId) VALUES (@searchString, @searchDateTime, @customerId)";
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(SQL, conn))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@searchString", SearchString);
                     cmd.Parameters.AddWithValue("@searchDateTime", DateTime.Now.ToString());
                     cmd.Parameters.AddWithValue("@customerId", CustomerId);
@@ -40,12 +39,11 @@ namespace DBService.Models
         public DataSet SelectByCustomerId(Guid customerId)
         {
             SqlDataAdapter sda = new SqlDataAdapter();
-            string SQL = "selectSearchByCustomerId";
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            string SQL = "SELECT searchString, searchDateTime FROM dbo.SearchHistory WHERE customerId = @customerId ORDER BY searchDateTime DESC";
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(SQL, conn))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@customerId", customerId);
                     conn.Open();
                     DataSet ds = new DataSet();
@@ -60,8 +58,8 @@ namespace DBService.Models
         public int HaveDate(string searchString, Guid customerId)
         {
             int id = 0;
-            string SQL = "SELECT searchDateTime,id from Search where searchString = @searchString AND customerId = @customerId";
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            string SQL = "SELECT searchDateTime,id from SearchHistory where searchString = @searchString AND customerId = @customerId";
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(SQL, conn))
                 {
@@ -84,8 +82,8 @@ namespace DBService.Models
 
         public int Update(int id)
         {
-            string SQL = "UPDATE Search SET searchDateTime = @searchDateTime where id = @id";
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            string SQL = "UPDATE SearchHistory SET searchDateTime = @searchDateTime where id = @id";
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(SQL, conn))
                 {
@@ -102,8 +100,8 @@ namespace DBService.Models
 
         public int Delete(Guid customerId)
         {
-            string SQL = "DELETE FROM Search WHERE customerId = @customerId";
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            string SQL = "DELETE FROM SearchHistory WHERE customerId = @customerId";
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(SQL, conn))
                 {

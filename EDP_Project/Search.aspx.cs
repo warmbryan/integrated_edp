@@ -1,17 +1,14 @@
-﻿using System;
-using System.Data;
+﻿using EDP_Project.ServiceReference1;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
-
-using EDP_Project.ServiceReference1;
+using System.Web.UI.WebControls;
 
 namespace EDP_Project
 {
-	public partial class Search : System.Web.UI.Page
+    public partial class Search : System.Web.UI.Page
     {
         public List<string> Names;
         public JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
@@ -34,10 +31,17 @@ namespace EDP_Project
                 // Dropdown box
                 DataSet ds = client.SelectDistinctLocationFromBranch();
                 DropDownListLocation.DataSource = ds;
-                DropDownListLocation.DataTextField = "branchLocation";
-                DropDownListLocation.DataValueField = "branchLocation";
+                DropDownListLocation.DataTextField = "city";
+                DropDownListLocation.DataValueField = "city";
                 DropDownListLocation.DataBind();
                 DropDownListLocation.Items.Insert(0, new ListItem("All", "All"));
+
+                ds = client.SelectDistinctCategoryFromBranch();
+                DropDownListCategory.DataSource = ds;
+                DropDownListCategory.DataTextField = "catrgory";
+                DropDownListCategory.DataValueField = "catrgory";
+                DropDownListCategory.DataBind();
+                DropDownListCategory.Items.Insert(0, new ListItem("All", "All"));
 
                 Session["search"] = "";
 
@@ -57,7 +61,8 @@ namespace EDP_Project
         protected void BindListView()
         {
             string location = DropDownListLocation.SelectedValue.ToString();
-            DataSet ds = client.SearchFromBranch(Session["search"].ToString(), location);
+            string category = DropDownListCategory.SelectedValue.ToString();
+            DataSet ds = client.SearchFromBranch(Session["search"].ToString(), location, category);
             ListViewSearchResult.DataSource = ds;
             ListViewSearchResult.DataBind();
 
@@ -103,6 +108,14 @@ namespace EDP_Project
             BindListView();
         }
 
+        protected void DropDownListCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lvDataPager1.SetPageProperties(0, 5, false);
+            BindListView();
+        }
+
+
+
         protected void ButtonMoreInfomation_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -120,7 +133,7 @@ namespace EDP_Project
 
             }
 
-            //Response.Redirect("moreInfo?id=" + btn.CommandArgument.ToString());
+            Response.Redirect("BranchReview.aspx?id=" + btn.CommandArgument.ToString());
         }
 
         protected void LinkButtonHistory_Click(object sender, EventArgs e)

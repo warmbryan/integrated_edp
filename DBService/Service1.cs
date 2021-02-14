@@ -1,7 +1,7 @@
 ﻿using DBService.Models;
 using System;
-using System.Data;
 using System.Collections.Generic;
+using System.Data;
 
 namespace DBService
 {
@@ -176,11 +176,21 @@ namespace DBService
             Branch branch = new Branch();
             return branch.SelectDistinctLocation();
         }
-
-        public DataSet SearchFromBranch(string search, string location)
+        public DataSet SelectDistinctCategoryFromBranch()
         {
             Branch branch = new Branch();
-            return branch.Search(search, location);
+            return branch.SelectDistinctCategory();
+        }
+        public DataSet SearchFromBranch(string search, string location, string category)
+        {
+            Branch branch = new Branch();
+            return branch.Search(search, location, category);
+        }
+
+        public Branch SelectByIdFromBranch(Guid id)
+        {
+            Branch branch = new Branch();
+            return branch.SelectById(id);
         }
 
         //----------------------Search--------------------
@@ -243,11 +253,109 @@ namespace DBService
             return view.Delete(customerId);
         }
 
+        //----------------------Review--------------------
+        public int InsertReview(double rating, string comment, string title, Guid customerId, Guid branchId)
+        {
+            Review review = new Review(rating, comment, title, customerId, branchId);
+            return review.Insert();
+        }
+
+        public DataSet SelectByBranchIdFromReview(Guid id, Guid customerId, string sort)
+        {
+            Review review = new Review();
+            return review.SelectByBranchId(id, customerId, sort);
+        }
+        public DataSet SelectAllByBranchIdFromReview(Guid id, string sort)
+        {
+            Review review = new Review();
+            return review.SelectAllByBranchId(id, sort);
+        }
+        public Review HaveExistingReview(Guid branchId, Guid customerId)
+        {
+            Review review = new Review();
+            return review.HaveExistingReview(branchId, customerId);
+        }
+
+        public int UpdateReview(int id, String title, String comment, Double rating)
+        {
+            Review review = new Review();
+            return review.Update(id, title, comment, rating);
+        }
+        public int DeleteReview(int id)
+        {
+            Review review = new Review();
+            return review.Delete(id);
+        }
+
+        public DataSet SelectByCustomerIdFromReview(Guid id)
+        {
+            Review review = new Review();
+            return review.SelectByCustomerId(id);
+        }
+
+        public double SelectRatingByBranchIdFromReview(Guid branchId)
+        {
+            Review review = new Review();
+            return review.SelectRatingByBranchId(branchId);
+        }
+
+        public DataSet SelectReportedReview()
+        {
+            Review review = new Review();
+            return review.SelectReportedReview();
+        }
+
+        public int AddNumReportToReview(int id)
+        {
+            Review review = new Review();
+            return review.AddNumReport(id);
+        }
+
+        public int ResetNumReportToReview(int id)
+        {
+            Review review = new Review();
+            return review.ResetNumReport(id);
+        }
+
         // appointments
         public int CreateAppointment(string aptdate, string apttime, string bookdate, string booktime, string partysize)
         {
             Appointment apt = new Appointment(aptdate, apttime, bookdate, booktime, partysize);
             return apt.Insert();
+        }
+
+        // -------------------------------- Business Role --------------------------------
+        public BusinessRole CreateBusinessRole(string name, string businessId)
+        {
+            BusinessRole br = new BusinessRole();
+            return br.CreateBusinessRole(name, businessId);
+        }
+
+        public BusinessRole GetBusinessRole(string businessRoleId)
+        {
+            BusinessRole br = new BusinessRole();
+            return br.GetBusinessRole(businessRoleId);
+        }
+
+        public bool UpdateBusinessRole(string businessRoleId, string name, string businessId)
+        {
+            BusinessRole br = new BusinessRole();
+            if (br.CheckBusinessRoleExists(businessRoleId, businessId))
+                return br.UpdateBusinessRole(businessRoleId, name);
+            else
+                return false;
+        }
+
+        public bool DeleteBusinessRole(string businessRoleId)
+        {
+            BusinessRole br = new BusinessRole();
+            return br.DeleteBusinessRole(businessRoleId);
+        }
+
+        public List<BusinessRole> GetBusinessRoles(string businessId)
+        {
+            BusinessRole br = new BusinessRole();
+            return br.GetBusinessRoles(businessId);
         }
     }
 }

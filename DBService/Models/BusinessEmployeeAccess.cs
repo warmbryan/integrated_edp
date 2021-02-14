@@ -68,7 +68,7 @@ namespace DBService.Models
                 " VALUES (@UserId, @BusinessId, @RApp, @WApp, @RCC, @WCC, @Role)";
             try
             {
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand(queryString, con))
                     {
@@ -97,7 +97,7 @@ namespace DBService.Models
         public BusinessEmployeeAccess SelectOne(string beaId)
         {
             BusinessEmployeeAccess bea;
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM [dbo].[BusinessEmployeeAccess] WHERE [id] = @BeaId;", con))
                 {
@@ -133,7 +133,7 @@ namespace DBService.Models
         {
             List<BusinessEmployeeAccess> employees = new List<BusinessEmployeeAccess>();
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlDataAdapter sda = new SqlDataAdapter(
                     "SELECT [dbo].[BusinessEmployeeAccess].*, " +
@@ -186,7 +186,7 @@ namespace DBService.Models
 
             try
             {
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter(
                         "SELECT * " +
@@ -241,7 +241,7 @@ namespace DBService.Models
                 "[role] = @Role WHERE userId = @UserId, businessId = @BusinessId;";
             try
             {
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand(queryString, con))
                     {
@@ -274,7 +274,7 @@ namespace DBService.Models
                 "WHERE userId = @userId, businessId = @BusinessId;";
             try
             {
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand(queryString, con))
                     {

@@ -1,11 +1,10 @@
-﻿using MimeTypes;
+﻿using DBService.Models;
+using EDP_Project.ServiceReference1;
+using MimeTypes;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Web;
-
-using EDP_Project.ServiceReference1;
-using DBService.Models;
 
 namespace EDP_Project
 {

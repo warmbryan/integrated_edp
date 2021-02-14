@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Web.Http;
 using System.Web.Routing;
 
 namespace EDP_Project
@@ -12,7 +12,9 @@ namespace EDP_Project
             // page route
             RouteTable.Routes.MapPageRoute("Business Login", "business/login", "~/BDLogin.aspx");
             RouteTable.Routes.MapPageRoute("Business Registration", "business/register", "~/BDRegister.aspx");
-            
+
+            RouteTable.Routes.MapHttpRoute(name: "DefaultApi", routeTemplate: "api/{controller}/{id}", defaults: new { id = System.Web.Http.RouteParameter.Optional });
+
             // removes the aspx extensions from the url when the page loads
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }

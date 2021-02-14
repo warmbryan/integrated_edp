@@ -20,34 +20,33 @@
 
         <form runat="server">
             <asp:Label ID="lbl_feedback" runat="server" ForeColor="Red"/>
-            <div class="mb-3">
+            <div class="form-group">
                 <label for="tb_name" class="form-label">Name</label>
                 <asp:TextBox runat="server" ID="tb_name" CssClass="form-control" placeholder="Johnny Appleseed"/>
             </div>
 
-            <div class="mb-3">
+            <div class="form-group">
                 <label for="tb_email" class="form-label">Email address</label>
                 <asp:TextBox runat="server" ID="tb_email" CssClass="form-control" placeholder="name@example.com" TextMode="Email"/>
             </div>
 
-            <div class="mb-3">
+            <div class="form-group">
                 <label for="tb_password" class="form-label">Password</label>
                 <asp:TextBox runat="server" ID="tb_password" CssClass="form-control" TextMode="Password"/>
             </div>
 
-            <div class="mb-3">
+            <div class="form-group">
                 <label for="tb_confirmPassword" class="form-label">Password Again</label>
                 <asp:TextBox runat="server" ID="tb_confirmPassword" CssClass="form-control" TextMode="Password"/>
             </div>
 
-            <div class="mb-3">
+            <div class="form-group">
                 <label for="tb_phone" class="form-label">Phone Number (include your country code e.g. +65)</label>
                 <asp:TextBox runat="server" ID="tb_phone" CssClass="form-control" TextMode="Phone"/>
             </div>
 
-            <div class="d-grid gap-2">
-                <asp:Button Text="Register" runat="server" CssClass="btn btn-secondary" OnClick="Register_Me"/>
-            </div>
+            <asp:Button Text="Register" runat="server" CssClass="btn btn-primary btn-block" OnClick="Register_Me"/>
+            <asp:HyperLink NavigateUrl="~/BDLogin" runat="server" Text="I have an account already." CssClass="btn btn-secondary btn-block"/>
         </form>
     </div>
 </asp:Content>

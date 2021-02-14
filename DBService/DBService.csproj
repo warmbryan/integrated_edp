@@ -85,8 +85,10 @@
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Business.cs" />
     <Compile Include="Models\BusinessEmployeeAccess.cs" />
+    <Compile Include="Models\BusinessRole.cs" />
     <Compile Include="Models\BusinessUser.cs" />
     <Compile Include="Models\CustomerClass.cs" />
+    <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Search.cs" />
     <Compile Include="Models\View.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

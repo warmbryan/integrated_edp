@@ -48,6 +48,7 @@
                         <asp:Label ID="Label1" runat="server" Text='<%# Eval("Verified") %>' />
                     </td>
                     <td>
+                        <button type="button" class="btn btn-link roles" id="<%# Eval("Id") %>">Link</button>
                         <asp:HyperLink NavigateUrl='<%# "~/BDEmployees.aspx?business=" + Eval("Id") %>' runat="server">View Employees</asp:HyperLink>
                         <asp:HyperLink NavigateUrl='<%# "~/BDUpdateBusiness.aspx?business=" + Eval("Id") %>' runat="server">Update</asp:HyperLink>
                         <asp:HyperLink NavigateUrl='<%# "~/BDDeleteBusiness.aspx?business=" + Eval("Id") %>' class="action-delete" runat="server">Delete</asp:HyperLink>
@@ -56,17 +57,39 @@
             </ItemTemplate>
         </asp:ListView>
     </form>
-    <div id="custom-modal" class="modal" tabindex="-1">
-        <div class="modal-dialog">
+    <div id="roleModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="modal-body"></div>
+                <div class="modal-body">
+                    <table id="chinese">
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -75,13 +98,26 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="scripts" runat="server">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js" integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw==" crossorigin="anonymous"></script>
     <script>
-        (function() {
-            var elements = document.getElementsByClassName("action-delete");
 
-            elements.addEventListener("click", function(e) {
-                e.preventDefault();
-                console.log("i clicked this");
-            });
-        })
+        /*$(function () {
+            
+        })*/
+
+        $('.roles').click(e => {
+            var rolesModal = $('#roleModal');
+            rolesModal.modal('show');
+
+            var requestOptions = {
+                headers: {
+                    accept: 'application/json'
+                }
+            }
+
+            fetch(`/api/businessrole?businessId=${e.target.id}`, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                });
+        });
     </script>
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BDAuthenticated.Master" AutoEventWireup="true" CodeBehind="BDHome.aspx.cs" Inherits="EDP_Project.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BDAuthenticated.Master" AutoEventWireup="true" CodeBehind="BDHome.aspx.cs" Inherits="EDP_Project.BDHome" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="body" runat="server">
     <h2>Business Statistics</h2>
     <hr />

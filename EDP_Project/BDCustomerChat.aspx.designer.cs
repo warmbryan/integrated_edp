@@ -9,8 +9,6 @@
 
 namespace EDP_Project
 {
-
-
     public partial class BDCustomerChat
     {
     }

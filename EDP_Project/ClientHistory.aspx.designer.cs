@@ -51,6 +51,15 @@ namespace EDP_Project
         protected global::System.Web.UI.WebControls.ListView ListViewSearchHistory;
 
         /// <summary>
+        /// ListViewReviewHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView ListViewReviewHistory;
+
+        /// <summary>
         /// btnBack control.
         /// </summary>
         /// <remarks>
@@ -76,5 +85,14 @@ namespace EDP_Project
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton RdbtnSearchHistory;
+
+        /// <summary>
+        /// RdbtnReviewHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton RdbtnReviewHistory;
     }
 }

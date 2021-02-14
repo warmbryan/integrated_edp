@@ -363,9 +363,6 @@ FodyWeavers.xsd
 
 # Custom EDP
 /EDP_Project/App_Data/
-/EDP_Project/Scripts/
-/EDP_Project/webfonts/
-/EDP_Project/Content/*.*
 
 *.zip
 /EDP_Project/assets/Documents

@@ -75,4 +75,45 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfCustomerClass" nillable="true" type="tns:ArrayOfCustomerClass" />
+  <xs:complexType name="Branch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShopName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Branch" nillable="true" type="tns:Branch" />
+  <xs:complexType name="Review">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BranchId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateEdited" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="NumReport" type="xs:int" />
+      <xs:element minOccurs="0" name="Rating" type="xs:double" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Review" nillable="true" type="tns:Review" />
+  <xs:complexType name="BusinessRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BusinessId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BusinessRole" nillable="true" type="tns:BusinessRole" />
+  <xs:complexType name="ArrayOfBusinessRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BusinessRole" nillable="true" type="tns:BusinessRole" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBusinessRole" nillable="true" type="tns:ArrayOfBusinessRole" />
 </xs:schema>

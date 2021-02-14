@@ -35,7 +35,7 @@ namespace DBService.Models
             bool success;
             try
             {
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[BusinessUser] ([name], [email], [password], [phone]) VALUES (@Name, @Email, @Password, @Phone);", con))
                     {
@@ -61,7 +61,7 @@ namespace DBService.Models
         public BusinessUser SelectOneByUserId(string userId)
         {
             BusinessUser bUser;
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlDataAdapter sda = new SqlDataAdapter("SELECT [id], [name], [email], [phone] FROM [dbo].[BusinessUser] WHERE [id] = @UserId;", con))
                 {
@@ -91,7 +91,7 @@ namespace DBService.Models
         public BusinessUser SelectOneByEmail(string email)
         {
             BusinessUser bUser;
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlDataAdapter sda = new SqlDataAdapter("SELECT [id], [name], [email], [phone] FROM [dbo].[BusinessUser] WHERE [email] = @Email;", con))
                 {
@@ -121,7 +121,7 @@ namespace DBService.Models
         public bool Exists(string email)
         {
             bool exists;
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlDataAdapter sda = new SqlDataAdapter("SELECT [email] FROM [dbo].[BusinessUser] WHERE [email] = @Email;", con))
                 {

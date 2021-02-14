@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace DBService.Models
 {
-    class View
+    public class View
     {
         public Guid BranchId { get; set; }
         public Guid CustomerId { get; set; }
@@ -20,12 +20,11 @@ namespace DBService.Models
 
         public int Insert()
         {
-            string SQL = "insertView";
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            string SQL = "INSERT INTO dbo.ViewHistory (viewDateTime, branchId, customerId) VALUES (@viewDateTime, @branchId, @customerId)";
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(SQL, conn))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@viewDateTime", DateTime.Now.ToString());
                     cmd.Parameters.AddWithValue("@branchId", BranchId);
                     cmd.Parameters.AddWithValue("@customerId", CustomerId);
@@ -42,7 +41,7 @@ namespace DBService.Models
 
 
             string SQL = "SELECT v.viewDateTime,b.* FROM dbo.ViewHistory as v INNER JOIN dbo.Branch as b ON v.branchId = b.id WHERE customerId = @customerId ORDER BY v.viewDateTime DESC;";
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlDataAdapter sda = new SqlDataAdapter(SQL, conn))
                 {
@@ -60,7 +59,7 @@ namespace DBService.Models
         {
             int id = 0;
             string SQL = "SELECT viewDateTime,id from ViewHistory where branchId = @branchId AND customerId = @customerId";
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(SQL, conn))
                 {
@@ -84,7 +83,7 @@ namespace DBService.Models
         public int Update(int id)
         {
             string SQL = "UPDATE ViewHistory SET viewDateTime = @viewDateTime where id = @id";
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(SQL, conn))
                 {
@@ -102,7 +101,7 @@ namespace DBService.Models
         public int Delete(Guid customerId)
         {
             string SQL = "DELETE FROM ViewHistory WHERE customerId = @customerId";
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConn1"].ConnectionString))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(SQL, conn))
                 {

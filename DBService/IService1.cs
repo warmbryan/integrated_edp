@@ -1,7 +1,7 @@
 ﻿using DBService.Models;
 using System;
-using System.Data;
 using System.Collections.Generic;
+using System.Data;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 
@@ -89,7 +89,13 @@ namespace DBService
         DataSet SelectDistinctLocationFromBranch();
 
         [OperationContract]
-        DataSet SearchFromBranch(string search, string location);
+        DataSet SelectDistinctCategoryFromBranch();
+
+        [OperationContract]
+        DataSet SearchFromBranch(string search, string location, string category);
+
+        [OperationContract]
+        Branch SelectByIdFromBranch(Guid id);
 
         //----------------------Search--------------------
         [OperationContract]
@@ -123,9 +129,59 @@ namespace DBService
         [OperationContract]
         int DeleteFromView(Guid customerId);
 
+        //----------------------Review--------------------
+        [OperationContract]
+        int InsertReview(double rating, string comment, string title, Guid customerId, Guid branchId);
+
+        [OperationContract]
+        DataSet SelectByBranchIdFromReview(Guid id, Guid customerId, string sort);
+
+        [OperationContract]
+        DataSet SelectAllByBranchIdFromReview(Guid id, string sort);
+
+        [OperationContract]
+        Review HaveExistingReview(Guid branchId, Guid customerId);
+
+        [OperationContract]
+        int UpdateReview(int id, String title, String comment, Double rating);
+
+        [OperationContract]
+        int DeleteReview(int id);
+
+        [OperationContract]
+        DataSet SelectByCustomerIdFromReview(Guid id);
+
+        [OperationContract]
+        double SelectRatingByBranchIdFromReview(Guid branchId);
+
+        [OperationContract]
+        DataSet SelectReportedReview();
+
+        [OperationContract]
+        int AddNumReportToReview(int id);
+
+        [OperationContract]
+        int ResetNumReportToReview(int id);
+
         // Business Appointments
         [OperationContract]
         int CreateAppointment(string aptdate, string apttime, string bookdate, string booktime, string partysize);
+
+        // Business Role
+        [OperationContract]
+        BusinessRole CreateBusinessRole(string name, string businessId);
+
+        [OperationContract]
+        BusinessRole GetBusinessRole(string businessRoleId);
+
+        [OperationContract]
+        bool UpdateBusinessRole(string businessRoleId, string name, string businessId);
+
+        [OperationContract]
+        bool DeleteBusinessRole(string businessRoleId);
+
+        [OperationContract]
+        List<BusinessRole> GetBusinessRoles(string businessId);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

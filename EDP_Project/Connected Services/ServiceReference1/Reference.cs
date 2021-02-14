@@ -143,6 +143,10 @@ namespace EDP_Project.ServiceReference1 {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.BusinessUser))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.CustomerClass))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.CustomerClass[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.Branch))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.Review))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.BusinessRole))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBService.Models.BusinessRole[]))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
         short UpdateCustomer(System.Guid ID, string PastEmail, string purpose, object valueOne, object valueTwo);
         
@@ -167,11 +171,23 @@ namespace EDP_Project.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectDistinctLocationFromBranch", ReplyAction="http://tempuri.org/IService1/SelectDistinctLocationFromBranchResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SelectDistinctLocationFromBranchAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SearchFromBranch", ReplyAction="http://tempuri.org/IService1/SearchFromBranchResponse")]
-        System.Data.DataSet SearchFromBranch(string search, string location);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectDistinctCategoryFromBranch", ReplyAction="http://tempuri.org/IService1/SelectDistinctCategoryFromBranchResponse")]
+        System.Data.DataSet SelectDistinctCategoryFromBranch();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectDistinctCategoryFromBranch", ReplyAction="http://tempuri.org/IService1/SelectDistinctCategoryFromBranchResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectDistinctCategoryFromBranchAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SearchFromBranch", ReplyAction="http://tempuri.org/IService1/SearchFromBranchResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> SearchFromBranchAsync(string search, string location);
+        System.Data.DataSet SearchFromBranch(string search, string location, string category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SearchFromBranch", ReplyAction="http://tempuri.org/IService1/SearchFromBranchResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SearchFromBranchAsync(string search, string location, string category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectByIdFromBranch", ReplyAction="http://tempuri.org/IService1/SelectByIdFromBranchResponse")]
+        DBService.Models.Branch SelectByIdFromBranch(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectByIdFromBranch", ReplyAction="http://tempuri.org/IService1/SelectByIdFromBranchResponse")]
+        System.Threading.Tasks.Task<DBService.Models.Branch> SelectByIdFromBranchAsync(System.Guid id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateSearch", ReplyAction="http://tempuri.org/IService1/CreateSearchResponse")]
         int CreateSearch(string searchString, System.Guid customerId);
@@ -232,6 +248,108 @@ namespace EDP_Project.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteFromView", ReplyAction="http://tempuri.org/IService1/DeleteFromViewResponse")]
         System.Threading.Tasks.Task<int> DeleteFromViewAsync(System.Guid customerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsertReview", ReplyAction="http://tempuri.org/IService1/InsertReviewResponse")]
+        int InsertReview(double rating, string comment, string title, System.Guid customerId, System.Guid branchId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsertReview", ReplyAction="http://tempuri.org/IService1/InsertReviewResponse")]
+        System.Threading.Tasks.Task<int> InsertReviewAsync(double rating, string comment, string title, System.Guid customerId, System.Guid branchId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectByBranchIdFromReview", ReplyAction="http://tempuri.org/IService1/SelectByBranchIdFromReviewResponse")]
+        System.Data.DataSet SelectByBranchIdFromReview(System.Guid id, System.Guid customerId, string sort);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectByBranchIdFromReview", ReplyAction="http://tempuri.org/IService1/SelectByBranchIdFromReviewResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectByBranchIdFromReviewAsync(System.Guid id, System.Guid customerId, string sort);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectAllByBranchIdFromReview", ReplyAction="http://tempuri.org/IService1/SelectAllByBranchIdFromReviewResponse")]
+        System.Data.DataSet SelectAllByBranchIdFromReview(System.Guid id, string sort);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectAllByBranchIdFromReview", ReplyAction="http://tempuri.org/IService1/SelectAllByBranchIdFromReviewResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectAllByBranchIdFromReviewAsync(System.Guid id, string sort);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/HaveExistingReview", ReplyAction="http://tempuri.org/IService1/HaveExistingReviewResponse")]
+        DBService.Models.Review HaveExistingReview(System.Guid branchId, System.Guid customerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/HaveExistingReview", ReplyAction="http://tempuri.org/IService1/HaveExistingReviewResponse")]
+        System.Threading.Tasks.Task<DBService.Models.Review> HaveExistingReviewAsync(System.Guid branchId, System.Guid customerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateReview", ReplyAction="http://tempuri.org/IService1/UpdateReviewResponse")]
+        int UpdateReview(int id, string title, string comment, double rating);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateReview", ReplyAction="http://tempuri.org/IService1/UpdateReviewResponse")]
+        System.Threading.Tasks.Task<int> UpdateReviewAsync(int id, string title, string comment, double rating);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteReview", ReplyAction="http://tempuri.org/IService1/DeleteReviewResponse")]
+        int DeleteReview(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteReview", ReplyAction="http://tempuri.org/IService1/DeleteReviewResponse")]
+        System.Threading.Tasks.Task<int> DeleteReviewAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectByCustomerIdFromReview", ReplyAction="http://tempuri.org/IService1/SelectByCustomerIdFromReviewResponse")]
+        System.Data.DataSet SelectByCustomerIdFromReview(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectByCustomerIdFromReview", ReplyAction="http://tempuri.org/IService1/SelectByCustomerIdFromReviewResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectByCustomerIdFromReviewAsync(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectRatingByBranchIdFromReview", ReplyAction="http://tempuri.org/IService1/SelectRatingByBranchIdFromReviewResponse")]
+        double SelectRatingByBranchIdFromReview(System.Guid branchId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectRatingByBranchIdFromReview", ReplyAction="http://tempuri.org/IService1/SelectRatingByBranchIdFromReviewResponse")]
+        System.Threading.Tasks.Task<double> SelectRatingByBranchIdFromReviewAsync(System.Guid branchId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectReportedReview", ReplyAction="http://tempuri.org/IService1/SelectReportedReviewResponse")]
+        System.Data.DataSet SelectReportedReview();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectReportedReview", ReplyAction="http://tempuri.org/IService1/SelectReportedReviewResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SelectReportedReviewAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddNumReportToReview", ReplyAction="http://tempuri.org/IService1/AddNumReportToReviewResponse")]
+        int AddNumReportToReview(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddNumReportToReview", ReplyAction="http://tempuri.org/IService1/AddNumReportToReviewResponse")]
+        System.Threading.Tasks.Task<int> AddNumReportToReviewAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ResetNumReportToReview", ReplyAction="http://tempuri.org/IService1/ResetNumReportToReviewResponse")]
+        int ResetNumReportToReview(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ResetNumReportToReview", ReplyAction="http://tempuri.org/IService1/ResetNumReportToReviewResponse")]
+        System.Threading.Tasks.Task<int> ResetNumReportToReviewAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateAppointment", ReplyAction="http://tempuri.org/IService1/CreateAppointmentResponse")]
+        int CreateAppointment(string aptdate, string apttime, string bookdate, string booktime, string partysize);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateAppointment", ReplyAction="http://tempuri.org/IService1/CreateAppointmentResponse")]
+        System.Threading.Tasks.Task<int> CreateAppointmentAsync(string aptdate, string apttime, string bookdate, string booktime, string partysize);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateBusinessRole", ReplyAction="http://tempuri.org/IService1/CreateBusinessRoleResponse")]
+        DBService.Models.BusinessRole CreateBusinessRole(string name, string businessId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateBusinessRole", ReplyAction="http://tempuri.org/IService1/CreateBusinessRoleResponse")]
+        System.Threading.Tasks.Task<DBService.Models.BusinessRole> CreateBusinessRoleAsync(string name, string businessId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBusinessRole", ReplyAction="http://tempuri.org/IService1/GetBusinessRoleResponse")]
+        DBService.Models.BusinessRole GetBusinessRole(string businessRoleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBusinessRole", ReplyAction="http://tempuri.org/IService1/GetBusinessRoleResponse")]
+        System.Threading.Tasks.Task<DBService.Models.BusinessRole> GetBusinessRoleAsync(string businessRoleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateBusinessRole", ReplyAction="http://tempuri.org/IService1/UpdateBusinessRoleResponse")]
+        bool UpdateBusinessRole(string businessRoleId, string name, string businessId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateBusinessRole", ReplyAction="http://tempuri.org/IService1/UpdateBusinessRoleResponse")]
+        System.Threading.Tasks.Task<bool> UpdateBusinessRoleAsync(string businessRoleId, string name, string businessId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteBusinessRole", ReplyAction="http://tempuri.org/IService1/DeleteBusinessRoleResponse")]
+        bool DeleteBusinessRole(string businessRoleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteBusinessRole", ReplyAction="http://tempuri.org/IService1/DeleteBusinessRoleResponse")]
+        System.Threading.Tasks.Task<bool> DeleteBusinessRoleAsync(string businessRoleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBusinessRoles", ReplyAction="http://tempuri.org/IService1/GetBusinessRolesResponse")]
+        DBService.Models.BusinessRole[] GetBusinessRoles(string businessId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBusinessRoles", ReplyAction="http://tempuri.org/IService1/GetBusinessRolesResponse")]
+        System.Threading.Tasks.Task<DBService.Models.BusinessRole[]> GetBusinessRolesAsync(string businessId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -453,12 +571,28 @@ namespace EDP_Project.ServiceReference1 {
             return base.Channel.SelectDistinctLocationFromBranchAsync();
         }
         
-        public System.Data.DataSet SearchFromBranch(string search, string location) {
-            return base.Channel.SearchFromBranch(search, location);
+        public System.Data.DataSet SelectDistinctCategoryFromBranch() {
+            return base.Channel.SelectDistinctCategoryFromBranch();
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> SearchFromBranchAsync(string search, string location) {
-            return base.Channel.SearchFromBranchAsync(search, location);
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectDistinctCategoryFromBranchAsync() {
+            return base.Channel.SelectDistinctCategoryFromBranchAsync();
+        }
+        
+        public System.Data.DataSet SearchFromBranch(string search, string location, string category) {
+            return base.Channel.SearchFromBranch(search, location, category);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SearchFromBranchAsync(string search, string location, string category) {
+            return base.Channel.SearchFromBranchAsync(search, location, category);
+        }
+        
+        public DBService.Models.Branch SelectByIdFromBranch(System.Guid id) {
+            return base.Channel.SelectByIdFromBranch(id);
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.Branch> SelectByIdFromBranchAsync(System.Guid id) {
+            return base.Channel.SelectByIdFromBranchAsync(id);
         }
         
         public int CreateSearch(string searchString, System.Guid customerId) {
@@ -539,6 +673,142 @@ namespace EDP_Project.ServiceReference1 {
         
         public System.Threading.Tasks.Task<int> DeleteFromViewAsync(System.Guid customerId) {
             return base.Channel.DeleteFromViewAsync(customerId);
+        }
+        
+        public int InsertReview(double rating, string comment, string title, System.Guid customerId, System.Guid branchId) {
+            return base.Channel.InsertReview(rating, comment, title, customerId, branchId);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertReviewAsync(double rating, string comment, string title, System.Guid customerId, System.Guid branchId) {
+            return base.Channel.InsertReviewAsync(rating, comment, title, customerId, branchId);
+        }
+        
+        public System.Data.DataSet SelectByBranchIdFromReview(System.Guid id, System.Guid customerId, string sort) {
+            return base.Channel.SelectByBranchIdFromReview(id, customerId, sort);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectByBranchIdFromReviewAsync(System.Guid id, System.Guid customerId, string sort) {
+            return base.Channel.SelectByBranchIdFromReviewAsync(id, customerId, sort);
+        }
+        
+        public System.Data.DataSet SelectAllByBranchIdFromReview(System.Guid id, string sort) {
+            return base.Channel.SelectAllByBranchIdFromReview(id, sort);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectAllByBranchIdFromReviewAsync(System.Guid id, string sort) {
+            return base.Channel.SelectAllByBranchIdFromReviewAsync(id, sort);
+        }
+        
+        public DBService.Models.Review HaveExistingReview(System.Guid branchId, System.Guid customerId) {
+            return base.Channel.HaveExistingReview(branchId, customerId);
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.Review> HaveExistingReviewAsync(System.Guid branchId, System.Guid customerId) {
+            return base.Channel.HaveExistingReviewAsync(branchId, customerId);
+        }
+        
+        public int UpdateReview(int id, string title, string comment, double rating) {
+            return base.Channel.UpdateReview(id, title, comment, rating);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateReviewAsync(int id, string title, string comment, double rating) {
+            return base.Channel.UpdateReviewAsync(id, title, comment, rating);
+        }
+        
+        public int DeleteReview(int id) {
+            return base.Channel.DeleteReview(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteReviewAsync(int id) {
+            return base.Channel.DeleteReviewAsync(id);
+        }
+        
+        public System.Data.DataSet SelectByCustomerIdFromReview(System.Guid id) {
+            return base.Channel.SelectByCustomerIdFromReview(id);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectByCustomerIdFromReviewAsync(System.Guid id) {
+            return base.Channel.SelectByCustomerIdFromReviewAsync(id);
+        }
+        
+        public double SelectRatingByBranchIdFromReview(System.Guid branchId) {
+            return base.Channel.SelectRatingByBranchIdFromReview(branchId);
+        }
+        
+        public System.Threading.Tasks.Task<double> SelectRatingByBranchIdFromReviewAsync(System.Guid branchId) {
+            return base.Channel.SelectRatingByBranchIdFromReviewAsync(branchId);
+        }
+        
+        public System.Data.DataSet SelectReportedReview() {
+            return base.Channel.SelectReportedReview();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SelectReportedReviewAsync() {
+            return base.Channel.SelectReportedReviewAsync();
+        }
+        
+        public int AddNumReportToReview(int id) {
+            return base.Channel.AddNumReportToReview(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddNumReportToReviewAsync(int id) {
+            return base.Channel.AddNumReportToReviewAsync(id);
+        }
+        
+        public int ResetNumReportToReview(int id) {
+            return base.Channel.ResetNumReportToReview(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> ResetNumReportToReviewAsync(int id) {
+            return base.Channel.ResetNumReportToReviewAsync(id);
+        }
+        
+        public int CreateAppointment(string aptdate, string apttime, string bookdate, string booktime, string partysize) {
+            return base.Channel.CreateAppointment(aptdate, apttime, bookdate, booktime, partysize);
+        }
+        
+        public System.Threading.Tasks.Task<int> CreateAppointmentAsync(string aptdate, string apttime, string bookdate, string booktime, string partysize) {
+            return base.Channel.CreateAppointmentAsync(aptdate, apttime, bookdate, booktime, partysize);
+        }
+        
+        public DBService.Models.BusinessRole CreateBusinessRole(string name, string businessId) {
+            return base.Channel.CreateBusinessRole(name, businessId);
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.BusinessRole> CreateBusinessRoleAsync(string name, string businessId) {
+            return base.Channel.CreateBusinessRoleAsync(name, businessId);
+        }
+        
+        public DBService.Models.BusinessRole GetBusinessRole(string businessRoleId) {
+            return base.Channel.GetBusinessRole(businessRoleId);
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.BusinessRole> GetBusinessRoleAsync(string businessRoleId) {
+            return base.Channel.GetBusinessRoleAsync(businessRoleId);
+        }
+        
+        public bool UpdateBusinessRole(string businessRoleId, string name, string businessId) {
+            return base.Channel.UpdateBusinessRole(businessRoleId, name, businessId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateBusinessRoleAsync(string businessRoleId, string name, string businessId) {
+            return base.Channel.UpdateBusinessRoleAsync(businessRoleId, name, businessId);
+        }
+        
+        public bool DeleteBusinessRole(string businessRoleId) {
+            return base.Channel.DeleteBusinessRole(businessRoleId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteBusinessRoleAsync(string businessRoleId) {
+            return base.Channel.DeleteBusinessRoleAsync(businessRoleId);
+        }
+        
+        public DBService.Models.BusinessRole[] GetBusinessRoles(string businessId) {
+            return base.Channel.GetBusinessRoles(businessId);
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.BusinessRole[]> GetBusinessRolesAsync(string businessId) {
+            return base.Channel.GetBusinessRolesAsync(businessId);
         }
     }
 }

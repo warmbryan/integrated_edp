@@ -1,10 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
+
+/* Unmerged change from project '3_App_Code'
+Before:
 using System.Web;
 
 using System.Net.Mail;
 using System.Net;
+After:
+using System.Net;
+using System.Net.Mail;
+using System.Web;
+*/
+using System.Net.Mail;
 
 namespace EDP_Project.App_Code
 {

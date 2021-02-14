@@ -1,8 +1,7 @@
-﻿using System;
-
+﻿using DBService.Models;
 using EDP_Project.App_Code;
 using EDP_Project.ServiceReference1;
-using DBService.Models;
+using System;
 
 namespace EDP_Project
 {
