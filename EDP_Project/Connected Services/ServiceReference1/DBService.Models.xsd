@@ -102,6 +102,26 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Review" nillable="true" type="tns:Review" />
+  <xs:complexType name="ArrayOfAppointment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Appointment" nillable="true" type="tns:Appointment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAppointment" nillable="true" type="tns:ArrayOfAppointment" />
+  <xs:complexType name="Appointment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="appointmentSettingId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aptDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aptDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="aptTime" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bookDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bookTime" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="branchId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="customerId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="partySize" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Appointment" nillable="true" type="tns:Appointment" />
   <xs:complexType name="BusinessRole">
     <xs:sequence>
       <xs:element minOccurs="0" name="BusinessId" nillable="true" type="xs:string" />

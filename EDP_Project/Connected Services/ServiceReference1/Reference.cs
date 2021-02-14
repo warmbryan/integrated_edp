@@ -316,10 +316,58 @@ namespace EDP_Project.ServiceReference1 {
         System.Threading.Tasks.Task<int> ResetNumReportToReviewAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateAppointment", ReplyAction="http://tempuri.org/IService1/CreateAppointmentResponse")]
-        int CreateAppointment(string aptdate, string apttime, string bookdate, string booktime, string partysize);
+        int CreateAppointment(string aptdate, string apttime, string bookdate, string booktime, string partysize, System.DateTime aptDateTime, string customerid, string branchid, string appointmentsettingid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateAppointment", ReplyAction="http://tempuri.org/IService1/CreateAppointmentResponse")]
-        System.Threading.Tasks.Task<int> CreateAppointmentAsync(string aptdate, string apttime, string bookdate, string booktime, string partysize);
+        System.Threading.Tasks.Task<int> CreateAppointmentAsync(string aptdate, string apttime, string bookdate, string booktime, string partysize, System.DateTime aptDateTime, string customerid, string branchid, string appointmentsettingid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ModifyAppointment", ReplyAction="http://tempuri.org/IService1/ModifyAppointmentResponse")]
+        int ModifyAppointment(string userid, string aptdate, string apttime, string bookdate, string booktime, string partysize, System.DateTime aptDateTime, string customerid, string branchid, string appointmentsettingid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ModifyAppointment", ReplyAction="http://tempuri.org/IService1/ModifyAppointmentResponse")]
+        System.Threading.Tasks.Task<int> ModifyAppointmentAsync(string userid, string aptdate, string apttime, string bookdate, string booktime, string partysize, System.DateTime aptDateTime, string customerid, string branchid, string appointmentsettingid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllAppointment", ReplyAction="http://tempuri.org/IService1/GetAllAppointmentResponse")]
+        DBService.Models.Appointment[] GetAllAppointment();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllAppointment", ReplyAction="http://tempuri.org/IService1/GetAllAppointmentResponse")]
+        System.Threading.Tasks.Task<DBService.Models.Appointment[]> GetAllAppointmentAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllAppointmentByTodayDate", ReplyAction="http://tempuri.org/IService1/GetAllAppointmentByTodayDateResponse")]
+        DBService.Models.Appointment[] GetAllAppointmentByTodayDate();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllAppointmentByTodayDate", ReplyAction="http://tempuri.org/IService1/GetAllAppointmentByTodayDateResponse")]
+        System.Threading.Tasks.Task<DBService.Models.Appointment[]> GetAllAppointmentByTodayDateAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllAppointmentByTodayDateAscend", ReplyAction="http://tempuri.org/IService1/GetAllAppointmentByTodayDateAscendResponse")]
+        DBService.Models.Appointment[] GetAllAppointmentByTodayDateAscend(string aptdate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllAppointmentByTodayDateAscend", ReplyAction="http://tempuri.org/IService1/GetAllAppointmentByTodayDateAscendResponse")]
+        System.Threading.Tasks.Task<DBService.Models.Appointment[]> GetAllAppointmentByTodayDateAscendAsync(string aptdate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/setArrived", ReplyAction="http://tempuri.org/IService1/setArrivedResponse")]
+        int setArrived(string aptTime, string aptDate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/setArrived", ReplyAction="http://tempuri.org/IService1/setArrivedResponse")]
+        System.Threading.Tasks.Task<int> setArrivedAsync(string aptTime, string aptDate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/deleteAppointment", ReplyAction="http://tempuri.org/IService1/deleteAppointmentResponse")]
+        int deleteAppointment(string aptTime, string aptDate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/deleteAppointment", ReplyAction="http://tempuri.org/IService1/deleteAppointmentResponse")]
+        System.Threading.Tasks.Task<int> deleteAppointmentAsync(string aptTime, string aptDate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/selectAllAppointmentDateAscend", ReplyAction="http://tempuri.org/IService1/selectAllAppointmentDateAscendResponse")]
+        string[] selectAllAppointmentDateAscend();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/selectAllAppointmentDateAscend", ReplyAction="http://tempuri.org/IService1/selectAllAppointmentDateAscendResponse")]
+        System.Threading.Tasks.Task<string[]> selectAllAppointmentDateAscendAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/selectCountByDate", ReplyAction="http://tempuri.org/IService1/selectCountByDateResponse")]
+        int selectCountByDate(string aptDate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/selectCountByDate", ReplyAction="http://tempuri.org/IService1/selectCountByDateResponse")]
+        System.Threading.Tasks.Task<int> selectCountByDateAsync(string aptDate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateBusinessRole", ReplyAction="http://tempuri.org/IService1/CreateBusinessRoleResponse")]
         DBService.Models.BusinessRole CreateBusinessRole(string name, string businessId);
@@ -815,12 +863,76 @@ namespace EDP_Project.ServiceReference1 {
             return base.Channel.ResetNumReportToReviewAsync(id);
         }
         
-        public int CreateAppointment(string aptdate, string apttime, string bookdate, string booktime, string partysize) {
-            return base.Channel.CreateAppointment(aptdate, apttime, bookdate, booktime, partysize);
+        public int CreateAppointment(string aptdate, string apttime, string bookdate, string booktime, string partysize, System.DateTime aptDateTime, string customerid, string branchid, string appointmentsettingid) {
+            return base.Channel.CreateAppointment(aptdate, apttime, bookdate, booktime, partysize, aptDateTime, customerid, branchid, appointmentsettingid);
         }
         
-        public System.Threading.Tasks.Task<int> CreateAppointmentAsync(string aptdate, string apttime, string bookdate, string booktime, string partysize) {
-            return base.Channel.CreateAppointmentAsync(aptdate, apttime, bookdate, booktime, partysize);
+        public System.Threading.Tasks.Task<int> CreateAppointmentAsync(string aptdate, string apttime, string bookdate, string booktime, string partysize, System.DateTime aptDateTime, string customerid, string branchid, string appointmentsettingid) {
+            return base.Channel.CreateAppointmentAsync(aptdate, apttime, bookdate, booktime, partysize, aptDateTime, customerid, branchid, appointmentsettingid);
+        }
+        
+        public int ModifyAppointment(string userid, string aptdate, string apttime, string bookdate, string booktime, string partysize, System.DateTime aptDateTime, string customerid, string branchid, string appointmentsettingid) {
+            return base.Channel.ModifyAppointment(userid, aptdate, apttime, bookdate, booktime, partysize, aptDateTime, customerid, branchid, appointmentsettingid);
+        }
+        
+        public System.Threading.Tasks.Task<int> ModifyAppointmentAsync(string userid, string aptdate, string apttime, string bookdate, string booktime, string partysize, System.DateTime aptDateTime, string customerid, string branchid, string appointmentsettingid) {
+            return base.Channel.ModifyAppointmentAsync(userid, aptdate, apttime, bookdate, booktime, partysize, aptDateTime, customerid, branchid, appointmentsettingid);
+        }
+        
+        public DBService.Models.Appointment[] GetAllAppointment() {
+            return base.Channel.GetAllAppointment();
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.Appointment[]> GetAllAppointmentAsync() {
+            return base.Channel.GetAllAppointmentAsync();
+        }
+        
+        public DBService.Models.Appointment[] GetAllAppointmentByTodayDate() {
+            return base.Channel.GetAllAppointmentByTodayDate();
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.Appointment[]> GetAllAppointmentByTodayDateAsync() {
+            return base.Channel.GetAllAppointmentByTodayDateAsync();
+        }
+        
+        public DBService.Models.Appointment[] GetAllAppointmentByTodayDateAscend(string aptdate) {
+            return base.Channel.GetAllAppointmentByTodayDateAscend(aptdate);
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.Appointment[]> GetAllAppointmentByTodayDateAscendAsync(string aptdate) {
+            return base.Channel.GetAllAppointmentByTodayDateAscendAsync(aptdate);
+        }
+        
+        public int setArrived(string aptTime, string aptDate) {
+            return base.Channel.setArrived(aptTime, aptDate);
+        }
+        
+        public System.Threading.Tasks.Task<int> setArrivedAsync(string aptTime, string aptDate) {
+            return base.Channel.setArrivedAsync(aptTime, aptDate);
+        }
+        
+        public int deleteAppointment(string aptTime, string aptDate) {
+            return base.Channel.deleteAppointment(aptTime, aptDate);
+        }
+        
+        public System.Threading.Tasks.Task<int> deleteAppointmentAsync(string aptTime, string aptDate) {
+            return base.Channel.deleteAppointmentAsync(aptTime, aptDate);
+        }
+        
+        public string[] selectAllAppointmentDateAscend() {
+            return base.Channel.selectAllAppointmentDateAscend();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> selectAllAppointmentDateAscendAsync() {
+            return base.Channel.selectAllAppointmentDateAscendAsync();
+        }
+        
+        public int selectCountByDate(string aptDate) {
+            return base.Channel.selectCountByDate(aptDate);
+        }
+        
+        public System.Threading.Tasks.Task<int> selectCountByDateAsync(string aptDate) {
+            return base.Channel.selectCountByDateAsync(aptDate);
         }
         
         public DBService.Models.BusinessRole CreateBusinessRole(string name, string businessId) {

@@ -32,7 +32,7 @@ namespace EDP_Project
                 }
             }
         }
-        
+
         public static Boolean SetUserSession(Guid ID, String Email, String Role)
         {
             try

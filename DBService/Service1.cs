@@ -407,10 +407,58 @@ namespace DBService
         }
 
         // appointments
-        public int CreateAppointment(string aptdate, string apttime, string bookdate, string booktime, string partysize)
+        public int CreateAppointment(string aptdate, string apttime, string bookdate, string booktime, string partysize, DateTime aptDateTime, string customerid, string branchid, string appointmentsettingid)
         {
-            Appointment apt = new Appointment(aptdate, apttime, bookdate, booktime, partysize);
+            Appointment apt = new Appointment(aptdate, apttime, bookdate, booktime, partysize, aptDateTime, customerid, branchid, appointmentsettingid);
             return apt.Insert();
+        }
+
+        public int ModifyAppointment(string userid, string aptdate, string apttime, string bookdate, string booktime, string partysize, DateTime aptDateTime, string customerid, string branchid, string appointmentsettingid)
+        {
+            Appointment apt = new Appointment(aptdate, apttime, bookdate, booktime, partysize, aptDateTime, customerid, branchid, appointmentsettingid);
+            return apt.Modify(userid);
+        }
+
+        public List<Appointment> GetAllAppointment()
+        {
+            Appointment apt = new Appointment();
+            return apt.SelectAll();
+        }
+
+        public List<Appointment> GetAllAppointmentByTodayDate()
+        {
+            Appointment apt = new Appointment();
+            return apt.SelectByTodayDate();
+        }
+
+        public List<Appointment> GetAllAppointmentByTodayDateAscend(string aptDate)
+        {
+            Appointment apt = new Appointment();
+            return apt.SelectByTodayDateAscend(aptDate);
+        }
+
+        public int setArrived(string aptTime, string aptDate)
+        {
+            Appointment apt = new Appointment();
+            return apt.setArrived(aptTime, aptDate);
+        }
+
+        public int deleteAppointment(string aptTime, string aptDate)
+        {
+            Appointment apt = new Appointment();
+            return apt.deleteAppointment(aptTime, aptDate);
+        }
+
+        public List<string> selectAllAppointmentDateAscend()
+        {
+            Appointment apt = new Appointment();
+            return apt.selectAllAppointmentDateAscend();
+        }
+
+        public int selectCountByDate(string aptDate)
+        {
+            Appointment apt = new Appointment();
+            return apt.selectCountByDate(aptDate);
         }
 
         // -------------------------------- Business Role --------------------------------
