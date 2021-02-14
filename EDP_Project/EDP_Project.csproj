@@ -110,9 +110,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="adminhome.aspx" />
-    <Content Include="adminuserdetailed.aspx" />
-    <Content Include="adminusers.aspx" />
+    <Content Include="AdminHome.aspx" />
+    <Content Include="AdminUserDetailed.aspx" />
+    <Content Include="AdminUsers.aspx" />
     <Content Include="AppointmentPage.aspx" />
     <Content Include="App_Data\MyDB.mdf" />
     <Content Include="App_Data\MyDB_log.ldf">
@@ -162,10 +162,10 @@
     <Content Include="PublicAppointmentBookingSuccess.aspx" />
     <Content Include="PublicAppointmentView.aspx" />
     <Content Include="CustomerRegistration.aspx" />
-    <Content Include="ResetPassword.aspx" />
+    <Content Include="CustomerResetPassword.aspx" />
     <Content Include="Review.aspx" />
     <Content Include="Search.aspx" />
-    <Content Include="VerifyEmail.aspx" />
+    <Content Include="CustomerVerifyEmail.aspx" />
     <Content Include="Global.asax" />
     <Content Include="AdminDashboard.Master" />
     <None Include="Connected Services\ServiceReference1\Arrays.xsd">
@@ -349,26 +349,26 @@
     <Compile Include="AdminDashboard.Master.designer.cs">
       <DependentUpon>AdminDashboard.Master</DependentUpon>
     </Compile>
-    <Compile Include="adminhome.aspx.cs">
-      <DependentUpon>adminhome.aspx</DependentUpon>
+    <Compile Include="AdminHome.aspx.cs">
+      <DependentUpon>AdminHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="adminhome.aspx.designer.cs">
-      <DependentUpon>adminhome.aspx</DependentUpon>
+    <Compile Include="AdminHome.aspx.designer.cs">
+      <DependentUpon>AdminHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="adminuserdetailed.aspx.cs">
-      <DependentUpon>adminuserdetailed.aspx</DependentUpon>
+    <Compile Include="AdminUserDetailed.aspx.cs">
+      <DependentUpon>AdminUserDetailed.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="adminuserdetailed.aspx.designer.cs">
-      <DependentUpon>adminuserdetailed.aspx</DependentUpon>
+    <Compile Include="AdminUserDetailed.aspx.designer.cs">
+      <DependentUpon>AdminUserDetailed.aspx</DependentUpon>
     </Compile>
-    <Compile Include="adminusers.aspx.cs">
-      <DependentUpon>adminusers.aspx</DependentUpon>
+    <Compile Include="AdminUsers.aspx.cs">
+      <DependentUpon>AdminUsers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="adminusers.aspx.designer.cs">
-      <DependentUpon>adminusers.aspx</DependentUpon>
+    <Compile Include="AdminUsers.aspx.designer.cs">
+      <DependentUpon>AdminUsers.aspx</DependentUpon>
     </Compile>
     <Compile Include="AppointmentPage.aspx.cs">
       <DependentUpon>AppointmentPage.aspx</DependentUpon>
@@ -577,19 +577,19 @@
     <Compile Include="CustomerRegistration.aspx.designer.cs">
       <DependentUpon>CustomerRegistration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ResetPassword.aspx.cs">
-      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    <Compile Include="CustomerResetPassword.aspx.cs">
+      <DependentUpon>CustomerResetPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ResetPassword.aspx.designer.cs">
-      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    <Compile Include="CustomerResetPassword.aspx.designer.cs">
+      <DependentUpon>CustomerResetPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="VerifyEmail.aspx.cs">
-      <DependentUpon>VerifyEmail.aspx</DependentUpon>
+    <Compile Include="CustomerVerifyEmail.aspx.cs">
+      <DependentUpon>CustomerVerifyEmail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="VerifyEmail.aspx.designer.cs">
-      <DependentUpon>VerifyEmail.aspx</DependentUpon>
+    <Compile Include="CustomerVerifyEmail.aspx.designer.cs">
+      <DependentUpon>CustomerVerifyEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

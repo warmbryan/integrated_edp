@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WRSite.Master" AutoEventWireup="true" CodeBehind="CustomerLogin.aspx.cs" Inherits="EDP_Project.CustomerLogin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WRCustomerLogin.Master" AutoEventWireup="true" CodeBehind="CustomerLogin.aspx.cs" Inherits="EDP_Project.CustomerLogin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="extraHead" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Public.Master" AutoEventWireup="true" CodeBehind="ClientHistory.aspx.cs" Inherits="EDP_Project.ClientHistory" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -7,8 +6,6 @@
         <div class="col-8">
             <asp:LinkButton ID="LinkButtonClear" runat="server" CssClass="float-right" style="color:gray;margin-top:10px;" OnClick="LinkButtonClear_Click" OnClientClick="return confirm('Are you sure to delete history?')"><span class="fa fa-trash"></span>Clear</asp:LinkButton>
             <h2><asp:Label ID="lblType" runat="server" Text="View History"></asp:Label></h2>
-            
-
                 <asp:ListView ID="ListViewViewHistory" runat="server" ItemPlaceholderID="PlaceHolderViewHistory">
                     <EmptyDataTemplate>
                             <table >

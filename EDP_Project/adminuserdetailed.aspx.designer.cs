@@ -11,7 +11,7 @@ namespace EDP_Project
 {
 
 
-    public partial class adminuserdetailed
+    public partial class AdminUserDetailed
     {
 
         /// <summary>

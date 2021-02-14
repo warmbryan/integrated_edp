@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace EDP_Project
 {
-    public partial class adminhome : System.Web.UI.Page
+    public partial class AdminHome : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -11,7 +11,7 @@ namespace EDP_Project
 {
 
 
-    public partial class ResetPassword
+    public partial class CustomerResetPassword
     {
 
         /// <summary>

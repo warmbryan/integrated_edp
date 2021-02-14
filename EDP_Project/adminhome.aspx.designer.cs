@@ -10,7 +10,7 @@
 
 namespace EDP_Project
 {
-    public partial class adminhome
+    public partial class AdminHome
     {
     }
 }

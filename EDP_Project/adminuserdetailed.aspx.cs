@@ -6,10 +6,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using EDP_Project.ServiceReference1;
+using DBService.Models;
 
 namespace EDP_Project
 {
-    public partial class adminuserdetailed : System.Web.UI.Page
+    public partial class AdminUserDetailed : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -9,7 +9,7 @@ using EDP_Project.ServiceReference1;
 
 namespace EDP_Project
 {
-    public partial class adminusers : System.Web.UI.Page
+    public partial class AdminUsers : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

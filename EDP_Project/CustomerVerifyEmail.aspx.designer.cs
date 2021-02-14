@@ -11,7 +11,7 @@ namespace EDP_Project
 {
 
 
-    public partial class VerifyEmail
+    public partial class CustomerVerifyEmail
     {
 
         /// <summary>
