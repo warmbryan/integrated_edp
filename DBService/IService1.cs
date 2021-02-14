@@ -173,7 +173,31 @@ namespace DBService
 
         // Business Appointments
         [OperationContract]
-        int CreateAppointment(string aptdate, string apttime, string bookdate, string booktime, string partysize);
+        int CreateAppointment(string aptdate, string apttime, string bookdate, string booktime, string partysize, DateTime aptDateTime, string customerid, string branchid, string appointmentsettingid);
+
+        [OperationContract]
+        int ModifyAppointment(string userid, string aptdate, string apttime, string bookdate, string booktime, string partysize, DateTime aptDateTime, string customerid, string branchid, string appointmentsettingid);
+
+        [OperationContract]
+        List<Appointment> GetAllAppointment();
+
+        [OperationContract]
+        List<Appointment> GetAllAppointmentByTodayDate();
+
+        [OperationContract]
+        List<Appointment> GetAllAppointmentByTodayDateAscend(string aptdate);
+
+        [OperationContract]
+        int setArrived(string aptTime, string aptDate);
+
+        [OperationContract]
+        int deleteAppointment(string aptTime, string aptDate);
+
+        [OperationContract]
+        List<string> selectAllAppointmentDateAscend();
+
+        [OperationContract]
+        int selectCountByDate(string aptDate);
 
         // Business Role
         [OperationContract]

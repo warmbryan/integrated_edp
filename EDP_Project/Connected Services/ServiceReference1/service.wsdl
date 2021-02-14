@@ -315,6 +315,54 @@
   <wsdl:message name="IService1_CreateAppointment_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateAppointmentResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_ModifyAppointment_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyAppointment" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ModifyAppointment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllAppointment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAppointment" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllAppointment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllAppointmentByTodayDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAppointmentByTodayDate" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllAppointmentByTodayDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAppointmentByTodayDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllAppointmentByTodayDateAscend_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAppointmentByTodayDateAscend" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllAppointmentByTodayDateAscend_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAppointmentByTodayDateAscendResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_setArrived_InputMessage">
+    <wsdl:part name="parameters" element="tns:setArrived" />
+  </wsdl:message>
+  <wsdl:message name="IService1_setArrived_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setArrivedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_deleteAppointment_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteAppointment" />
+  </wsdl:message>
+  <wsdl:message name="IService1_deleteAppointment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteAppointmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_selectAllAppointmentDateAscend_InputMessage">
+    <wsdl:part name="parameters" element="tns:selectAllAppointmentDateAscend" />
+  </wsdl:message>
+  <wsdl:message name="IService1_selectAllAppointmentDateAscend_OutputMessage">
+    <wsdl:part name="parameters" element="tns:selectAllAppointmentDateAscendResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_selectCountByDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:selectCountByDate" />
+  </wsdl:message>
+  <wsdl:message name="IService1_selectCountByDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:selectCountByDateResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_CreateBusinessRole_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateBusinessRole" />
   </wsdl:message>
@@ -597,6 +645,38 @@
     <wsdl:operation name="CreateAppointment">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateAppointment" message="tns:IService1_CreateAppointment_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateAppointmentResponse" message="tns:IService1_CreateAppointment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyAppointment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ModifyAppointment" message="tns:IService1_ModifyAppointment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ModifyAppointmentResponse" message="tns:IService1_ModifyAppointment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAppointment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllAppointment" message="tns:IService1_GetAllAppointment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAllAppointmentResponse" message="tns:IService1_GetAllAppointment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAppointmentByTodayDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllAppointmentByTodayDate" message="tns:IService1_GetAllAppointmentByTodayDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAllAppointmentByTodayDateResponse" message="tns:IService1_GetAllAppointmentByTodayDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAppointmentByTodayDateAscend">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllAppointmentByTodayDateAscend" message="tns:IService1_GetAllAppointmentByTodayDateAscend_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAllAppointmentByTodayDateAscendResponse" message="tns:IService1_GetAllAppointmentByTodayDateAscend_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setArrived">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/setArrived" message="tns:IService1_setArrived_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/setArrivedResponse" message="tns:IService1_setArrived_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteAppointment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/deleteAppointment" message="tns:IService1_deleteAppointment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/deleteAppointmentResponse" message="tns:IService1_deleteAppointment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="selectAllAppointmentDateAscend">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/selectAllAppointmentDateAscend" message="tns:IService1_selectAllAppointmentDateAscend_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/selectAllAppointmentDateAscendResponse" message="tns:IService1_selectAllAppointmentDateAscend_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="selectCountByDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/selectCountByDate" message="tns:IService1_selectCountByDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/selectCountByDateResponse" message="tns:IService1_selectCountByDate_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CreateBusinessRole">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateBusinessRole" message="tns:IService1_CreateBusinessRole_InputMessage" />
@@ -1105,6 +1185,78 @@
     </wsdl:operation>
     <wsdl:operation name="CreateAppointment">
       <soap:operation soapAction="http://tempuri.org/IService1/CreateAppointment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyAppointment">
+      <soap:operation soapAction="http://tempuri.org/IService1/ModifyAppointment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAppointment">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetAllAppointment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAppointmentByTodayDate">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetAllAppointmentByTodayDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAppointmentByTodayDateAscend">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetAllAppointmentByTodayDateAscend" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setArrived">
+      <soap:operation soapAction="http://tempuri.org/IService1/setArrived" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAppointment">
+      <soap:operation soapAction="http://tempuri.org/IService1/deleteAppointment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectAllAppointmentDateAscend">
+      <soap:operation soapAction="http://tempuri.org/IService1/selectAllAppointmentDateAscend" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectCountByDate">
+      <soap:operation soapAction="http://tempuri.org/IService1/selectCountByDate" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

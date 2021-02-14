@@ -1,12 +1,10 @@
-﻿using System;
+﻿using DBService.Models;
+using EDP_Project.ServiceReference1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-using EDP_Project.ServiceReference1;
-using DBService.Models;
 
 namespace EDP_Project
 {

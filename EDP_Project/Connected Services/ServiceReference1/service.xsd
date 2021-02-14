@@ -872,6 +872,10 @@
         <xs:element minOccurs="0" name="bookdate" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="booktime" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="partysize" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="aptDateTime" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="customerid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="branchid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="appointmentsettingid" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -879,6 +883,123 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="CreateAppointmentResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModifyAppointment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="aptdate" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="apttime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bookdate" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="booktime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="partysize" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="aptDateTime" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="customerid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="branchid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="appointmentsettingid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModifyAppointmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ModifyAppointmentResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllAppointment">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllAppointmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetAllAppointmentResult" nillable="true" type="q38:ArrayOfAppointment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllAppointmentByTodayDate">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllAppointmentByTodayDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetAllAppointmentByTodayDateResult" nillable="true" type="q39:ArrayOfAppointment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllAppointmentByTodayDateAscend">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="aptdate" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllAppointmentByTodayDateAscendResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetAllAppointmentByTodayDateAscendResult" nillable="true" type="q40:ArrayOfAppointment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setArrived">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="aptTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="aptDate" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setArrivedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="setArrivedResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteAppointment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="aptTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="aptDate" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteAppointmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="deleteAppointmentResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="selectAllAppointmentDateAscend">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="selectAllAppointmentDateAscendResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="selectAllAppointmentDateAscendResult" nillable="true" type="q41:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="selectCountByDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="aptDate" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="selectCountByDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="selectCountByDateResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -893,7 +1014,7 @@
   <xs:element name="CreateBusinessRoleResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="CreateBusinessRoleResult" nillable="true" type="q38:BusinessRole" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="CreateBusinessRoleResult" nillable="true" type="q42:BusinessRole" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -907,7 +1028,7 @@
   <xs:element name="GetBusinessRoleResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetBusinessRoleResult" nillable="true" type="q39:BusinessRole" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetBusinessRoleResult" nillable="true" type="q43:BusinessRole" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -951,7 +1072,7 @@
   <xs:element name="GetBusinessRolesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetBusinessRolesResult" nillable="true" type="q40:ArrayOfBusinessRole" />
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetBusinessRolesResult" nillable="true" type="q44:ArrayOfBusinessRole" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -982,7 +1103,7 @@
   <xs:element name="SelectOneAdminResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectOneAdminResult" nillable="true" type="q41:AdminClass" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectOneAdminResult" nillable="true" type="q45:AdminClass" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1006,7 +1127,7 @@
   <xs:element name="UpdateBlacklistDeleted">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q42="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q42:guid" />
+        <xs:element xmlns:q46="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q46:guid" />
         <xs:element minOccurs="0" name="customerId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="status" type="xs:boolean" />
       </xs:sequence>
@@ -1022,7 +1143,7 @@
   <xs:element name="SelectOneBlacklist">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q43="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q43:guid" />
+        <xs:element xmlns:q47="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q47:guid" />
         <xs:element minOccurs="0" name="customerId" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -1030,7 +1151,7 @@
   <xs:element name="SelectOneBlacklistResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectOneBlacklistResult" nillable="true" type="q44:BlackListClass" />
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectOneBlacklistResult" nillable="true" type="q48:BlackListClass" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1044,7 +1165,7 @@
   <xs:element name="SelectAllBlacklistResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllBlacklistResult" nillable="true" type="q45:ArrayOfBlackListClass" />
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllBlacklistResult" nillable="true" type="q49:ArrayOfBlackListClass" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
