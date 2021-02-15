@@ -12,29 +12,26 @@ namespace EDP_Project
         protected void Page_Load(object sender, EventArgs e)
         {
             String email = Request.QueryString["Email"];
-            if (IsPostBack)
+            if (email != null)
             {
-                if (email != null)
+                Service1Client client = new Service1Client();
+                CustomerClass tmpClass = client.SelectOneCustomer(email);
+                List<BlackListClass> tmpListClass = client.SelectAllBlacklist(email).ToList<BlackListClass>();
+
+                lbFirstName.Text = HttpUtility.HtmlEncode(tmpClass.FirstName);
+                lbLastName.Text = HttpUtility.HtmlEncode(tmpClass.LastName);
+                lbEmail.Text = HttpUtility.HtmlEncode(tmpClass.Email);
+                lbPhoneNumber.Text = HttpUtility.HtmlEncode(tmpClass.PhoneNumber);
+                lbDateOfBirth.Text = HttpUtility.HtmlEncode(tmpClass.DateOfBirth.ToString(@"dd/MM/yyyy"));
+                lbDeleted.Text = HttpUtility.HtmlEncode(tmpClass.delete.ToString());
+                if (tmpClass.delete)
                 {
-                    Service1Client client = new Service1Client();
-                    CustomerClass tmpClass = client.SelectOneCustomer(email);
-                    List<BlackListClass> tmpListClass = client.SelectAllBlacklist(email).ToList<BlackListClass>();
-
-                    lbFirstName.Text = HttpUtility.HtmlEncode(tmpClass.FirstName);
-                    lbLastName.Text = HttpUtility.HtmlEncode(tmpClass.LastName);
-                    lbEmail.Text = HttpUtility.HtmlEncode(tmpClass.Email);
-                    lbPhoneNumber.Text = HttpUtility.HtmlEncode(tmpClass.PhoneNumber);
-                    lbDateOfBirth.Text = HttpUtility.HtmlEncode(tmpClass.DateOfBirth.ToString(@"dd/MM/yyyy"));
-                    lbDeleted.Text = HttpUtility.HtmlEncode(tmpClass.delete.ToString());
-                    if (tmpClass.delete)
-                    {
-                        lbDeletedDate.Text = HttpUtility.HtmlEncode(tmpClass.deleteDate.ToString(@"dd/MM/yyyy"));
-                    }
-
-                    gvBlackList.Visible = true;
-                    gvBlackList.DataSource = tmpListClass;
-                    gvBlackList.DataBind();
+                    lbDeletedDate.Text = HttpUtility.HtmlEncode(tmpClass.deleteDate.ToString(@"dd/MM/yyyy"));
                 }
+
+                gvBlackList.Visible = true;
+                gvBlackList.DataSource = tmpListClass;
+                gvBlackList.DataBind();
             }
         }
 

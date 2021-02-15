@@ -198,8 +198,8 @@ namespace DBService.Models
                                     }
                                 }
                             }
-                            tmpClass.AdminName = (String)row["adminName"];
-                            tmpClass.Role = (String)row["role"];
+                            tmpClass.AdminName = tmpClass.generateDecryptor((String)row["adminName"]);
+                            tmpClass.Role = tmpClass.generateDecryptor((String)row["role"]);
                             tmpClass.salt = "";
                             tmpClass.iv = new byte[0];
                             tmpClass.key = new byte[0];

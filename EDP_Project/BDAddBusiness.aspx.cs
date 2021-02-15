@@ -39,7 +39,7 @@ namespace EDP_Project
             }
 
             acraCertificate = Guid.NewGuid().ToString();
-            file_acraRegistration.SaveAs(Server.MapPath(Path.Combine(@"Public\Documents", acraCertificate + ".pdf")));
+            file_acraRegistration.SaveAs(Server.MapPath(Path.Combine(@"assets\Documents", acraCertificate + ".pdf")));
 
             if (file_logoId.HasFile)
             {

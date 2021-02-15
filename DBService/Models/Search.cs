@@ -27,6 +27,8 @@ namespace DBService.Models
                 {
                     cmd.Parameters.AddWithValue("@searchString", SearchString);
                     cmd.Parameters.AddWithValue("@customerId", CustomerId);
+                    cmd.Parameters.AddWithValue("@searchDateTime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
                     conn.Close();
@@ -88,7 +90,8 @@ namespace DBService.Models
                 {
 
                     cmd.Parameters.AddWithValue("@id", id);
-                    cmd.Parameters.AddWithValue("@searchDateTime", DateTime.Now.ToString());
+                    cmd.Parameters.AddWithValue("@searchDateTime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
                     conn.Close();

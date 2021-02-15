@@ -23,5 +23,5 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="AppointmentSource" runat="server" SelectCommand="SELECT [id],[aptTime],[aptDate],[bookTime],[bookDate],[partySize] from Appointment" ConnectionString='Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\Work\EDP_Project-master\EDP_Project\App_Data\ProjDB.mdf;Integrated Security=True' />
+    <asp:SqlDataSource ID="AppointmentSource" runat="server" SelectCommand="SELECT [id],[aptTime],[aptDate],[bookTime],[bookDate],[partySize] from Appointment" ConnectionString='Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\integrated_edp\EDP_Project\App_Data\MyDB.mdf;Integrated Security=True' />
 </asp:Content>

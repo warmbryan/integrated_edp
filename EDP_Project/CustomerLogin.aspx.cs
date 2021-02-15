@@ -13,40 +13,6 @@ namespace EDP_Project
 {
     public partial class CustomerLogin : System.Web.UI.Page
     {
-        protected class MyObject
-        {
-            public String success { get; set; }
-            public List<String> ErrorMessage { get; set; }
-        }
-
-        public Boolean ValidateCaptcha()
-        {
-            Boolean result = true;
-            string captchaResponse = Request.Form["g-recaptcha-response"];
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create
-            ("https://www.google.com/recaptcha/api/siteverify?secret=6LexESQaAAAAAOhm5aUm3hFjU0yuxeUQSnngRzAJ&response=" + captchaResponse);
-            try
-            {
-                using (WebResponse wResponse = req.GetResponse())
-                {
-                    using (StreamReader sr = new StreamReader(wResponse.GetResponseStream()))
-                    {
-                        String jsonResponse = sr.ReadToEnd();
-
-                        JavaScriptSerializer js = new JavaScriptSerializer();
-
-                        MyObject jsonObject = js.Deserialize<MyObject>(jsonResponse);
-
-                        result = Convert.ToBoolean(jsonObject.success);
-                    }
-                }
-                return result;
-            }
-            catch (WebException ex)
-            {
-                throw ex;
-            }
-        }
 
         protected void submit_Click(object sender, EventArgs e)
         {
@@ -54,7 +20,7 @@ namespace EDP_Project
             String password = (String)tbPassword.Text.Trim();
             String role = (String)Submit_Role_Value.Text.Trim();
             Service1Client client = new Service1Client();
-            if (role == "0" && ValidateCaptcha())
+            if (role == "0")
             {
                 CustomerClass cust = client.VerifyCustomer(username);
                 if (cust.ID != Guid.Empty)
@@ -125,7 +91,7 @@ namespace EDP_Project
                     Response.Redirect("~/CustomerRegistration");
                 }
             }
-            else if (role == "1" && ValidateCaptcha())
+            else if (role == "1")
             {
                 BusinessUser business = client.GetBusinessUserByEmail(username);
                 if (business != null)
@@ -145,7 +111,7 @@ namespace EDP_Project
                     }
                 }
             }
-            else if (role == "2" && ValidateCaptcha())
+            else if (role == "2")
             {
                 AdminClass admin = client.SelectOneAdmin(username);
                 if (admin != null)

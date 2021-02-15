@@ -32,7 +32,7 @@ namespace DBService.Models
         }
         public int Insert()
         {
-            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["ProjectDB"].ConnectionString;
+            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString;
             SqlConnection myConn = new SqlConnection(MYDBConnectionString);
             string sqlStmt = "INSERT INTO Appointment(aptTime, aptDate, bookTime, bookDate, partySize,arrived,aptDateTime,customerId,branchId,appointmentSettingId) VALUES(@paraaptTime, @paraaptDate, @parabookTime, @parabookDate, @parapartySize,@paraarrived,@aptDateTime,@customerId,@branchId,@appointmentSettingId)";
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
