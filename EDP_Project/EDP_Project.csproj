@@ -353,6 +353,13 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="WRCustomerLogin.Master" />
     <Content Include="WRSite.Master" />
+    <Content Include="asd.config" />
+    <None Include="asd.Debug.config">
+      <DependentUpon>asd.config</DependentUpon>
+    </None>
+    <None Include="asd.Release.config">
+      <DependentUpon>asd.config</DependentUpon>
+    </None>
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

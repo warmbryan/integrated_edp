@@ -20,13 +20,12 @@ namespace DBService.Models
 
         public int Insert()
         {
-            string SQL = "INSERT INTO dbo.SearchHistory (searchString, searchDateTime, customerId) VALUES (@searchString, @searchDateTime, @customerId)";
+            string SQL = "INSERT INTO dbo.SearchHistory (searchString, customerId) VALUES (@searchString, @customerId)";
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(SQL, conn))
                 {
                     cmd.Parameters.AddWithValue("@searchString", SearchString);
-                    cmd.Parameters.AddWithValue("@searchDateTime", DateTime.Now.ToString());
                     cmd.Parameters.AddWithValue("@customerId", CustomerId);
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();

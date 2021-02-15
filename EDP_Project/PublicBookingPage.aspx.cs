@@ -8,7 +8,7 @@ namespace EDP_Project
 {
     public partial class PublicBookingPage : System.Web.UI.Page
     {
-        string MYDBConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ProjectDB"].ConnectionString;
+        string MYDBConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString;
         List<TimeSpan> availableTime = new List<TimeSpan>();
         TimeSpan twelvehours = new TimeSpan(12, 0, 0);
         protected void Page_Load(object sender, EventArgs e)
