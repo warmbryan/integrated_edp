@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminDashboard.Master" AutoEventWireup="true" CodeBehind="AdminUsers.aspx.cs" Inherits="EDP_Project.AdminUsers" %>
+﻿<%@ Page Title="" Language="C#" EnableEventValidation="false" MasterPageFile="~/AdminDashboard.Master" AutoEventWireup="true" CodeBehind="AdminUsers.aspx.cs" Inherits="EDP_Project.AdminUsers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="extraHead" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -44,16 +44,13 @@
             <SortedDescendingCellStyle BackColor="#FCF6C0" />
             <SortedDescendingHeaderStyle BackColor="#820000" />
         </asp:GridView>
-        <asp:GridView runat="server" ID="GridView1" HorizontalAlign="Center" AutoGenerateColumns="False" CellPadding="4" CssClass="table table-responsive text-start" OnRowDataBound="gvUsers_RowDataBound" OnSelectedIndexChanged="gvUsers_SelectedIndexChanged" ForeColor="#333333" GridLines="None">
+        <asp:GridView runat="server" ID="gvBusiness" HorizontalAlign="Center" AutoGenerateColumns="False" CellPadding="4" CssClass="table table-responsive text-start" OnRowDataBound="gvUsers_RowDataBound" OnSelectedIndexChanged="gvUsers_SelectedIndexChanged" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" />
             <RowStyle Width="100%" />
             <Columns>
-                <asp:BoundField DataField="FirstName" HeaderText="First Name" NullDisplayText="True" ReadOnly="True" />
-                <asp:BoundField DataField="LastName" HeaderText="Last Name" ReadOnly="True" />
-                <asp:BoundField DataField="Email"  HeaderText="Email" ReadOnly="True" />
-                <asp:BoundField DataField="PhoneNumber"  HeaderText="Phone Number" ReadOnly="True" />
-                <asp:BoundField DataField="DateOfBirth"  DataFormatString="{0:d}" HeaderText="Date Of Birth" />
-                <asp:BoundField DataField="blackListed"  HeaderText="Black Listed (T/F)" ReadOnly="True" />
+                <asp:BoundField DataField="Name" HeaderText="Name" NullDisplayText="True" ReadOnly="True" />
+                <asp:BoundField DataField="Email" HeaderText="Email" ReadOnly="True" />
+                <asp:BoundField DataField="Phone"  HeaderText="Phone" ReadOnly="True" />
             </Columns>
             <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
             <HeaderStyle BackColor="#990000" HorizontalAlign="Left" Font-Bold="True" ForeColor="White" />

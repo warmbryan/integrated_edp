@@ -12,7 +12,7 @@ namespace EDP_Project
             {
                 Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddMonths(-12);
             }
-            Response.Redirect("/BDLogin.aspx");
+            Response.Redirect("~/CustomerLogin.aspx");
         }
     }
 }

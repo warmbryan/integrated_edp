@@ -32,7 +32,7 @@ namespace EDP_Project
         protected void gvUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             string Email = gvUsers.SelectedRow.Cells[2].Text;
-            Response.Redirect("~/AdminiUserDetailed?Email=" + Email);
+            Response.Redirect("~/AdminUserDetailed?Email=" + Email);
         }
 
         protected void filterBtn_Click(object sender, EventArgs e)
@@ -45,6 +45,21 @@ namespace EDP_Project
 
                 gvUsers.Visible = true;
                 gvUsers.DataSource = cList;
+                gvUsers.DataBind();
+                gvBusiness.DataSource = null;
+                gvBusiness.DataBind();
+                gvAdmin.DataSource = null;
+                gvAdmin.DataBind();
+            }
+            else if (tmpValue == "1")
+            {
+                Service1Client client = new Service1Client();
+                List<BusinessUser> cList = client.SelectAllBusiness().ToList<BusinessUser>();
+
+                gvBusiness.Visible = true;
+                gvBusiness.DataSource = cList;
+                gvBusiness.DataBind();
+                gvUsers.DataSource = null;
                 gvUsers.DataBind();
                 gvAdmin.DataSource = null;
                 gvAdmin.DataBind();
@@ -59,6 +74,8 @@ namespace EDP_Project
                 gvAdmin.DataBind();
                 gvUsers.DataSource = null;
                 gvUsers.DataBind();
+                gvBusiness.DataSource = null;
+                gvBusiness.DataBind();
             }
         }
     }

@@ -10,15 +10,7 @@ namespace EDP_Project
         {
             if (AuthRequire.CheckIfUserLoggedIn() && AuthRequire.RetrieveUserRole() == "Customer")
             {
-                Service1Client client = new Service1Client();
-                CustomerClass cust = client.SelectOneCustomer(Session["ae"].ToString());
-                if (!IsPostBack)
-                {
-                    if (cust != null)
-                    {
-                        lbWelcomeName.Text = cust.FirstName + " " + cust.LastName;
-                    }
-                }
+                
             }
         }
         protected void logout_Click(object sender, EventArgs e)

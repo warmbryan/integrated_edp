@@ -10,15 +10,6 @@ namespace EDP_Project
         {
             if (AuthRequire.CheckIfUserLoggedIn() && AuthRequire.RetrieveUserRole() == "Admin")
             {
-                Service1Client client = new Service1Client();
-                CustomerClass cust = client.SelectOneCustomer(Session["ae"].ToString());
-                if (!IsPostBack)
-                {
-                    if (cust != null)
-                    {
-                        lbWelcomeName.Text = cust.FirstName + " " + cust.LastName;
-                    }
-                }
             }
             else
             {

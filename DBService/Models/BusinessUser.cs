@@ -167,7 +167,6 @@ namespace DBService.Models
                         {
                             DataRow row = newDataSet.Tables[0].Rows[i];
                             BusinessUser tmpClass = new BusinessUser();
-                            tmpClass.Id = (String)row["id"];
                             tmpClass.Name = (String)row["name"];
                             tmpClass.Email = (String)row["email"];
                             tmpClass.Phone = (String)row["phone"];

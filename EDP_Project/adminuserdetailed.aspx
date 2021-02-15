@@ -18,7 +18,6 @@
                         </div>
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                             <asp:TextBox runat="server" TextMode="Number" placeholder="Duration" ID="tbDuration" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbDuration" ForeColor="Red" Display="Dynamic" Font-Bold="true" CssClass="incorrect" ErrorMessage=" Duration is required!" />
                         </div>
                     </div>
                     <div class="row">
@@ -27,7 +26,6 @@
                         </div>
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                             <asp:TextBox runat="server" TextMode="MultiLine" Rows="3" placeholder="Reason" ID="tbReason" CssClass="form-control" MaxLength="200" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbReason" ForeColor="Red" Display="Dynamic" Font-Bold="true" CssClass="incorrect" ErrorMessage=" Reason is required!" />
                         </div>
                     </div>
                 </div>

@@ -166,7 +166,6 @@
     <Content Include="CustomerLogin.aspx" />
     <Content Include="CustomerProfile.aspx" />
     <Content Include="Home.aspx" />
-    <Content Include="MyDB.mdf" />
     <Content Include="PublicAppointmentBooking.aspx" />
     <Content Include="PublicAppointmentBookingSuccess.aspx" />
     <Content Include="PublicAppointmentPage.aspx" />

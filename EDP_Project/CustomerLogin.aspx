@@ -1,5 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WRSite.Master" AutoEventWireup="true" CodeBehind="CustomerLogin.aspx.cs" Inherits="EDP_Project.CustomerLogin" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="extraHead" runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Public.Master" AutoEventWireup="true" CodeBehind="CustomerLogin.aspx.cs" Inherits="EDP_Project.CustomerLogin" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="https://www.google.com/recaptcha/api.js?render=6LexESQaAAAAAD9sm2YkKFL6Cc5MOJDs4OWsCrCz"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
@@ -47,18 +48,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" style="text-align:right;">
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 d-flex justify-content-between">
-                                        <div>
-                                            <asp:CheckBox runat="server" Text="&nbspRemember Me" ID="cbRememberMe"/>
-                                        </div>
-                                        <a href="#register" id="loginHelp">Have trouble logging in?</a>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="text-right">
                                 <button type="button" class="btn btn-secondary">Close</button>
                                 <asp:Button runat="server" CssClass="btn btn-primary" Text="Login" ID="submit" OnClick="submit_Click"/>
@@ -74,6 +63,13 @@
         <div class="col-12 col-sm-12 col-md-1 col-lg-3 col-xl-3"></div>
     </div>
     <script>
+        $(document).ready(() => {
+            grecaptcha.ready(function () {
+                grecaptcha.execute('6LexESQaAAAAAD9sm2YkKFL6Cc5MOJDs4OWsCrCz', { action: 'Login' }).then(function (token) {
+                    document.getElementById("g-recaptcha-response").value = token;
+                });
+            });
+        });
         $("#<%: CustomerSide.ClientID %>").click(function () {
             $("#<%: CustomerSide.ClientID %>").addClass("active");
             $("#<%: BusinessSide.ClientID %>").removeClass("active");

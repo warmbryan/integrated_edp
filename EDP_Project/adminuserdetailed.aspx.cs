@@ -12,7 +12,7 @@ namespace EDP_Project
         protected void Page_Load(object sender, EventArgs e)
         {
             String email = Request.QueryString["Email"];
-            if (!IsPostBack)
+            if (IsPostBack)
             {
                 if (email != null)
                 {
