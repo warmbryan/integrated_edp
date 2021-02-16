@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.UI.WebControls;
 
+using System.Web.SessionState;
+
 namespace EDP_Project
 {
     public partial class CustomerLogin : System.Web.UI.Page

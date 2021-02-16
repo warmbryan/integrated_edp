@@ -104,13 +104,42 @@ namespace DBService.Models
                         {
                             BusinessUser bUser = new BusinessUser();
                             cmdOne.CommandType = CommandType.StoredProcedure;
-                            cmdTwo.CommandType = CommandType.StoredProcedure;
                             cmdOne.Parameters.AddWithValue("@UserId", userId);
-                            cmdTwo.Parameters.AddWithValue("@Identity", Email);
+
+                            string cipherName = "";
+                            string cipherPhone = "";
+
                             try
                             {
                                 connOne.Open();
+
+                                using (SqlDataReader reader = cmdOne.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        bUser.Id = userId.Trim();
+                                        cipherName = reader["name"].ToString();
+                                        bUser.Email = reader["email"].ToString();
+                                        cipherPhone = reader["phone"].ToString();
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex);
+                                return null;
+                            }
+                            finally
+                            {
+                                connOne.Close();
+                            }
+
+                            cmdTwo.CommandType = CommandType.StoredProcedure;
+                            cmdTwo.Parameters.AddWithValue("@Identity", bUser.Email);
+                            try
+                            {
                                 connTwo.Open();
+                                
                                 using (SqlDataReader reader = cmdTwo.ExecuteReader())
                                 {
                                     if (reader.Read())
@@ -118,16 +147,6 @@ namespace DBService.Models
                                         bUser.salt = (String)reader["salt"];
                                         bUser.key = Convert.FromBase64String((String)reader["key"]);
                                         bUser.iv = Convert.FromBase64String((String)reader["iv"]);
-                                    }
-                                }
-                                using (SqlDataReader reader = cmdOne.ExecuteReader())
-                                {
-                                    if (reader.Read())
-                                    {
-                                        bUser.Id = (String)reader["id"];
-                                        bUser.Name = bUser.generateDecryptor((String)reader["name"]);
-                                        bUser.Email = (String)reader["email"];
-                                        bUser.Phone = bUser.generateDecryptor((String)reader["phone"]);
                                     }
                                 }
                             }
@@ -138,9 +157,12 @@ namespace DBService.Models
                             }
                             finally
                             {
-                                connOne.Close();
                                 connTwo.Close();
                             }
+
+                            bUser.Name = bUser.generateDecryptor(cipherName);
+                            bUser.Phone = bUser.generateDecryptor(cipherPhone);
+
                             return bUser;
                         }
                     }

@@ -9,7 +9,12 @@ namespace EDP_Project
         Service1Client client = new Service1Client();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!AuthRequire.CheckIfUserLoggedIn())
+            {
+                AuthRequire.Logout();
+                Response.Redirect("/CustomerLogin");
+                return;
+            }
         }
 
         protected void Unnamed1_Click(object sender, EventArgs e)

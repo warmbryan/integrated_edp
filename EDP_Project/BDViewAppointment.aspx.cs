@@ -13,6 +13,13 @@ namespace EDP_Project
         ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!AuthRequire.CheckIfUserLoggedIn())
+            {
+                AuthRequire.Logout();
+                Response.Redirect("/CustomerLogin");
+                return;
+            }
+
             if (!IsPostBack)
             {
                 RefreshGridView();

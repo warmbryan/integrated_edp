@@ -131,11 +131,8 @@
     <Content Include="BDEmployees.aspx" />
     <Content Include="BDHome.aspx" />
     <Content Include="BDInvitations.aspx" />
-    <Content Include="BDLogin.aspx" />
-    <Content Include="BDLogout.aspx" />
     <Content Include="BDMyAccount.aspx" />
     <Content Include="BDPopup.aspx" />
-    <Content Include="BDRegister.aspx" />
     <Content Include="BDUpdateBusiness.aspx" />
     <Content Include="BDViewAppointment.aspx" />
     <Content Include="BDViewApt.aspx" />
@@ -353,13 +350,6 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="WRCustomerLogin.Master" />
     <Content Include="WRSite.Master" />
-    <Content Include="asd.config" />
-    <None Include="asd.Debug.config">
-      <DependentUpon>asd.config</DependentUpon>
-    </None>
-    <None Include="asd.Release.config">
-      <DependentUpon>asd.config</DependentUpon>
-    </None>
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -598,33 +588,12 @@
     <Compile Include="BDInvitations.aspx.designer.cs">
       <DependentUpon>BDInvitations.aspx</DependentUpon>
     </Compile>
-    <Compile Include="BDLogin.aspx.cs">
-      <DependentUpon>BDLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BDLogin.aspx.designer.cs">
-      <DependentUpon>BDLogin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BDLogout.aspx.cs">
-      <DependentUpon>BDLogout.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BDLogout.aspx.designer.cs">
-      <DependentUpon>BDLogout.aspx</DependentUpon>
-    </Compile>
     <Compile Include="BDMyAccount.aspx.cs">
       <DependentUpon>BDMyAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="BDMyAccount.aspx.designer.cs">
       <DependentUpon>BDMyAccount.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BDRegister.aspx.cs">
-      <DependentUpon>BDRegister.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BDRegister.aspx.designer.cs">
-      <DependentUpon>BDRegister.aspx</DependentUpon>
     </Compile>
     <Compile Include="BDUpdateBusiness.aspx.cs">
       <DependentUpon>BDUpdateBusiness.aspx</DependentUpon>

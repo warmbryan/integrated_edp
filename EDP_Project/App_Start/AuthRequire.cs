@@ -14,6 +14,7 @@ namespace EDP_Project
             }
             return "";
         }
+
         public static void Logout()
         {
             if (HttpContext.Current.Session["di"] != null &&

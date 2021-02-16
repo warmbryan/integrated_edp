@@ -6,10 +6,10 @@ namespace EDP_Project
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["userId"] == null)
+            if (!AuthRequire.CheckIfUserLoggedIn())
             {
+                AuthRequire.Logout();
                 Response.Redirect("~/BDLogin");
-                Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddMonths(-12);
                 return;
             }
 

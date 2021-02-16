@@ -6,7 +6,12 @@ namespace EDP_Project
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!AuthRequire.CheckIfUserLoggedIn())
+            {
+                AuthRequire.Logout();
+                Response.Redirect("/CustomerLogin");
+                return;
+            }
         }
     }
 }
