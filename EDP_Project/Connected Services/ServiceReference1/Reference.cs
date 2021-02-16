@@ -58,10 +58,10 @@ namespace EDP_Project.ServiceReference1 {
         System.Threading.Tasks.Task<DBService.Models.BusinessEmployeeAccess[]> GetAllEmployeeByBusinessIdAsync(string businessId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddEmployeeToBusinessByEmail", ReplyAction="http://tempuri.org/IService1/AddEmployeeToBusinessByEmailResponse")]
-        bool AddEmployeeToBusinessByEmail(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role);
+        bool AddEmployeeToBusinessByEmail(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddEmployeeToBusinessByEmail", ReplyAction="http://tempuri.org/IService1/AddEmployeeToBusinessByEmailResponse")]
-        System.Threading.Tasks.Task<bool> AddEmployeeToBusinessByEmailAsync(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role);
+        System.Threading.Tasks.Task<bool> AddEmployeeToBusinessByEmailAsync(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BusinessUserExists", ReplyAction="http://tempuri.org/IService1/BusinessUserExistsResponse")]
         bool BusinessUserExists(string email);
@@ -76,10 +76,10 @@ namespace EDP_Project.ServiceReference1 {
         System.Threading.Tasks.Task<DBService.Models.BusinessEmployeeAccess[]> GetAllInvitationsByUserIdAsync(string userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateEmployeeAccess", ReplyAction="http://tempuri.org/IService1/UpdateEmployeeAccessResponse")]
-        bool UpdateEmployeeAccess(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role);
+        bool UpdateEmployeeAccess(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateEmployeeAccess", ReplyAction="http://tempuri.org/IService1/UpdateEmployeeAccessResponse")]
-        System.Threading.Tasks.Task<bool> UpdateEmployeeAccessAsync(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role);
+        System.Threading.Tasks.Task<bool> UpdateEmployeeAccessAsync(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteEmployeeAccess", ReplyAction="http://tempuri.org/IService1/DeleteEmployeeAccessResponse")]
         bool DeleteEmployeeAccess(string userId, string businessId);
@@ -519,12 +519,12 @@ namespace EDP_Project.ServiceReference1 {
             return base.Channel.GetAllEmployeeByBusinessIdAsync(businessId);
         }
         
-        public bool AddEmployeeToBusinessByEmail(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role) {
-            return base.Channel.AddEmployeeToBusinessByEmail(userId, businessId, rApp, wApp, rCC, wCC, role);
+        public bool AddEmployeeToBusinessByEmail(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC) {
+            return base.Channel.AddEmployeeToBusinessByEmail(userId, businessId, roleId, rApp, wApp, rCC, wCC);
         }
         
-        public System.Threading.Tasks.Task<bool> AddEmployeeToBusinessByEmailAsync(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role) {
-            return base.Channel.AddEmployeeToBusinessByEmailAsync(userId, businessId, rApp, wApp, rCC, wCC, role);
+        public System.Threading.Tasks.Task<bool> AddEmployeeToBusinessByEmailAsync(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC) {
+            return base.Channel.AddEmployeeToBusinessByEmailAsync(userId, businessId, roleId, rApp, wApp, rCC, wCC);
         }
         
         public bool BusinessUserExists(string email) {
@@ -543,12 +543,12 @@ namespace EDP_Project.ServiceReference1 {
             return base.Channel.GetAllInvitationsByUserIdAsync(userId);
         }
         
-        public bool UpdateEmployeeAccess(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role) {
-            return base.Channel.UpdateEmployeeAccess(userId, businessId, rApp, wApp, rCC, wCC, role);
+        public bool UpdateEmployeeAccess(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC) {
+            return base.Channel.UpdateEmployeeAccess(userId, businessId, roleId, rApp, wApp, rCC, wCC);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateEmployeeAccessAsync(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role) {
-            return base.Channel.UpdateEmployeeAccessAsync(userId, businessId, rApp, wApp, rCC, wCC, role);
+        public System.Threading.Tasks.Task<bool> UpdateEmployeeAccessAsync(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC) {
+            return base.Channel.UpdateEmployeeAccessAsync(userId, businessId, roleId, rApp, wApp, rCC, wCC);
         }
         
         public bool DeleteEmployeeAccess(string userId, string businessId) {

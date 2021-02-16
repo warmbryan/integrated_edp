@@ -38,13 +38,25 @@ namespace EDP_Project
                 return;
             }
 
+            string docDir = Server.MapPath(@"\assets\Documents");
+            if (!Directory.Exists(docDir))
+            {
+                Directory.CreateDirectory(docDir);
+            }
+
+            string logoDir = Server.MapPath(@"\assets\Logos");
+            if (!Directory.Exists(logoDir))
+            {
+                Directory.CreateDirectory(logoDir);
+            }
+
             acraCertificate = Guid.NewGuid().ToString();
-            file_acraRegistration.SaveAs(Server.MapPath(Path.Combine(@"Public\Documents", acraCertificate + ".pdf")));
+            file_acraRegistration.SaveAs(Path.Combine(docDir, acraCertificate + ".pdf"));
 
             if (file_logoId.HasFile)
             {
                 logoId = Guid.NewGuid().ToString();
-                file_acraRegistration.SaveAs(Server.MapPath(Path.Combine(@"Public\Logos", logoId + MimeTypeMap.GetExtension(file_logoId.PostedFile.ContentType))));
+                file_acraRegistration.SaveAs(Path.Combine(logoDir, logoId + MimeTypeMap.GetExtension(file_logoId.PostedFile.ContentType)));
             }
             else
                 logoId = null;

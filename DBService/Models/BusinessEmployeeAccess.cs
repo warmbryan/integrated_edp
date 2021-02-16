@@ -11,6 +11,7 @@ namespace DBService.Models
         public string Id { get; set; }
         public string UserId { get; set; }
         public string BusinessId { get; set; }
+        public string RoleId { get; set; }
         public bool ReadAppointment { get; set; }
         public bool WriteAppointment { get; set; }
         public bool ReadCustomerChat { get; set; }
@@ -22,50 +23,50 @@ namespace DBService.Models
 
         public BusinessEmployeeAccess() { }
 
-        public BusinessEmployeeAccess(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role, bool accepted)
+        public BusinessEmployeeAccess(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC, bool accepted)
         {
             UserId = userId;
             BusinessId = businessId;
+            RoleId = roleId;
             ReadAppointment = rApp;
             WriteAppointment = wApp;
             ReadCustomerChat = rCC;
             WriteCustomerChat = wCC;
             Accepted = accepted;
-            Role = role;
         }
 
-        public BusinessEmployeeAccess(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role, bool accepted, BusinessUser user)
+        public BusinessEmployeeAccess(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC, bool accepted, BusinessUser user)
         {
             UserId = userId;
             BusinessId = businessId;
+            RoleId = roleId;
             ReadAppointment = rApp;
             WriteAppointment = wApp;
             ReadCustomerChat = rCC;
             WriteCustomerChat = wCC;
             Accepted = accepted;
-            Role = role;
             employee = user;
         }
 
-        public BusinessEmployeeAccess(Business business, string id, bool rApp, bool wApp, bool rCC, bool wCC, string role, bool accepted)
+        public BusinessEmployeeAccess(Business business, string id, string roleId, bool rApp, bool wApp, bool rCC, bool wCC, bool accepted)
         {
             Business = business;
             Id = id;
+            RoleId = roleId;
             ReadAppointment = rApp;
             WriteAppointment = wApp;
             ReadCustomerChat = rCC;
             WriteCustomerChat = wCC;
             Accepted = accepted;
-            Role = role;
         }
 
-        public bool Create(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role)
+        public bool Create(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC)
         {
             bool success = true;
             string queryString = "INSERT INTO [dbo].[BusinessEmployeeAccess] " +
-                "([userId], [businessId], [readAppointment], [writeAppointment], " +
-                "[readCustomerChat], [writeCustomerChat], [role])" +
-                " VALUES (@UserId, @BusinessId, @RApp, @WApp, @RCC, @WCC, @Role)";
+                "([userId], [businessId], [roleId], [readAppointment], [writeAppointment], " +
+                "[readCustomerChat], [writeCustomerChat])" +
+                " VALUES (@UserId, @BusinessId, @RoleId, @RApp, @WApp, @RCC, @WCC)";
             try
             {
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
@@ -75,11 +76,11 @@ namespace DBService.Models
                         cmd.CommandType = CommandType.Text;
                         cmd.Parameters.AddWithValue("@UserId", userId.Trim());
                         cmd.Parameters.AddWithValue("@BusinessId", businessId.Trim());
+                        cmd.Parameters.AddWithValue("@RoleId", roleId.Trim());
                         cmd.Parameters.AddWithValue("@RApp", rApp);
                         cmd.Parameters.AddWithValue("@WApp", wApp);
                         cmd.Parameters.AddWithValue("@RCC", rCC);
                         cmd.Parameters.AddWithValue("@WCC", wCC);
-                        cmd.Parameters.AddWithValue("@Role", role.Trim());
                         con.Open();
                         cmd.ExecuteNonQuery();
                         con.Close();
@@ -116,13 +117,13 @@ namespace DBService.Models
 
                         string userId = row["userId"].ToString();
                         string businessId = row["businessId"].ToString();
+                        string roleId = row["roleId"].ToString();
                         bool readAppointment = Convert.ToBoolean(row["readAppointment"]);
                         bool writeAppointment = Convert.ToBoolean(row["acraCertificate"]);
                         bool readCustomerChat = Convert.ToBoolean(row["readCustomerChat"]);
                         bool writeCustomerChat = Convert.ToBoolean(row["writeCustomerChat"]);
-                        string role = row["role"].ToString();
                         bool accepted = Convert.ToBoolean(row["accepted"]);
-                        bea = new BusinessEmployeeAccess(userId, businessId, readAppointment, writeAppointment, readCustomerChat, writeCustomerChat, role, accepted);
+                        bea = new BusinessEmployeeAccess(userId, businessId, roleId, readAppointment, writeAppointment, readCustomerChat, writeCustomerChat, accepted);
                     }
                 }
             }
@@ -151,27 +152,23 @@ namespace DBService.Models
                     sda.Fill(ds);
 
                     int rec_cnt = ds.Tables[0].Rows.Count;
-                    if (rec_cnt == 0)
-                    {
-                        employees = null;
-                    }
-                    else
+                    if (rec_cnt > 0)
                     {
                         foreach (DataRow row in ds.Tables[0].Rows)
                         {
                             string userId = row["userId"].ToString();
+                            string roleId = row["roleId"].ToString();
                             bool rApp = Convert.ToBoolean(row["readAppointment"]);
                             bool wApp = Convert.ToBoolean(row["writeAppointment"]);
                             bool rCC = Convert.ToBoolean(row["readCustomerChat"]);
                             bool wCC = Convert.ToBoolean(row["writeCustomerChat"]);
-                            string role = row["role"].ToString();
                             bool accepted = Convert.ToBoolean(row["accepted"]);
 
                             string eId = row["userId"].ToString();
                             string eName = row["userName"].ToString();
                             string eEmail = row["userEmail"].ToString();
                             string ePhone = row["userPhone"].ToString();
-                            BusinessEmployeeAccess bea = new BusinessEmployeeAccess(userId, businessId, rApp, wApp, rCC, wCC, role, accepted, new BusinessUser(eId, eName, eEmail, ePhone));
+                            BusinessEmployeeAccess bea = new BusinessEmployeeAccess(userId, businessId, roleId, rApp, wApp, rCC, wCC, accepted, new BusinessUser(eId, eName, eEmail, ePhone));
                             employees.Add(bea);
                         }
                     }
@@ -200,23 +197,19 @@ namespace DBService.Models
                         int rec_cnt = ds.Tables[0].Rows.Count;
                         if (rec_cnt == 0)
                         {
-                            employeeBeas = null;
-                        }
-                        else
-                        {
                             foreach (DataRow row in ds.Tables[0].Rows)
                             {
 
                                 string businessId = row["businessId"].ToString();
                                 string id = row["id"].ToString();
+                                string roleId = row["roleId"].ToString();
                                 bool rApp = Convert.ToBoolean(row["readAppointment"]);
                                 bool wApp = Convert.ToBoolean(row["writeAppointment"]);
                                 bool rCC = Convert.ToBoolean(row["readCustomerChat"]);
                                 bool wCC = Convert.ToBoolean(row["writeCustomerChat"]);
-                                string role = row["role"].ToString();
                                 bool accepted = Convert.ToBoolean(row["accepted"]);
 
-                                BusinessEmployeeAccess bea = new BusinessEmployeeAccess(new Business().SelectOne(businessId), id, rApp, wApp, rCC, wCC, role, accepted);
+                                BusinessEmployeeAccess bea = new BusinessEmployeeAccess(new Business().SelectOne(businessId), id, roleId, rApp, wApp, rCC, wCC, accepted);
                                 employeeBeas.Add(bea);
                             }
                         }
@@ -232,13 +225,13 @@ namespace DBService.Models
             return employeeBeas;
         }
 
-        public bool Update(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role)
+        public bool Update(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC)
         {
             bool success = true;
             string queryString = "UPDATE [dbo].[BusinessEmployeeAccess] " +
-                "SET [readAppointment] = @RApp, [writeAppointment] = @WApp, " +
+                "SET [roleId] = @RoleId, [readAppointment] = @RApp, [writeAppointment] = @WApp, " +
                 "[readCustomerChat] = @RCC, [writeCustomerChat] = @WCC, " +
-                "[role] = @Role WHERE userId = @UserId, businessId = @BusinessId;";
+                "WHERE userId = @UserId, businessId = @BusinessId;";
             try
             {
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
@@ -248,12 +241,14 @@ namespace DBService.Models
                         cmd.CommandType = CommandType.Text;
                         cmd.Parameters.AddWithValue("@UserId", userId.Trim());
                         cmd.Parameters.AddWithValue("@BusinessId", businessId.Trim());
+                        cmd.Parameters.AddWithValue("@RoleId", roleId.Trim());
                         cmd.Parameters.AddWithValue("@RApp", rApp);
                         cmd.Parameters.AddWithValue("@WApp", wApp);
                         cmd.Parameters.AddWithValue("@RCC", rCC);
                         cmd.Parameters.AddWithValue("@WCC", wCC);
-                        cmd.Parameters.AddWithValue("@Role", role.Trim());
+
                         con.Open();
+
                         int affected = cmd.ExecuteNonQuery();
                         success = (affected > 0);
                         con.Close();

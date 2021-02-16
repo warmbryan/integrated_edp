@@ -11,7 +11,7 @@ namespace EDP_Project
 {
 
 
-    public partial class Search
+    public partial class CustomerSearch
     {
 
         /// <summary>

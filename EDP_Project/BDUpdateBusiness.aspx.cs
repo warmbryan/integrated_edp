@@ -104,15 +104,28 @@ namespace EDP_Project
             if (file_acraRegistration.HasFile)
             {
                 acraCertificate = Guid.NewGuid().ToString();
-                file_acraRegistration.SaveAs(Server.MapPath(Path.Combine(@"Public\Documents", acraCertificate + ".pdf")));
+
+                string documentDir = Server.MapPath(@"\assets\Documents");
+                if (!Directory.Exists(documentDir))
+                {
+                    Directory.CreateDirectory(documentDir);
+                }
+                
+                file_acraRegistration.SaveAs(Path.Combine(documentDir, acraCertificate + ".pdf"));
             }
             else
                 acraCertificate = null;
 
             if (file_logoId.HasFile)
             {
+                string logoDir = Server.MapPath(@"\assets\Logos");
+                if (!Directory.Exists(logoDir))
+                {
+                    Directory.CreateDirectory(logoDir);
+                }
+
                 logoId = Guid.NewGuid().ToString();
-                file_acraRegistration.SaveAs(Server.MapPath(Path.Combine(@"Public\Logos", logoId + MimeTypeMap.GetExtension(file_logoId.PostedFile.ContentType))));
+                file_acraRegistration.SaveAs(Path.Combine(logoDir, logoId + MimeTypeMap.GetExtension(file_logoId.PostedFile.ContentType)));
             }
             else
                 logoId = null;

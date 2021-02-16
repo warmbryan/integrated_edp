@@ -229,9 +229,7 @@ namespace DBService.Models
                             cmd.Parameters.AddWithValue("@LogoId", logoId);
 
                         con.Open();
-                        int affected = cmd.ExecuteNonQuery();
-                        success = (affected > 0);
-                        con.Close();
+                        success = (cmd.ExecuteNonQuery() > 0);
                     }
                 }
             }

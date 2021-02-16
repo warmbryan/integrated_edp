@@ -14,6 +14,7 @@ namespace DBService.Models
         public string Name { get; set; }
         public string BusinessId { get; set; }
         public bool Deleted { get; set; }
+        public int EmployeeCount { get; set; }
 
         public BusinessRole() { }
 
@@ -48,6 +49,7 @@ namespace DBService.Models
                             string id = sdr["id"].ToString();
                             bool deleted = Convert.ToBoolean(sdr["deleted"]);
                             br = new BusinessRole(id, name, brId, deleted);
+                            br.EmployeeCount = 0;
                         }
                     }
                 }
@@ -69,7 +71,7 @@ namespace DBService.Models
             {
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
                 {
-                    using (SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM [dbo].[BusinessRole] WHERE [businessId] = @BusinessId;", con))
+                    using (SqlDataAdapter sda = new SqlDataAdapter("SELECT br.id, br.[name], br.businessId, br.deleted, count(bea.id) employeeCount FROM BusinessRole br LEFT JOIN BusinessEmployeeAccess bea ON br.id = bea.roleId WHERE br.businessId = @BusinessId AND br.deleted = 0 GROUP BY br.id, br.[name], br.businessId, br.deleted;", con))
                     {
                         DataSet ds = new DataSet();
 
@@ -83,7 +85,12 @@ namespace DBService.Models
                             string name = row["name"].ToString();
                             bool deleted = (bool)row["deleted"];
 
-                            businessRoles.Add(new BusinessRole(id, name, businessId, deleted));
+                            int employeeCount = (int)row["employeeCount"];
+
+                            BusinessRole br = new BusinessRole(id, name, businessId, deleted);
+                            br.EmployeeCount = employeeCount;
+
+                            businessRoles.Add(br);
                         }
                     }
                 }
@@ -113,7 +120,10 @@ namespace DBService.Models
                         Guid businessRoleId = (Guid)cmd.ExecuteScalar();
 
                         if (businessRoleId != null)
+                        {
                             br = new BusinessRole(businessRoleId.ToString(), name, businessId, false);
+                            br.EmployeeCount = 0;
+                        }
                     }
                 }
             }

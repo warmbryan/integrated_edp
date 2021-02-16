@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace EDP_Project
 {
-    public partial class Search : System.Web.UI.Page
+    public partial class CustomerSearch : System.Web.UI.Page
     {
         public List<string> Names;
         public JavaScriptSerializer jsSerializer = new JavaScriptSerializer();

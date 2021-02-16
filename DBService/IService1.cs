@@ -35,7 +35,7 @@ namespace DBService
         List<BusinessEmployeeAccess> GetAllEmployeeByBusinessId(string businessId);
 
         [OperationContract]
-        bool AddEmployeeToBusinessByEmail(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role);
+        bool AddEmployeeToBusinessByEmail(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC);
 
         [OperationContract]
         bool BusinessUserExists(string email);
@@ -44,7 +44,7 @@ namespace DBService
         List<BusinessEmployeeAccess> GetAllInvitationsByUserId(string userId);
 
         [OperationContract]
-        bool UpdateEmployeeAccess(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role);
+        bool UpdateEmployeeAccess(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC);
 
         [OperationContract]
         bool DeleteEmployeeAccess(string userId, string businessId);

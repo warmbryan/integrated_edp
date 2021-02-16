@@ -10,6 +10,11 @@ namespace EDP_Project
         protected void Application_Start(object sender, EventArgs e)
         {
             // page route
+            RouteTable.Routes.MapPageRoute("Home", "", "~/CustomerHome.aspx");
+            RouteTable.Routes.MapPageRoute("Search", "search/", "~/CustomerSearch.aspx");
+
+            // business side
+            RouteTable.Routes.MapPageRoute("Business Home", "business/", "~/BDHome.aspx");
             RouteTable.Routes.MapPageRoute("Business Login", "business/login", "~/BDLogin.aspx");
             RouteTable.Routes.MapPageRoute("Business Registration", "business/register", "~/BDRegister.aspx");
 

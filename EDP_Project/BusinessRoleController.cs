@@ -55,7 +55,7 @@ namespace EDP_Project
         }*/
 
         [HttpGet]
-        public BusinessRole GetRole(string id)
+        public BusinessRole GetRole([FromUri] string id)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace EDP_Project
         }
 
         [HttpGet]
-        public List<BusinessRole> GetRoles(string businessId)
+        public List<BusinessRole> GetRoles([FromUri] string businessId)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace EDP_Project
             if (br != null)
             {
                 Service1Client client = new Service1Client();
-                return client.CreateBusinessRole(br.Name, br.BusinessId);
+                return client.CreateBusinessRole(br.Name.Trim(), br.BusinessId.Trim());
             }
             else
                 return null;
@@ -101,7 +101,7 @@ namespace EDP_Project
             if (br != null)
             {
                 Service1Client client = new Service1Client();
-                return client.UpdateBusinessRole(br.Id, br.Name, br.BusinessId);
+                return client.UpdateBusinessRole(br.Id.Trim(), br.Name.Trim(), br.BusinessId.Trim());
             }
             else
                 return false;
@@ -113,7 +113,7 @@ namespace EDP_Project
             if (br != null)
             {
                 Service1Client client = new Service1Client();
-                return client.DeleteBusinessRole(br.Id);
+                return client.DeleteBusinessRole(br.Id.Trim());
             }
             else
                 return false;

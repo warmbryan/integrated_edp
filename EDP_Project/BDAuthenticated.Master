@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="Content/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/fontawesome-all.min.css" rel="stylesheet" />
 
     <asp:ContentPlaceHolder ID="stylesheets" runat="server"></asp:ContentPlaceHolder>
 
@@ -34,7 +34,7 @@
                             <a class="nav-link" href="/BDHome">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/BDCustomerChat">Customer Chat</a>
+                            <a class="nav-link" href="/BDViewAppointment">Appointments</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
@@ -68,9 +68,9 @@
         </div>
     </main>
 
-    <script src="Scripts/jquery-3.5.1.js"></script>
-    <script src="Scripts/umd/popper.min.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/jquery-3.5.1.js"></script>
+    <script src="/Scripts/umd/popper.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
     
     <asp:ContentPlaceHolder ID="scripts" runat="server"></asp:ContentPlaceHolder>
 </body>

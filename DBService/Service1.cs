@@ -58,10 +58,10 @@ namespace DBService
             return bea.SelectAllByUserId(userId);
         }
 
-        public bool UpdateEmployeeAccess(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role)
+        public bool UpdateEmployeeAccess(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC)
         {
             BusinessEmployeeAccess businessEmployeeAccess = new BusinessEmployeeAccess();
-            return businessEmployeeAccess.Update(userId, businessId, rApp, wApp, rCC, wCC, role);
+            return businessEmployeeAccess.Update(userId, businessId, roleId, rApp, wApp, rCC, wCC);
         }
 
         public bool DeleteEmployeeAccess(string userId, string businessId)
@@ -70,10 +70,10 @@ namespace DBService
             return businessEmployeeAccess.Delete(userId, businessId);
         }
 
-        public bool AddEmployeeToBusinessByEmail(string userId, string businessId, bool rApp, bool wApp, bool rCC, bool wCC, string role)
+        public bool AddEmployeeToBusinessByEmail(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC)
         {
             BusinessEmployeeAccess bea = new BusinessEmployeeAccess();
-            return bea.Create(userId, businessId, rApp, wApp, rCC, wCC, role);
+            return bea.Create(userId, businessId, roleId, rApp, wApp, rCC, wCC);
         }
 
         // BusinessUser

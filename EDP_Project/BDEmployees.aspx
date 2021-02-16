@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-between">
         <h2>Business Employees</h2>
         <div class="my-auto">
-            <asp:HyperLink NavigateUrl="/BDAddEmployee.aspx" runat="server" CssClass="btn btn-secondary" role="button">Add <i class="fas fa-plus"></i></asp:HyperLink>
+            <a href="/BDAddEmployee?business=<%= Request.Params["business"] %>" role="button" class="btn btn-secondary">Add <i class="fas fa-plus"></i></a>
         </div>
     </div>
     <hr />

@@ -47,13 +47,13 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="logoId">Business Logo (Max 2MB)</label>
-                    <asp:FileUpload ID="file_logoId" runat="server" CssClass="form-control"/>
+                    <asp:FileUpload ID="file_logoId" runat="server" CssClass="form-control-file"/>
                     <small>File format must be in png or jpeg. Logo Photo can also be uploaded after registration.</small>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="acraRegistration">Registration Document* (Max 8MB)</label>
-                    <asp:FileUpload ID="file_acraRegistration" runat="server" CssClass="form-control"/>
+                    <asp:FileUpload ID="file_acraRegistration" runat="server" CssClass="form-control-file"/>
                     <small>File format must be in pdf document.</small>
                 </div>
 

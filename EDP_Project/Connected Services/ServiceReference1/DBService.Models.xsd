@@ -38,6 +38,7 @@
       <xs:element minOccurs="0" name="ReadAppointment" type="xs:boolean" />
       <xs:element minOccurs="0" name="ReadCustomerChat" type="xs:boolean" />
       <xs:element minOccurs="0" name="Role" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RoleId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WriteAppointment" type="xs:boolean" />
       <xs:element minOccurs="0" name="WriteCustomerChat" type="xs:boolean" />
@@ -126,6 +127,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="BusinessId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="EmployeeCount" type="xs:int" />
       <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
     </xs:sequence>

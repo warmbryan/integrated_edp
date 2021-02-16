@@ -170,7 +170,7 @@
     <Content Include="PublicBookingPage.aspx" />
     <Content Include="PublicBookingSuccess.aspx" />
     <Content Include="CustomerReview.aspx" />
-    <Content Include="Search.aspx" />
+    <Content Include="CustomerSearch.aspx" />
     <Content Include="CustomerVerifyEmail.aspx" />
     <Content Include="Global.asax" />
     <Content Include="AdminDashboard.Master" />
@@ -472,12 +472,12 @@
     <Compile Include="CustomerReview.aspx.designer.cs">
       <DependentUpon>CustomerReview.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Search.aspx.cs">
-      <DependentUpon>Search.aspx</DependentUpon>
+    <Compile Include="CustomerSearch.aspx.cs">
+      <DependentUpon>CustomerSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Search.aspx.designer.cs">
-      <DependentUpon>Search.aspx</DependentUpon>
+    <Compile Include="CustomerSearch.aspx.designer.cs">
+      <DependentUpon>CustomerSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="WRCustomerLogin.Master.cs">
       <DependentUpon>WRCustomerLogin.Master</DependentUpon>
@@ -699,8 +699,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="assets\Documents\" />
-    <Folder Include="assets\Logos\" />
+    <Folder Include="App_Code\Utility\" />
     <Folder Include="Content\pinpoint\business\" />
   </ItemGroup>
   <ItemGroup>

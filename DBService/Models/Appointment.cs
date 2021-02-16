@@ -32,7 +32,7 @@ namespace DBService.Models
         }
         public int Insert()
         {
-            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["ProjectDB"].ConnectionString;
+            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString;
             SqlConnection myConn = new SqlConnection(MYDBConnectionString);
             string sqlStmt = "INSERT INTO Appointment(aptTime, aptDate, bookTime, bookDate, partySize,arrived,aptDateTime,customerId,branchId,appointmentSettingId) VALUES(@paraaptTime, @paraaptDate, @parabookTime, @parabookDate, @parapartySize,@paraarrived,@aptDateTime,@customerId,@branchId,@appointmentSettingId)";
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -54,7 +54,7 @@ namespace DBService.Models
         }
         public int Modify(string userid)
         {
-            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["ProjectDB"].ConnectionString;
+            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString;
             SqlConnection myConn = new SqlConnection(MYDBConnectionString);
             string sqlStmt = "UPDATE Appointment SET aptTime=@aptTime,aptDate=@aptDate,bookTime=@bookTime,bookDate=@bookDate,partySize=@partySize,aptDateTime=@aptDateTime WHERE id=@ID";
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -72,7 +72,7 @@ namespace DBService.Models
         }
         public List<Appointment> SelectByTodayDate()
         {
-            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["ProjectDB"].ConnectionString;
+            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString;
             SqlConnection myConn = new SqlConnection(MYDBConnectionString);
             string sqlStmt = "Select * from Appointment WHERE aptDate=@paraaptDate AND branchdId=@branchId";
             SqlDataAdapter da = new SqlDataAdapter(sqlStmt, myConn);
@@ -102,7 +102,7 @@ namespace DBService.Models
         }
         public List<Appointment> SelectByTodayDateAscend(string todaydate)
         {
-            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["ProjectDB"].ConnectionString;
+            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString;
             SqlConnection myConn = new SqlConnection(MYDBConnectionString);
             string sqlStmt = "Select * from Appointment WHERE aptDate = @aptDate AND arrived=@arrived AND branchId=@branchId ORDER BY aptDateTime ";
             SqlDataAdapter da = new SqlDataAdapter(sqlStmt, myConn);
@@ -140,7 +140,7 @@ namespace DBService.Models
         }
         public List<Appointment> SelectAll()
         {
-            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["ProjectDB"].ConnectionString;
+            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString;
             SqlConnection myConn = new SqlConnection(MYDBConnectionString);
             string sqlStmt = "Select aptDate from Appointment WHERE branchId=@branchId";
             SqlDataAdapter da = new SqlDataAdapter(sqlStmt, myConn);
@@ -168,7 +168,7 @@ namespace DBService.Models
         }
         public int setArrived(string aptTime, string aptDate)
         {
-            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["ProjectDB"].ConnectionString;
+            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString;
             SqlConnection myConn = new SqlConnection(MYDBConnectionString);
             string sqlStmt = "UPDATE Appointment SET arrived = @paraarrived WHERE aptTime=@aptTime AND aptDate=@aptDate AND branchId=@branchId";
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -184,7 +184,7 @@ namespace DBService.Models
 
         public int deleteAppointment(string aptTime, string aptDate)
         {
-            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["ProjectDB"].ConnectionString;
+            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString;
             SqlConnection myConn = new SqlConnection(MYDBConnectionString);
             string sqlStmt = "DELETE FROM Appointment WHERE aptTime=@apttime and aptDate=@aptdate and branchId=@branchId";
             SqlCommand sqlCmd = new SqlCommand(sqlStmt, myConn);
@@ -198,10 +198,11 @@ namespace DBService.Models
         }
         public List<string> selectAllAppointmentDateAscend()
         {
-            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["ProjectDB"].ConnectionString;
+            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString;
             SqlConnection myConn = new SqlConnection(MYDBConnectionString);
             string sqlStmt = "Select DISTINCT aptDate from Appointment WHERE branchId=@branchId ";
             SqlDataAdapter da = new SqlDataAdapter(sqlStmt, myConn);
+            da.SelectCommand.CommandType = CommandType.Text;
             da.SelectCommand.Parameters.AddWithValue("@branchId", branchId);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -218,7 +219,7 @@ namespace DBService.Models
         }
         public int selectCountByDate(string aptDate)
         {
-            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["ProjectDB"].ConnectionString;
+            string MYDBConnectionString = ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString;
             SqlConnection myConn = new SqlConnection(MYDBConnectionString);
             string sqlStmt = "Select * from Appointment WHERE aptDate=@aptDate AND branchId=@branchId";
             SqlDataAdapter da = new SqlDataAdapter(sqlStmt, myConn);

@@ -116,11 +116,11 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="businessId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roleId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="rApp" type="xs:boolean" />
         <xs:element minOccurs="0" name="wApp" type="xs:boolean" />
         <xs:element minOccurs="0" name="rCC" type="xs:boolean" />
         <xs:element minOccurs="0" name="wCC" type="xs:boolean" />
-        <xs:element minOccurs="0" name="role" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -164,11 +164,11 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="businessId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roleId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="rApp" type="xs:boolean" />
         <xs:element minOccurs="0" name="wApp" type="xs:boolean" />
         <xs:element minOccurs="0" name="rCC" type="xs:boolean" />
         <xs:element minOccurs="0" name="wCC" type="xs:boolean" />
-        <xs:element minOccurs="0" name="role" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
