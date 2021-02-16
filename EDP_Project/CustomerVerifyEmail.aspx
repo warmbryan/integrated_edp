@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div runat="server" visible="true" id="successAlert" class="alert alert-success">
-        Your email has been verified, <a runat="server" href="~/Customer/Login">login now!</a>
+        Your email has been verified, <a runat="server" href="~/CustomerLogin">login now!</a>
     </div>
     <div runat="server" visible="false" id="dangerAlert" class="alert alert-danger">
         There was an error verifying your email, please try again! <asp:Button Text="Retry" runat="server" CssClass="btn btn-primary" ID="retry" OnClick="retry_Click"/>

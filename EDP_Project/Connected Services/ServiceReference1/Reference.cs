@@ -434,6 +434,18 @@ namespace EDP_Project.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectAllBlacklist", ReplyAction="http://tempuri.org/IService1/SelectAllBlacklistResponse")]
         System.Threading.Tasks.Task<DBService.Models.BlackListClass[]> SelectAllBlacklistAsync(string customerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectAllAdmin", ReplyAction="http://tempuri.org/IService1/SelectAllAdminResponse")]
+        DBService.Models.AdminClass[] SelectAllAdmin();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectAllAdmin", ReplyAction="http://tempuri.org/IService1/SelectAllAdminResponse")]
+        System.Threading.Tasks.Task<DBService.Models.AdminClass[]> SelectAllAdminAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectAllBusiness", ReplyAction="http://tempuri.org/IService1/SelectAllBusinessResponse")]
+        DBService.Models.BusinessUser[] SelectAllBusiness();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectAllBusiness", ReplyAction="http://tempuri.org/IService1/SelectAllBusinessResponse")]
+        System.Threading.Tasks.Task<DBService.Models.BusinessUser[]> SelectAllBusinessAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1021,6 +1033,22 @@ namespace EDP_Project.ServiceReference1 {
         
         public System.Threading.Tasks.Task<DBService.Models.BlackListClass[]> SelectAllBlacklistAsync(string customerId) {
             return base.Channel.SelectAllBlacklistAsync(customerId);
+        }
+        
+        public DBService.Models.AdminClass[] SelectAllAdmin() {
+            return base.Channel.SelectAllAdmin();
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.AdminClass[]> SelectAllAdminAsync() {
+            return base.Channel.SelectAllAdminAsync();
+        }
+        
+        public DBService.Models.BusinessUser[] SelectAllBusiness() {
+            return base.Channel.SelectAllBusiness();
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.BusinessUser[]> SelectAllBusinessAsync() {
+            return base.Channel.SelectAllBusinessAsync();
         }
     }
 }

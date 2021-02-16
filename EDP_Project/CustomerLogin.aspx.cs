@@ -2,14 +2,18 @@
 using EDP_Project.ServiceReference1;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI.WebControls;
 
 namespace EDP_Project
 {
     public partial class CustomerLogin : System.Web.UI.Page
     {
+
         protected void submit_Click(object sender, EventArgs e)
         {
             String username = (String)tbUsername.Text.Trim().ToLower();
@@ -72,7 +76,7 @@ namespace EDP_Project
                             Boolean result = AuthRequire.SetUserSession(cust.ID, cust.Email, "Customer");
                             if (result == true)
                             {
-                                Response.Redirect("~/Customer/Profile");
+                                Response.Redirect("~/CustomerProfile");
                             }
                         }
                     }
@@ -84,12 +88,28 @@ namespace EDP_Project
                 }
                 else
                 {
-                    Response.Redirect("~/Customer/Registration");
+                    Response.Redirect("~/CustomerRegistration");
                 }
             }
             else if (role == "1")
             {
-
+                BusinessUser business = client.GetBusinessUserByEmail(username);
+                if (business != null)
+                {
+                    if (client.VerifyPassword(business.Email, password, "Business"))
+                    {
+                        Boolean result = AuthRequire.SetUserSession(Guid.Parse(business.Id), business.Email, "Business");
+                        if (result == true)
+                        {
+                            Response.Redirect("/BDHome.aspx", false);
+                        }
+                    }
+                    else
+                    {
+                        divErrorMsg.Visible = true;
+                        lbErrorMsg.Text = "Invalid email or password";
+                    }
+                }
             }
             else if (role == "2")
             {
@@ -101,7 +121,7 @@ namespace EDP_Project
                         Boolean result = AuthRequire.SetUserSession(admin.ID, admin.UserName, "Admin");
                         if (result == true)
                         {
-                            Response.Redirect("~/Administrator/ProfilePage");
+                            Response.Redirect("~/AdminHome");
                         }
                     }
                     else

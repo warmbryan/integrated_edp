@@ -9,8 +9,37 @@
 
 namespace EDP_Project
 {
+
+
     public partial class CustomerRegistration
     {
+
+        /// <summary>
+        /// CustomerSide control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CustomerSide;
+
+        /// <summary>
+        /// BusinessSide control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BusinessSide;
+
+        /// <summary>
+        /// Submit_Role_Value control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Submit_Role_Value;
 
         /// <summary>
         /// errorDiv control.
@@ -31,6 +60,114 @@ namespace EDP_Project
         protected global::System.Web.UI.WebControls.Label lbErrorMsg;
 
         /// <summary>
+        /// busiRegister control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl busiRegister;
+
+        /// <summary>
+        /// tbFullname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbFullname;
+
+        /// <summary>
+        /// lbFirstNameErrorTwo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFirstNameErrorTwo;
+
+        /// <summary>
+        /// tbEmailTwo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbEmailTwo;
+
+        /// <summary>
+        /// lbEmailAddressErrorsTwo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEmailAddressErrorsTwo;
+
+        /// <summary>
+        /// tbPasswordTwo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbPasswordTwo;
+
+        /// <summary>
+        /// lbPasswordErrorTwo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPasswordErrorTwo;
+
+        /// <summary>
+        /// tbPasswordCfmTwo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbPasswordCfmTwo;
+
+        /// <summary>
+        /// lbCfmPasswordErrorTwo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCfmPasswordErrorTwo;
+
+        /// <summary>
+        /// tbPhoneNumberTwo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbPhoneNumberTwo;
+
+        /// <summary>
+        /// lbPhoneNumberErrorTwo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPhoneNumberErrorTwo;
+
+        /// <summary>
+        /// custRegister control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl custRegister;
+
+        /// <summary>
         /// tbFirstName control.
         /// </summary>
         /// <remarks>
@@ -38,6 +175,15 @@ namespace EDP_Project
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbFirstName;
+
+        /// <summary>
+        /// lbFirstNameError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbFirstNameError;
 
         /// <summary>
         /// tbLastName control.
@@ -49,13 +195,13 @@ namespace EDP_Project
         protected global::System.Web.UI.WebControls.TextBox tbLastName;
 
         /// <summary>
-        /// UpdatePanel1 control.
+        /// lbLastNameError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.Label lbLastNameError;
 
         /// <summary>
         /// tbEmail control.
@@ -76,6 +222,15 @@ namespace EDP_Project
         protected global::System.Web.UI.WebControls.Label lbEmaiLExists;
 
         /// <summary>
+        /// lbEmailAddressErrors control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEmailAddressErrors;
+
+        /// <summary>
         /// tbPassword control.
         /// </summary>
         /// <remarks>
@@ -83,6 +238,15 @@ namespace EDP_Project
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbPassword;
+
+        /// <summary>
+        /// lbPasswordError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPasswordError;
 
         /// <summary>
         /// tbPasswordCfm control.
@@ -94,6 +258,15 @@ namespace EDP_Project
         protected global::System.Web.UI.WebControls.TextBox tbPasswordCfm;
 
         /// <summary>
+        /// lbCfmPasswordError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCfmPasswordError;
+
+        /// <summary>
         /// tbPhoneNumber control.
         /// </summary>
         /// <remarks>
@@ -103,6 +276,15 @@ namespace EDP_Project
         protected global::System.Web.UI.WebControls.TextBox tbPhoneNumber;
 
         /// <summary>
+        /// lbPhoneNumberError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPhoneNumberError;
+
+        /// <summary>
         /// tbBirthDate control.
         /// </summary>
         /// <remarks>
@@ -110,6 +292,15 @@ namespace EDP_Project
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbBirthDate;
+
+        /// <summary>
+        /// lbDateOfBirthError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDateOfBirthError;
 
         /// <summary>
         /// cbTermsAndConditions control.

@@ -169,4 +169,16 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfBlackListClass" nillable="true" type="tns:ArrayOfBlackListClass" />
+  <xs:complexType name="ArrayOfAdminClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AdminClass" nillable="true" type="tns:AdminClass" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAdminClass" nillable="true" type="tns:ArrayOfAdminClass" />
+  <xs:complexType name="ArrayOfBusinessUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BusinessUser" nillable="true" type="tns:BusinessUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBusinessUser" nillable="true" type="tns:ArrayOfBusinessUser" />
 </xs:schema>

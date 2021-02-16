@@ -11,196 +11,151 @@ namespace EDP_Project
 {
 
 
-    public partial class CustomerProfile
+    public partial class AdminUserDetailed
     {
 
         /// <summary>
-        /// errorDiv control.
+        /// lbUserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorDiv;
+        protected global::System.Web.UI.WebControls.Label lbUserName;
 
         /// <summary>
-        /// lbErrorMsg control.
+        /// tbDuration control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbErrorMsg;
+        protected global::System.Web.UI.WebControls.TextBox tbDuration;
 
         /// <summary>
-        /// tbFirstName control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbFirstName;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// lbFirstNameError control.
+        /// tbReason control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFirstNameError;
+        protected global::System.Web.UI.WebControls.TextBox tbReason;
 
         /// <summary>
-        /// tbLastName control.
+        /// AddBlackListBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbLastName;
+        protected global::System.Web.UI.WebControls.Button AddBlackListBtn;
 
         /// <summary>
-        /// lbLastNameError control.
+        /// divError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbLastNameError;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divError;
 
         /// <summary>
-        /// tbEmail control.
+        /// lbError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEmail;
+        protected global::System.Web.UI.WebControls.Label lbError;
 
         /// <summary>
-        /// lbEmailAddressErrors control.
+        /// lbFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbEmailAddressErrors;
+        protected global::System.Web.UI.WebControls.Label lbFirstName;
 
         /// <summary>
-        /// tbPhoneNumber control.
+        /// lbLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPhoneNumber;
+        protected global::System.Web.UI.WebControls.Label lbLastName;
 
         /// <summary>
-        /// lbPhoneNumberError control.
+        /// lbEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPhoneNumberError;
+        protected global::System.Web.UI.WebControls.Label lbEmail;
 
         /// <summary>
-        /// tbBirthDate control.
+        /// lbPhoneNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbBirthDate;
+        protected global::System.Web.UI.WebControls.Label lbPhoneNumber;
 
         /// <summary>
-        /// lbDateOfBirthError control.
+        /// lbDateOfBirth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDateOfBirthError;
+        protected global::System.Web.UI.WebControls.Label lbDateOfBirth;
 
         /// <summary>
-        /// UpdateParticulars control.
+        /// lbDeleted control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpdateParticulars;
+        protected global::System.Web.UI.WebControls.Label lbDeleted;
 
         /// <summary>
-        /// tbOldPassword control.
+        /// deletedStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbOldPassword;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl deletedStatus;
 
         /// <summary>
-        /// lbOldPasswordError control.
+        /// lbDeletedDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbOldPasswordError;
+        protected global::System.Web.UI.WebControls.Label lbDeletedDate;
 
         /// <summary>
-        /// tbPassword control.
+        /// gvBlackList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPassword;
-
-        /// <summary>
-        /// lbPasswordError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPasswordError;
-
-        /// <summary>
-        /// tbPasswordCfm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPasswordCfm;
-
-        /// <summary>
-        /// lbCfmPasswordError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCfmPasswordError;
-
-        /// <summary>
-        /// UpdateDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpdateDelete;
-
-        /// <summary>
-        /// UpdatePassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpdatePassword;
+        protected global::System.Web.UI.WebControls.GridView gvBlackList;
     }
 }

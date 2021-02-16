@@ -118,6 +118,10 @@
     <Content Include="App_Data\MyDB_log.ldf">
       <DependentUpon>MyDB.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\MySecretDB.mdf" />
+    <Content Include="App_Data\MySecretDB_log.ldf">
+      <DependentUpon>MySecretDB.mdf</DependentUpon>
+    </Content>
     <Content Include="BDAddBusiness.aspx" />
     <Content Include="BDAddEmployee.aspx" />
     <Content Include="BDBusinessBranches.aspx" />
@@ -161,6 +165,7 @@
     <Content Include="CustomerHome.aspx" />
     <Content Include="CustomerLogin.aspx" />
     <Content Include="CustomerProfile.aspx" />
+    <Content Include="Home.aspx" />
     <Content Include="PublicAppointmentBooking.aspx" />
     <Content Include="PublicAppointmentBookingSuccess.aspx" />
     <Content Include="PublicAppointmentPage.aspx" />
@@ -329,7 +334,6 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="web.config" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.5.1.min.map" />
     <Content Include="webfonts\fa-brands-400.svg" />
@@ -349,6 +353,20 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="WRCustomerLogin.Master" />
     <Content Include="WRSite.Master" />
+    <Content Include="asd.config" />
+    <None Include="asd.Debug.config">
+      <DependentUpon>asd.config</DependentUpon>
+    </None>
+    <None Include="asd.Release.config">
+      <DependentUpon>asd.config</DependentUpon>
+    </None>
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDashboard.Master.cs">
@@ -423,6 +441,13 @@
     <Compile Include="CustomerHome.aspx.designer.cs">
       <DependentUpon>CustomerHome.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PublicAppointmentBooking.aspx.cs">
       <DependentUpon>PublicAppointmentBooking.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -479,6 +504,7 @@
     <Compile Include="CustomerSearch.aspx.designer.cs">
       <DependentUpon>CustomerSearch.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SMTPEmail.cs" />
     <Compile Include="WRCustomerLogin.Master.cs">
       <DependentUpon>WRCustomerLogin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -682,12 +708,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <None Include="web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
