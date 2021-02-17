@@ -17,7 +17,7 @@
             <div class="col-5">
                 <div class="mb-3">
                     <label class="form-label" for="tb_email">Employees Email Address</label>
-                    <asp:TextBox runat="server" ID="tb_email" CssClass="form-control"/>
+                    <asp:TextBox runat="server" ID="tb_email" CssClass="form-control" TextMode="Email"/>
                 </div>
 
                 <div class="form-group">
@@ -25,21 +25,6 @@
                     <asp:ListView ID="lv_roles" runat="server" Visible="false">
                         <LayoutTemplate>
                             <select class="form-control mb-3" aria-label="Default select example" name="role">
-                                <option selected>Open this select menu</option>
-                                <div runat="server" id="itemPlaceholder"></div>
-                            </select>
-                        </LayoutTemplate>
-                        <ItemTemplate>
-                            <option value='<%# Eval("id") %>'><%# Eval("name") %></option>
-                        </ItemTemplate>
-                    </asp:ListView>
-                </div>
-
-                <div class="form-group">
-                    <label>Business</label>
-                    <asp:ListView ID="lv_businesses" runat="server" Visible="false">
-                        <LayoutTemplate>
-                            <select class="form-control mb-3" aria-label="Default select example" name="business">
                                 <option selected>Open this select menu</option>
                                 <div runat="server" id="itemPlaceholder"></div>
                             </select>

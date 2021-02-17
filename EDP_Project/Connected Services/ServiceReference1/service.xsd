@@ -194,6 +194,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetOneEmployeeAccess">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="beaId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOneEmployeeAccessResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetOneEmployeeAccessResult" nillable="true" type="q6:BusinessEmployeeAccess" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="CreateBusinessUser">
     <xs:complexType>
       <xs:sequence>
@@ -221,7 +235,7 @@
   <xs:element name="GetBusinessUserByUserIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetBusinessUserByUserIdResult" nillable="true" type="q6:BusinessUser" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetBusinessUserByUserIdResult" nillable="true" type="q7:BusinessUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -235,7 +249,7 @@
   <xs:element name="GetBusinessUserByEmailResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetBusinessUserByEmailResult" nillable="true" type="q7:BusinessUser" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetBusinessUserByEmailResult" nillable="true" type="q8:BusinessUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -268,7 +282,7 @@
   <xs:element name="SelectOneCustomerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectOneCustomerResult" nillable="true" type="q8:CustomerClass" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectOneCustomerResult" nillable="true" type="q9:CustomerClass" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -280,7 +294,7 @@
   <xs:element name="SelectAllCustomerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllCustomerResult" nillable="true" type="q9:ArrayOfCustomerClass" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllCustomerResult" nillable="true" type="q10:ArrayOfCustomerClass" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -294,7 +308,7 @@
   <xs:element name="VerifyCustomerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="VerifyCustomerResult" nillable="true" type="q10:CustomerClass" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="VerifyCustomerResult" nillable="true" type="q11:CustomerClass" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -317,7 +331,7 @@
   <xs:element name="UpdateCustomer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q11:guid" />
+        <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q12:guid" />
         <xs:element minOccurs="0" name="PastEmail" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
@@ -337,7 +351,7 @@
   <xs:element name="UpdateCustomerPassword">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q12:guid" />
+        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q13:guid" />
         <xs:element minOccurs="0" name="PastEmail" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       </xs:sequence>
@@ -353,7 +367,7 @@
   <xs:element name="UpdateCustomerStatus">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q13:guid" />
+        <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q14:guid" />
         <xs:element minOccurs="0" name="PastEmail" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="purpose" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="status" type="xs:boolean" />
@@ -370,7 +384,7 @@
   <xs:element name="DeleteCustomer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q14:guid" />
+        <xs:element xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q15:guid" />
         <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="deleteDate" type="xs:dateTime" />
       </xs:sequence>
@@ -391,7 +405,7 @@
   <xs:element name="SelectDistinctShopNameFromBranchResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectDistinctShopNameFromBranchResult" nillable="true" type="q15:ArrayOfstring" />
+        <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SelectDistinctShopNameFromBranchResult" nillable="true" type="q16:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -474,14 +488,14 @@
   <xs:element name="SelectByIdFromBranch">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q16:guid" />
+        <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q17:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SelectByIdFromBranchResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectByIdFromBranchResult" nillable="true" type="q17:Branch" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectByIdFromBranchResult" nillable="true" type="q18:Branch" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -489,7 +503,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="searchString" nillable="true" type="xs:string" />
-        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q18:guid" />
+        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q19:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -503,7 +517,7 @@
   <xs:element name="SelectByCustomerIdFromSearch">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q19:guid" />
+        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q20:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -530,7 +544,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="searchString" nillable="true" type="xs:string" />
-        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q20:guid" />
+        <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q21:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -558,7 +572,7 @@
   <xs:element name="DeleteFromSearch">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q21:guid" />
+        <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q22:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -572,8 +586,8 @@
   <xs:element name="InsertView">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="branchId" type="q22:guid" />
-        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q23:guid" />
+        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="branchId" type="q23:guid" />
+        <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q24:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -587,7 +601,7 @@
   <xs:element name="SelectByCustomerIdFromView">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q24:guid" />
+        <xs:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q25:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -613,8 +627,8 @@
   <xs:element name="HaveDateFromView">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="branchId" type="q25:guid" />
-        <xs:element xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q26:guid" />
+        <xs:element xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="branchId" type="q26:guid" />
+        <xs:element xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q27:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -642,7 +656,7 @@
   <xs:element name="DeleteFromView">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q27:guid" />
+        <xs:element xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q28:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -659,8 +673,8 @@
         <xs:element minOccurs="0" name="rating" type="xs:double" />
         <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
-        <xs:element xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q28:guid" />
-        <xs:element xmlns:q29="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="branchId" type="q29:guid" />
+        <xs:element xmlns:q29="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q29:guid" />
+        <xs:element xmlns:q30="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="branchId" type="q30:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -674,8 +688,8 @@
   <xs:element name="SelectByBranchIdFromReview">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q30:guid" />
-        <xs:element xmlns:q31="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q31:guid" />
+        <xs:element xmlns:q31="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q31:guid" />
+        <xs:element xmlns:q32="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q32:guid" />
         <xs:element minOccurs="0" name="sort" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -702,7 +716,7 @@
   <xs:element name="SelectAllByBranchIdFromReview">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q32:guid" />
+        <xs:element xmlns:q33="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q33:guid" />
         <xs:element minOccurs="0" name="sort" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -729,15 +743,15 @@
   <xs:element name="HaveExistingReview">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q33="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="branchId" type="q33:guid" />
-        <xs:element xmlns:q34="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q34:guid" />
+        <xs:element xmlns:q34="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="branchId" type="q34:guid" />
+        <xs:element xmlns:q35="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="customerId" type="q35:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="HaveExistingReviewResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="HaveExistingReviewResult" nillable="true" type="q35:Review" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="HaveExistingReviewResult" nillable="true" type="q36:Review" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -775,7 +789,7 @@
   <xs:element name="SelectByCustomerIdFromReview">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q36="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q36:guid" />
+        <xs:element xmlns:q37="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q37:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -801,7 +815,7 @@
   <xs:element name="SelectRatingByBranchIdFromReview">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="branchId" type="q37:guid" />
+        <xs:element xmlns:q38="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="branchId" type="q38:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -917,7 +931,7 @@
   <xs:element name="GetAllAppointmentResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetAllAppointmentResult" nillable="true" type="q38:ArrayOfAppointment" />
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetAllAppointmentResult" nillable="true" type="q39:ArrayOfAppointment" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -929,7 +943,7 @@
   <xs:element name="GetAllAppointmentByTodayDateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetAllAppointmentByTodayDateResult" nillable="true" type="q39:ArrayOfAppointment" />
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetAllAppointmentByTodayDateResult" nillable="true" type="q40:ArrayOfAppointment" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -943,7 +957,7 @@
   <xs:element name="GetAllAppointmentByTodayDateAscendResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetAllAppointmentByTodayDateAscendResult" nillable="true" type="q40:ArrayOfAppointment" />
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetAllAppointmentByTodayDateAscendResult" nillable="true" type="q41:ArrayOfAppointment" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -985,7 +999,7 @@
   <xs:element name="selectAllAppointmentDateAscendResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q41="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="selectAllAppointmentDateAscendResult" nillable="true" type="q41:ArrayOfstring" />
+        <xs:element xmlns:q42="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="selectAllAppointmentDateAscendResult" nillable="true" type="q42:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1014,7 +1028,7 @@
   <xs:element name="CreateBusinessRoleResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="CreateBusinessRoleResult" nillable="true" type="q42:BusinessRole" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="CreateBusinessRoleResult" nillable="true" type="q43:BusinessRole" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1028,7 +1042,7 @@
   <xs:element name="GetBusinessRoleResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetBusinessRoleResult" nillable="true" type="q43:BusinessRole" />
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetBusinessRoleResult" nillable="true" type="q44:BusinessRole" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1072,7 +1086,7 @@
   <xs:element name="GetBusinessRolesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetBusinessRolesResult" nillable="true" type="q44:ArrayOfBusinessRole" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="GetBusinessRolesResult" nillable="true" type="q45:ArrayOfBusinessRole" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1103,7 +1117,7 @@
   <xs:element name="SelectOneAdminResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectOneAdminResult" nillable="true" type="q45:AdminClass" />
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectOneAdminResult" nillable="true" type="q46:AdminClass" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1127,7 +1141,7 @@
   <xs:element name="UpdateBlacklistDeleted">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q46="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q46:guid" />
+        <xs:element xmlns:q47="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q47:guid" />
         <xs:element minOccurs="0" name="customerId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="status" type="xs:boolean" />
       </xs:sequence>
@@ -1143,7 +1157,7 @@
   <xs:element name="SelectOneBlacklist">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q47="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q47:guid" />
+        <xs:element xmlns:q48="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ID" type="q48:guid" />
         <xs:element minOccurs="0" name="customerId" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -1151,7 +1165,7 @@
   <xs:element name="SelectOneBlacklistResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectOneBlacklistResult" nillable="true" type="q48:BlackListClass" />
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectOneBlacklistResult" nillable="true" type="q49:BlackListClass" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1165,7 +1179,7 @@
   <xs:element name="SelectAllBlacklistResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllBlacklistResult" nillable="true" type="q49:ArrayOfBlackListClass" />
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllBlacklistResult" nillable="true" type="q50:ArrayOfBlackListClass" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1177,7 +1191,7 @@
   <xs:element name="SelectAllAdminResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllAdminResult" nillable="true" type="q46:ArrayOfAdminClass" />
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllAdminResult" nillable="true" type="q51:ArrayOfAdminClass" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1189,7 +1203,7 @@
   <xs:element name="SelectAllBusinessResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllBusinessResult" nillable="true" type="q47:ArrayOfBusinessUser" />
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllBusinessResult" nillable="true" type="q52:ArrayOfBusinessUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

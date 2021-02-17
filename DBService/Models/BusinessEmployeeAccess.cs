@@ -23,8 +23,9 @@ namespace DBService.Models
 
         public BusinessEmployeeAccess() { }
 
-        public BusinessEmployeeAccess(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC, bool accepted)
+        public BusinessEmployeeAccess(string id, string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC, bool accepted)
         {
+            Id = id;
             UserId = userId;
             BusinessId = businessId;
             RoleId = roleId;
@@ -35,8 +36,9 @@ namespace DBService.Models
             Accepted = accepted;
         }
 
-        public BusinessEmployeeAccess(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC, bool accepted, BusinessUser user)
+        public BusinessEmployeeAccess(string id, string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC, bool accepted, BusinessUser user)
         {
+            Id = id;
             UserId = userId;
             BusinessId = businessId;
             RoleId = roleId;
@@ -115,15 +117,16 @@ namespace DBService.Models
                     {
                         DataRow row = ds.Tables[0].Rows[0];
 
+                        string id = row["id"].ToString();
                         string userId = row["userId"].ToString();
                         string businessId = row["businessId"].ToString();
                         string roleId = row["roleId"].ToString();
                         bool readAppointment = Convert.ToBoolean(row["readAppointment"]);
-                        bool writeAppointment = Convert.ToBoolean(row["acraCertificate"]);
+                        bool writeAppointment = Convert.ToBoolean(row["writeAppointment"]);
                         bool readCustomerChat = Convert.ToBoolean(row["readCustomerChat"]);
                         bool writeCustomerChat = Convert.ToBoolean(row["writeCustomerChat"]);
                         bool accepted = Convert.ToBoolean(row["accepted"]);
-                        bea = new BusinessEmployeeAccess(userId, businessId, roleId, readAppointment, writeAppointment, readCustomerChat, writeCustomerChat, accepted);
+                        bea = new BusinessEmployeeAccess(id, userId, businessId, roleId, readAppointment, writeAppointment, readCustomerChat, writeCustomerChat, accepted);
                     }
                 }
             }
@@ -156,6 +159,7 @@ namespace DBService.Models
                     {
                         foreach (DataRow row in ds.Tables[0].Rows)
                         {
+                            string id = row["id"].ToString();
                             string userId = row["userId"].ToString();
                             string roleId = row["roleId"].ToString();
                             bool rApp = Convert.ToBoolean(row["readAppointment"]);
@@ -168,7 +172,7 @@ namespace DBService.Models
                             string eName = row["userName"].ToString();
                             string eEmail = row["userEmail"].ToString();
                             string ePhone = row["userPhone"].ToString();
-                            BusinessEmployeeAccess bea = new BusinessEmployeeAccess(userId, businessId, roleId, rApp, wApp, rCC, wCC, accepted, new BusinessUser(eId, eName, eEmail, ePhone));
+                            BusinessEmployeeAccess bea = new BusinessEmployeeAccess(id, userId, businessId, roleId, rApp, wApp, rCC, wCC, accepted, new BusinessUser(eName, eEmail, "bruhbruhbruh", ePhone));
                             employees.Add(bea);
                         }
                     }
@@ -187,7 +191,7 @@ namespace DBService.Models
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter(
                         "SELECT * " +
-                        "FROM [dbo].[BusinessEmployeeAccess] " +
+                        "FROM BusinessEmployeeAccess " +
                         "WHERE [userId] = @UserId;", con))
                     {
                         sda.SelectCommand.Parameters.AddWithValue("@UserId", userId);
@@ -195,7 +199,7 @@ namespace DBService.Models
                         sda.Fill(ds);
 
                         int rec_cnt = ds.Tables[0].Rows.Count;
-                        if (rec_cnt == 0)
+                        if (rec_cnt > 0)
                         {
                             foreach (DataRow row in ds.Tables[0].Rows)
                             {
@@ -216,10 +220,9 @@ namespace DBService.Models
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                employeeBeas = null;
-                throw e;
+                throw ex;
             }
 
             return employeeBeas;

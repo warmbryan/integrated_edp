@@ -6,6 +6,8 @@ namespace EDP_Project
 {
     public partial class BDAddEmployee : System.Web.UI.Page
     {
+        Guid businessId;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!AuthRequire.CheckIfUserLoggedIn())
@@ -15,22 +17,17 @@ namespace EDP_Project
                 return;
             }
 
+            try
+            {
+                businessId = Guid.Parse(Request.Params["business"]);
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("/business/my-businesses");
+            }
+
             Service1Client client = new Service1Client();
-
-            string userId = Session["userId"].ToString();
-
-            if (string.IsNullOrWhiteSpace(Request.Params["business"]))
-            {
-                lv_businesses.DataSource = client.GetAllBusinessByUserId(userId);
-                lv_businesses.DataBind();
-                lv_businesses.Visible = true;
-            }
-            else
-            {
-                lv_businesses.Visible = false;
-            }
-
-            lv_roles.DataSource = client.GetBusinessRoles(Request.Params["business"]);
+            lv_roles.DataSource = client.GetBusinessRoles(businessId.ToString());
             lv_roles.DataBind();
             lv_roles.Visible = true;
         }
@@ -38,13 +35,6 @@ namespace EDP_Project
         protected void Add_Employee(object sender, EventArgs e)
         {
             string email = tb_email.Text.Trim();
-
-            string businessId;
-
-            if (string.IsNullOrWhiteSpace(Request.Params["business"]))
-                businessId = Request.Form["business"].Trim();
-            else
-                businessId = Request.Params["business"].Trim();
 
             var theForm = Request.Form;
 
@@ -65,10 +55,8 @@ namespace EDP_Project
                 return;
             }
 
-            if (client.AddEmployeeToBusinessByEmail(employee.Id, businessId, roleId, rApp, wApp, rCC, wCC))
-            {
-                Response.Redirect("~/BDEmployees.aspx");
-            }
+            if (client.AddEmployeeToBusinessByEmail(employee.Id, businessId.ToString(), roleId, rApp, wApp, rCC, wCC))
+                Response.Redirect("~/business/employees?business=" + businessId.ToString());
         }
     }
 }

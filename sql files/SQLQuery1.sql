@@ -1,0 +1,1 @@
+﻿SELECT br.id, br.[name], br.businessId, br.deleted, count(bea.id) employeeCount FROM BusinessRole br LEFT JOIN BusinessEmployeeAccess bea ON br.id = bea.roleId WHERE br.businessId = 'ca3ced22-085c-4717-89b6-605eca32b92a' AND br.deleted = 0 GROUP BY br.id, br.[name], br.businessId, br.deleted;

@@ -82,6 +82,12 @@ namespace DBService
             return bea.Create(userId, businessId, roleId, rApp, wApp, rCC, wCC);
         }
 
+        public BusinessEmployeeAccess GetOneEmployeeAccess(string beaId)
+        {
+            BusinessEmployeeAccess bea = new BusinessEmployeeAccess();
+            return bea.SelectOne(beaId);
+        }
+
         // BusinessUser
         public bool CreateBusinessUser(string name, string email, string password, string phone)
         {

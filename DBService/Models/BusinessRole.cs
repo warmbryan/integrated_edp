@@ -57,7 +57,7 @@ namespace DBService.Models
             catch (Exception ex)
             {
                 // log?
-                // throw ex;
+                Console.WriteLine(ex.Message, ex.ToString());
                 return br;
             }
 
@@ -97,6 +97,7 @@ namespace DBService.Models
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message, ex.ToString());
                 // log?
             }
             return businessRoles;
@@ -130,7 +131,7 @@ namespace DBService.Models
             catch (Exception ex)
             {
                 // log?
-                // throw ex;
+                Console.WriteLine(ex.Message, ex.ToString());
                 return br;
             }
 
@@ -159,7 +160,7 @@ namespace DBService.Models
             catch (Exception ex)
             {
                 // log?
-                // throw ex;
+                Console.WriteLine(ex.Message, ex.ToString());
                 return success;
             }
 
@@ -188,6 +189,7 @@ namespace DBService.Models
             {
                 // log?
                 // throw ex;
+                Console.WriteLine(ex.Message, ex.ToString());
                 return success;
             }
 
@@ -218,7 +220,7 @@ namespace DBService.Models
             catch (Exception ex)
             {
                 // log?
-                // throw ex;
+                Console.WriteLine(ex.Message, ex.ToString());
                 return exists;
             }
 

@@ -103,7 +103,7 @@ namespace EDP_Project
                         Boolean result = AuthRequire.SetUserSession(Guid.Parse(business.Id), business.Email, "Business");
                         if (result == true)
                         {
-                            Response.Redirect("/BDHome.aspx", false);
+                            Response.Redirect("/business", false);
                         }
                     }
                     else

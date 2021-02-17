@@ -81,6 +81,12 @@
   <wsdl:message name="IService1_DeleteEmployeeAccess_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteEmployeeAccessResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetOneEmployeeAccess_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOneEmployeeAccess" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetOneEmployeeAccess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOneEmployeeAccessResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_CreateBusinessUser_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateBusinessUser" />
   </wsdl:message>
@@ -490,6 +496,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteEmployeeAccess" message="tns:IService1_DeleteEmployeeAccess_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteEmployeeAccessResponse" message="tns:IService1_DeleteEmployeeAccess_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetOneEmployeeAccess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetOneEmployeeAccess" message="tns:IService1_GetOneEmployeeAccess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetOneEmployeeAccessResponse" message="tns:IService1_GetOneEmployeeAccess_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="CreateBusinessUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateBusinessUser" message="tns:IService1_CreateBusinessUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateBusinessUserResponse" message="tns:IService1_CreateBusinessUser_OutputMessage" />
@@ -834,6 +844,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteEmployeeAccess">
       <soap:operation soapAction="http://tempuri.org/IService1/DeleteEmployeeAccess" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOneEmployeeAccess">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetOneEmployeeAccess" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

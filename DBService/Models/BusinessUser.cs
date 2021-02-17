@@ -254,15 +254,16 @@ namespace DBService.Models
                                     if (reader.Read())
                                     {
                                         bUser.Id = reader["id"].ToString();
-                                        bUser.Password = (String)reader["password"];
-                                        bUser.Name = bUser.generateDecryptor((String)reader["name"]);
-                                        bUser.Email = (String)reader["email"];
-                                        bUser.Phone = bUser.generateDecryptor((String)reader["phone"]);
+                                        bUser.Password = reader["password"].ToString();
+                                        bUser.Name = bUser.generateDecryptor(reader["name"].ToString());
+                                        bUser.Email = email;
+                                        bUser.Phone = bUser.generateDecryptor(reader["phone"].ToString());
                                     }
                                 }
                             }
                             catch (Exception err)
                             {
+                                throw err;
                                 Console.WriteLine(err);
                                 return null;
                             }
@@ -332,6 +333,7 @@ namespace DBService.Models
 
         public Boolean decryptHashPassword(String Password)
         {
+
             Boolean result;
             try
             {

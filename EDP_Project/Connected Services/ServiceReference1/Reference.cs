@@ -87,6 +87,12 @@ namespace EDP_Project.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteEmployeeAccess", ReplyAction="http://tempuri.org/IService1/DeleteEmployeeAccessResponse")]
         System.Threading.Tasks.Task<bool> DeleteEmployeeAccessAsync(string userId, string businessId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetOneEmployeeAccess", ReplyAction="http://tempuri.org/IService1/GetOneEmployeeAccessResponse")]
+        DBService.Models.BusinessEmployeeAccess GetOneEmployeeAccess(string beaId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetOneEmployeeAccess", ReplyAction="http://tempuri.org/IService1/GetOneEmployeeAccessResponse")]
+        System.Threading.Tasks.Task<DBService.Models.BusinessEmployeeAccess> GetOneEmployeeAccessAsync(string beaId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateBusinessUser", ReplyAction="http://tempuri.org/IService1/CreateBusinessUserResponse")]
         bool CreateBusinessUser(string name, string email, string password, string phone);
         
@@ -569,6 +575,14 @@ namespace EDP_Project.ServiceReference1 {
         
         public System.Threading.Tasks.Task<bool> DeleteEmployeeAccessAsync(string userId, string businessId) {
             return base.Channel.DeleteEmployeeAccessAsync(userId, businessId);
+        }
+        
+        public DBService.Models.BusinessEmployeeAccess GetOneEmployeeAccess(string beaId) {
+            return base.Channel.GetOneEmployeeAccess(beaId);
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.BusinessEmployeeAccess> GetOneEmployeeAccessAsync(string beaId) {
+            return base.Channel.GetOneEmployeeAccessAsync(beaId);
         }
         
         public bool CreateBusinessUser(string name, string email, string password, string phone) {

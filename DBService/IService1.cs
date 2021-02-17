@@ -49,6 +49,9 @@ namespace DBService
         [OperationContract]
         bool DeleteEmployeeAccess(string userId, string businessId);
 
+        [OperationContract]
+        BusinessEmployeeAccess GetOneEmployeeAccess(string beaId);
+
         // BusinessUser
         [OperationContract]
         bool CreateBusinessUser(string name, string email, string password, string phone);
