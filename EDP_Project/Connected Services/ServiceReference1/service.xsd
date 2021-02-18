@@ -208,6 +208,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AcceptBusinessInvite">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="beaId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AcceptBusinessInviteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AcceptBusinessInviteResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RejectBusinessInvite">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="beaId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RejectBusinessInviteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RejectBusinessInviteResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="CreateBusinessUser">
     <xs:complexType>
       <xs:sequence>

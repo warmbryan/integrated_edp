@@ -93,6 +93,18 @@ namespace EDP_Project.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetOneEmployeeAccess", ReplyAction="http://tempuri.org/IService1/GetOneEmployeeAccessResponse")]
         System.Threading.Tasks.Task<DBService.Models.BusinessEmployeeAccess> GetOneEmployeeAccessAsync(string beaId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AcceptBusinessInvite", ReplyAction="http://tempuri.org/IService1/AcceptBusinessInviteResponse")]
+        bool AcceptBusinessInvite(string beaId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AcceptBusinessInvite", ReplyAction="http://tempuri.org/IService1/AcceptBusinessInviteResponse")]
+        System.Threading.Tasks.Task<bool> AcceptBusinessInviteAsync(string beaId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RejectBusinessInvite", ReplyAction="http://tempuri.org/IService1/RejectBusinessInviteResponse")]
+        bool RejectBusinessInvite(string beaId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RejectBusinessInvite", ReplyAction="http://tempuri.org/IService1/RejectBusinessInviteResponse")]
+        System.Threading.Tasks.Task<bool> RejectBusinessInviteAsync(string beaId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateBusinessUser", ReplyAction="http://tempuri.org/IService1/CreateBusinessUserResponse")]
         bool CreateBusinessUser(string name, string email, string password, string phone);
         
@@ -583,6 +595,22 @@ namespace EDP_Project.ServiceReference1 {
         
         public System.Threading.Tasks.Task<DBService.Models.BusinessEmployeeAccess> GetOneEmployeeAccessAsync(string beaId) {
             return base.Channel.GetOneEmployeeAccessAsync(beaId);
+        }
+        
+        public bool AcceptBusinessInvite(string beaId) {
+            return base.Channel.AcceptBusinessInvite(beaId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AcceptBusinessInviteAsync(string beaId) {
+            return base.Channel.AcceptBusinessInviteAsync(beaId);
+        }
+        
+        public bool RejectBusinessInvite(string beaId) {
+            return base.Channel.RejectBusinessInvite(beaId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RejectBusinessInviteAsync(string beaId) {
+            return base.Channel.RejectBusinessInviteAsync(beaId);
         }
         
         public bool CreateBusinessUser(string name, string email, string password, string phone) {

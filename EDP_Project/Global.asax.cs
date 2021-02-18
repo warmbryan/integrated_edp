@@ -28,6 +28,7 @@ namespace EDP_Project
 
             RouteTable.Routes.MapPageRoute("Business Account Profile", "business/my-account", "~/BDMyAccount.aspx");
             RouteTable.Routes.MapPageRoute("Business Invitations", "business/my-invitations", "~/BDInvitations.aspx");
+            RouteTable.Routes.MapPageRoute("Business Invitation Acceptance", "business/my-invitations/acceptance", "~/BDInviteAccptance.aspx");
 
             RouteTable.Routes.MapPageRoute("Business Appointments", "business/appointments", "~/BDViewAppointments.aspx");
 

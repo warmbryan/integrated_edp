@@ -292,5 +292,55 @@ namespace DBService.Models
             }
             return success;
         }
+
+        public bool AcceptInvitation(string beaId)
+        {
+            bool success = false;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("UPDATE BusinessEmployeeAccess SET accepted = 1 WHERE [id] = @Id;", con))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", beaId);
+                        con.Open();
+                        success = cmd.ExecuteNonQuery() > 0;
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in BusinessEmployeeAccess AcceptInvitation" + ex + " message: " + ex.Message);
+            }
+
+            return success;
+        }
+
+        public bool RejectInvitation(string beaId)
+        {
+            bool success = false;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("DELETE FROM BusinessEmployeeAccess WHERE [Id] = @Id;", con))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", beaId);
+                        con.Open();
+                        success = cmd.ExecuteNonQuery() > 0;
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in BusinessEmployeeAccess RejectInvitation" + ex + " message: " + ex.Message);
+            }
+
+            return success;
+        }
     }
 }

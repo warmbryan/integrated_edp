@@ -88,6 +88,18 @@ namespace DBService
             return bea.SelectOne(beaId);
         }
 
+        public bool AcceptBusinessInvite(string beaId)
+        {
+            BusinessEmployeeAccess bea = new BusinessEmployeeAccess();
+            return bea.AcceptInvitation(beaId);
+        }
+
+        public bool RejectBusinessInvite(string beaId)
+        {
+            BusinessEmployeeAccess bea = new BusinessEmployeeAccess();
+            return bea.RejectInvitation(beaId);
+        }
+
         // BusinessUser
         public bool CreateBusinessUser(string name, string email, string password, string phone)
         {

@@ -32,8 +32,8 @@
                     <td><%# Eval("business.registrationNumber") %></td>
                     <td>
                         <div>
-                            <a href="/business/my-invitations/accept?invite=<%# Eval("id")%>" role="button" class="btn btn-success btn-sm accept-invitation">Accept</a>
-                            <a href="/business/my-invitations/reject?invite=<%# Eval("id")%>" role="button" class="btn btn-warning btn-sm reject-invitation">Reject</a>
+                            <a href="/business/my-invitations/acceptance?accept=accept&invite=<%# Eval("id")%>" role="button" class="btn btn-success btn-sm accept-invitation">Accept</a>
+                            <a href="/business/my-invitations/acceptance?accept=reject&invite=<%# Eval("id")%>" role="button" class="btn btn-warning btn-sm reject-invitation">Reject</a>
                         </div>
                     </td>
                 </tr>

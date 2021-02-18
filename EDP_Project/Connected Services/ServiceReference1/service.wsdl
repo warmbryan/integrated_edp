@@ -87,6 +87,18 @@
   <wsdl:message name="IService1_GetOneEmployeeAccess_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetOneEmployeeAccessResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_AcceptBusinessInvite_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptBusinessInvite" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AcceptBusinessInvite_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptBusinessInviteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RejectBusinessInvite_InputMessage">
+    <wsdl:part name="parameters" element="tns:RejectBusinessInvite" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RejectBusinessInvite_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RejectBusinessInviteResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_CreateBusinessUser_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateBusinessUser" />
   </wsdl:message>
@@ -500,6 +512,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetOneEmployeeAccess" message="tns:IService1_GetOneEmployeeAccess_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetOneEmployeeAccessResponse" message="tns:IService1_GetOneEmployeeAccess_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="AcceptBusinessInvite">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AcceptBusinessInvite" message="tns:IService1_AcceptBusinessInvite_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AcceptBusinessInviteResponse" message="tns:IService1_AcceptBusinessInvite_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RejectBusinessInvite">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/RejectBusinessInvite" message="tns:IService1_RejectBusinessInvite_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/RejectBusinessInviteResponse" message="tns:IService1_RejectBusinessInvite_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="CreateBusinessUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateBusinessUser" message="tns:IService1_CreateBusinessUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateBusinessUserResponse" message="tns:IService1_CreateBusinessUser_OutputMessage" />
@@ -853,6 +873,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetOneEmployeeAccess">
       <soap:operation soapAction="http://tempuri.org/IService1/GetOneEmployeeAccess" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptBusinessInvite">
+      <soap:operation soapAction="http://tempuri.org/IService1/AcceptBusinessInvite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RejectBusinessInvite">
+      <soap:operation soapAction="http://tempuri.org/IService1/RejectBusinessInvite" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
