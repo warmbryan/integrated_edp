@@ -113,6 +113,7 @@
     <Content Include="AdminBusinessAcceptance.aspx" />
     <Content Include="AdminHome.aspx" />
     <Content Include="AdminListBusinesses.aspx" />
+    <Content Include="AdminReportedReview.aspx" />
     <Content Include="AdminUserDetailed.aspx" />
     <Content Include="AdminUsers.aspx" />
     <Content Include="AppointmentPage.aspx" />
@@ -130,6 +131,7 @@
     <Content Include="BDBranches.aspx" />
     <Content Include="BDBusinessBranches.aspx" />
     <Content Include="BDBusinesses.aspx" />
+    <Content Include="BDCreateBranch.aspx" />
     <Content Include="BDDeleteBusiness.aspx" />
     <Content Include="BDDeleteEmployee.aspx" />
     <Content Include="BDEmployees.aspx" />
@@ -397,6 +399,13 @@
     <Compile Include="AdminListBusinesses.aspx.designer.cs">
       <DependentUpon>AdminListBusinesses.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminReportedReview.aspx.cs">
+      <DependentUpon>AdminReportedReview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminReportedReview.aspx.designer.cs">
+      <DependentUpon>AdminReportedReview.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminUserDetailed.aspx.cs">
       <DependentUpon>AdminUserDetailed.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -426,6 +435,13 @@
     </Compile>
     <Compile Include="BDBranches.aspx.designer.cs">
       <DependentUpon>BDBranches.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BDCreateBranch.aspx.cs">
+      <DependentUpon>BDCreateBranch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BDCreateBranch.aspx.designer.cs">
+      <DependentUpon>BDCreateBranch.aspx</DependentUpon>
     </Compile>
     <Compile Include="BDInviteAcceptance.aspx.cs">
       <DependentUpon>BDInviteAcceptance.aspx</DependentUpon>

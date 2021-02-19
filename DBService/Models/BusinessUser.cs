@@ -85,7 +85,7 @@ namespace DBService.Models
                             }
                             catch (SqlException err)
                             {
-                                Console.WriteLine(err);
+                                Console.WriteLine(err.Message);
                                 result = -3;
                             }
                             catch (OverflowException)
@@ -162,7 +162,7 @@ namespace DBService.Models
                         }
                         catch (SqlException err)
                         {
-                            Console.WriteLine(err);
+                            Console.WriteLine(err.Message);
                             result = -3;
                         }
                         catch (OverflowException)
@@ -222,7 +222,7 @@ namespace DBService.Models
                             }
                             catch (Exception ex)
                             {
-                                Console.WriteLine(ex);
+                                Console.WriteLine(ex.Message);
                                 return null;
                             }
                             finally
@@ -248,7 +248,7 @@ namespace DBService.Models
                             }
                             catch (Exception err)
                             {
-                                Console.WriteLine(err);
+                                Console.WriteLine(err.Message);
                                 return null;
                             }
                             finally
@@ -311,9 +311,9 @@ namespace DBService.Models
                                     }
                                 }
                             }
-                            catch (Exception err)
+                            catch (Exception ex)
                             {
-                                Console.WriteLine(err);
+                                Console.WriteLine(ex.Message + " " + ex.ToString());
                                 return null;
                             }
                             finally
@@ -400,9 +400,9 @@ namespace DBService.Models
                             }
                         }
                     }
-                    catch (Exception err)
+                    catch (Exception ex)
                     {
-                        Console.WriteLine(err);
+                        Console.WriteLine(ex.Message + " " + ex.ToString());
                         exists = false;
                     }
                     finally
@@ -432,9 +432,9 @@ namespace DBService.Models
                             conn.Open();
                             result = (Int16)cmd.ExecuteNonQuery();
                         }
-                        catch (SqlException err)
+                        catch (SqlException ex)
                         {
-                            Console.WriteLine(err);
+                            Console.WriteLine(ex.Message + " " + ex.ToString());
                             result = -3;
                         }
                         catch (OverflowException)

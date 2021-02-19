@@ -222,7 +222,54 @@ namespace DBService.Models
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine("Error in BusinessEmployeeAccess SelectAllByUserId - " + ex.Message + " " + ex.ToString());
+            }
+
+            return employeeBeas;
+        }
+
+        public List<BusinessEmployeeAccess> SelectAcceptedByUserId(string userId)
+        {
+            List<BusinessEmployeeAccess> employeeBeas = new List<BusinessEmployeeAccess>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter(
+                        "SELECT * " +
+                        "FROM BusinessEmployeeAccess " +
+                        "WHERE [userId] = @UserId AND [accepted] = 1;", con))
+                    {
+                        sda.SelectCommand.Parameters.AddWithValue("@UserId", userId);
+                        DataSet ds = new DataSet();
+                        sda.Fill(ds);
+
+                        int rec_cnt = ds.Tables[0].Rows.Count;
+                        if (rec_cnt > 0)
+                        {
+                            foreach (DataRow row in ds.Tables[0].Rows)
+                            {
+
+                                string businessId = row["businessId"].ToString();
+                                string id = row["id"].ToString();
+                                string roleId = row["roleId"].ToString();
+                                bool rApp = Convert.ToBoolean(row["readAppointment"]);
+                                bool wApp = Convert.ToBoolean(row["writeAppointment"]);
+                                bool rCC = Convert.ToBoolean(row["readCustomerChat"]);
+                                bool wCC = Convert.ToBoolean(row["writeCustomerChat"]);
+                                bool accepted = Convert.ToBoolean(row["accepted"]);
+
+                                BusinessEmployeeAccess bea = new BusinessEmployeeAccess(new Business().SelectOne(businessId), id, roleId, rApp, wApp, rCC, wCC, accepted);
+                                employeeBeas.Add(bea);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in BusinessEmployeeAccess SelectAcceptedByUserId - " + ex.Message + " " + ex.ToString());
             }
 
             return employeeBeas;

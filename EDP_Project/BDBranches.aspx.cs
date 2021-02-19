@@ -20,12 +20,30 @@ namespace EDP_Project
                 Response.Redirect("/CustomerLogin");
                 return;
             }
+
+            if (string.IsNullOrEmpty(Request.Params["business"]))
+            {
+                Response.Redirect("/business/my-businesses");
+            }
+
+            try
+            {
+                Guid businessId = Guid.Parse(Request.Params["business"]);
+                LoadBusinessBranches(businessId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in BDBranches.aspx Page_Load " + ex + " message: " + ex.Message);
+            }
         }
 
-        protected void LoadBusinessBranches(string businessId)
+        protected void LoadBusinessBranches(Guid businessId)
         {
-            //Service1Client client = new Service1Client();
-            //client.
+            Service1Client client = new Service1Client();
+            List<Branch> branches = client.SelectBranchesByBusinessId(businessId).ToList();
+
+            lv_branches.DataSource = branches;
+            lv_branches.DataBind();
         }
     }
 }

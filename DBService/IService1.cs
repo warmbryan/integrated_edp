@@ -58,6 +58,9 @@ namespace DBService
         [OperationContract]
         bool RejectBusinessInvite(string beaId);
 
+        [OperationContract]
+        List<BusinessEmployeeAccess> GetAcceptedBusinessInviteByUserId(string userId);
+
         // BusinessUser
         [OperationContract]
         bool CreateBusinessUser(string name, string email, string password, string phone);
@@ -123,6 +126,18 @@ namespace DBService
 
         [OperationContract]
         Branch SelectByIdFromBranch(Guid id);
+
+        [OperationContract]
+        bool CreateBranch(Guid businessId, string name, string description, string address, string address2, string city, string state, string zip, string country, string phone, string email, bool isMainBranch);
+
+        [OperationContract]
+        bool UpdateBranch(Guid id, string name, string description, string address, string address2, string city, string state, string zip, string country, string phone, string email, bool isMainBranch);
+
+        [OperationContract]
+        bool DeleteBranch(Guid id);
+
+        [OperationContract]
+        List<Branch> SelectBranchesByBusinessId(Guid businessId);
 
         //----------------------Search--------------------
         [OperationContract]

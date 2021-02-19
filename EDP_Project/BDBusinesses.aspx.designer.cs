@@ -15,15 +15,6 @@ namespace EDP_Project
     {
 
         /// <summary>
-        /// gv_businesses control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_businesses;
-
-        /// <summary>
         /// lv_businesses control.
         /// </summary>
         /// <remarks>
@@ -31,5 +22,14 @@ namespace EDP_Project
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lv_businesses;
+
+        /// <summary>
+        /// lv_sharedBusinesses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lv_sharedBusinesses;
     }
 }

@@ -105,6 +105,12 @@ namespace EDP_Project.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RejectBusinessInvite", ReplyAction="http://tempuri.org/IService1/RejectBusinessInviteResponse")]
         System.Threading.Tasks.Task<bool> RejectBusinessInviteAsync(string beaId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAcceptedBusinessInviteByUserId", ReplyAction="http://tempuri.org/IService1/GetAcceptedBusinessInviteByUserIdResponse")]
+        DBService.Models.BusinessEmployeeAccess[] GetAcceptedBusinessInviteByUserId(string userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAcceptedBusinessInviteByUserId", ReplyAction="http://tempuri.org/IService1/GetAcceptedBusinessInviteByUserIdResponse")]
+        System.Threading.Tasks.Task<DBService.Models.BusinessEmployeeAccess[]> GetAcceptedBusinessInviteByUserIdAsync(string userId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateBusinessUser", ReplyAction="http://tempuri.org/IService1/CreateBusinessUserResponse")]
         bool CreateBusinessUser(string name, string email, string password, string phone);
         
@@ -224,6 +230,30 @@ namespace EDP_Project.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectByIdFromBranch", ReplyAction="http://tempuri.org/IService1/SelectByIdFromBranchResponse")]
         System.Threading.Tasks.Task<DBService.Models.Branch> SelectByIdFromBranchAsync(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateBranch", ReplyAction="http://tempuri.org/IService1/CreateBranchResponse")]
+        bool CreateBranch(System.Guid businessId, string name, string description, string address, string address2, string city, string state, string zip, string country, string phone, string email, bool isMainBranch);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateBranch", ReplyAction="http://tempuri.org/IService1/CreateBranchResponse")]
+        System.Threading.Tasks.Task<bool> CreateBranchAsync(System.Guid businessId, string name, string description, string address, string address2, string city, string state, string zip, string country, string phone, string email, bool isMainBranch);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateBranch", ReplyAction="http://tempuri.org/IService1/UpdateBranchResponse")]
+        bool UpdateBranch(System.Guid id, string name, string description, string address, string address2, string city, string state, string zip, string country, string phone, string email, bool isMainBranch);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateBranch", ReplyAction="http://tempuri.org/IService1/UpdateBranchResponse")]
+        System.Threading.Tasks.Task<bool> UpdateBranchAsync(System.Guid id, string name, string description, string address, string address2, string city, string state, string zip, string country, string phone, string email, bool isMainBranch);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteBranch", ReplyAction="http://tempuri.org/IService1/DeleteBranchResponse")]
+        bool DeleteBranch(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteBranch", ReplyAction="http://tempuri.org/IService1/DeleteBranchResponse")]
+        System.Threading.Tasks.Task<bool> DeleteBranchAsync(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectBranchesByBusinessId", ReplyAction="http://tempuri.org/IService1/SelectBranchesByBusinessIdResponse")]
+        DBService.Models.Branch[] SelectBranchesByBusinessId(System.Guid businessId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SelectBranchesByBusinessId", ReplyAction="http://tempuri.org/IService1/SelectBranchesByBusinessIdResponse")]
+        System.Threading.Tasks.Task<DBService.Models.Branch[]> SelectBranchesByBusinessIdAsync(System.Guid businessId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateSearch", ReplyAction="http://tempuri.org/IService1/CreateSearchResponse")]
         int CreateSearch(string searchString, System.Guid customerId);
@@ -631,6 +661,14 @@ namespace EDP_Project.ServiceReference1 {
             return base.Channel.RejectBusinessInviteAsync(beaId);
         }
         
+        public DBService.Models.BusinessEmployeeAccess[] GetAcceptedBusinessInviteByUserId(string userId) {
+            return base.Channel.GetAcceptedBusinessInviteByUserId(userId);
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.BusinessEmployeeAccess[]> GetAcceptedBusinessInviteByUserIdAsync(string userId) {
+            return base.Channel.GetAcceptedBusinessInviteByUserIdAsync(userId);
+        }
+        
         public bool CreateBusinessUser(string name, string email, string password, string phone) {
             return base.Channel.CreateBusinessUser(name, email, password, phone);
         }
@@ -789,6 +827,38 @@ namespace EDP_Project.ServiceReference1 {
         
         public System.Threading.Tasks.Task<DBService.Models.Branch> SelectByIdFromBranchAsync(System.Guid id) {
             return base.Channel.SelectByIdFromBranchAsync(id);
+        }
+        
+        public bool CreateBranch(System.Guid businessId, string name, string description, string address, string address2, string city, string state, string zip, string country, string phone, string email, bool isMainBranch) {
+            return base.Channel.CreateBranch(businessId, name, description, address, address2, city, state, zip, country, phone, email, isMainBranch);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CreateBranchAsync(System.Guid businessId, string name, string description, string address, string address2, string city, string state, string zip, string country, string phone, string email, bool isMainBranch) {
+            return base.Channel.CreateBranchAsync(businessId, name, description, address, address2, city, state, zip, country, phone, email, isMainBranch);
+        }
+        
+        public bool UpdateBranch(System.Guid id, string name, string description, string address, string address2, string city, string state, string zip, string country, string phone, string email, bool isMainBranch) {
+            return base.Channel.UpdateBranch(id, name, description, address, address2, city, state, zip, country, phone, email, isMainBranch);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateBranchAsync(System.Guid id, string name, string description, string address, string address2, string city, string state, string zip, string country, string phone, string email, bool isMainBranch) {
+            return base.Channel.UpdateBranchAsync(id, name, description, address, address2, city, state, zip, country, phone, email, isMainBranch);
+        }
+        
+        public bool DeleteBranch(System.Guid id) {
+            return base.Channel.DeleteBranch(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteBranchAsync(System.Guid id) {
+            return base.Channel.DeleteBranchAsync(id);
+        }
+        
+        public DBService.Models.Branch[] SelectBranchesByBusinessId(System.Guid businessId) {
+            return base.Channel.SelectBranchesByBusinessId(businessId);
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.Branch[]> SelectBranchesByBusinessIdAsync(System.Guid businessId) {
+            return base.Channel.SelectBranchesByBusinessIdAsync(businessId);
         }
         
         public int CreateSearch(string searchString, System.Guid customerId) {

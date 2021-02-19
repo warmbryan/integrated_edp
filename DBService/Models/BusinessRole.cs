@@ -220,7 +220,7 @@ namespace DBService.Models
             catch (Exception ex)
             {
                 // log?
-                Console.WriteLine(ex.Message, ex.ToString());
+                Console.WriteLine(ex.Message + " " + ex.ToString());
                 return exists;
             }
 

@@ -28,7 +28,6 @@
 	</div>
 	<hr />
 	<form runat="server">
-		<asp:GridView ID="gv_businesses" runat="server"></asp:GridView>
 		<asp:ListView ID="lv_businesses" runat="server">
 			<LayoutTemplate>
 				<table class="table" id="businesses">
@@ -65,15 +64,65 @@
 						<asp:Label ID="Label1" runat="server" Text='<%# (bool)Eval("Verified") ? "Yes" : "No" %>' />
 					</td>
 					<td>
+                        <div class="row">
+							<asp:HyperLink NavigateUrl='<%# "/business/branches?business=" + Eval("Id") %>' runat="server" CssClass="btn-sm btn btn-link">Branch</asp:HyperLink>
+                        </div>
+						
 						<button type="button" class="btn btn-link btn-sm roles" id="<%# Eval("Id") %>">Roles</button>
-						<asp:HyperLink NavigateUrl='<%# "~/BDEmployees.aspx?business=" + Eval("Id") %>' runat="server" CssClass="btn-sm btn btn-link">Employees</asp:HyperLink>
-						<asp:HyperLink NavigateUrl='<%# "~/BDUpdateBusiness.aspx?business=" + Eval("Id") %>' runat="server" CssClass="btn-sm btn btn-link">Update</asp:HyperLink>
+						<asp:HyperLink NavigateUrl='<%# "/business/employees?business=" + Eval("Id") %>' runat="server" CssClass="btn-sm btn btn-link">Employees</asp:HyperLink>
+						<asp:HyperLink NavigateUrl='<%# "/business/update/business?business=" + Eval("Id") %>' runat="server" CssClass="btn-sm btn btn-link">Update</asp:HyperLink>
 						<button type="button" class="btn btn-link btn-sm deleteBusiness" id="<%# Eval("Id") %>">Delete</button>
 					</td>
 				</tr>
 			</ItemTemplate>
 		</asp:ListView>
 	</form>
+
+    <div class="mb-3">
+		<h2>Invited Businesses</h2>
+		<asp:ListView ID="lv_sharedBusinesses" runat="server">
+			<LayoutTemplate>
+				<table class="table" id="businesses">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Registration Number</th>
+							<th>Type</th>
+							<th>Website URL</th>
+							<th>Options</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr runat="server" id="itemPlaceholder" />
+					</tbody>
+				</table>
+			</LayoutTemplate>
+			<ItemTemplate>
+				<tr runat="server">
+					<td>
+						<asp:Label ID="lbl_name" runat="server" Text='<%# Eval("business.Name") %>' />
+					</td>
+					<td>
+						<asp:Label ID="lbl_regNum" runat="server" Text='<%# Eval("business.RegistrationNumber") %>' />
+					</td>
+					<td>
+						<asp:Label ID="lbl_type" runat="server" Text='<%# Eval("business.Type") %>' />
+					</td>
+					<td>
+						<a href="<%# Eval("business.Url") %>" target="_blank">URL <i class="fas fa-external-link-alt"></i></a>
+					</td>
+					<td>
+						<div class="row">
+							<asp:HyperLink NavigateUrl='<%# "/business/branches?business=" + Eval("Id") %>' runat="server" CssClass="btn-sm btn btn-link">Branch</asp:HyperLink>
+                        </div>
+						<asp:HyperLink NavigateUrl='<%# "/business/employees?business=" + Eval("Id") %>' runat="server" CssClass="btn-sm btn btn-link">Employees</asp:HyperLink>
+						<asp:HyperLink NavigateUrl='<%# "/business/update/business?business=" + Eval("Id") %>' runat="server" CssClass="btn-sm btn btn-link">Update</asp:HyperLink>
+					</td>
+				</tr>
+			</ItemTemplate>
+		</asp:ListView>
+    </div>
+
 	<div id="roles-modal" class="modal fade" tabindex="-1">
 		<div class="modal-dialog modal-dialog-centered modal-xl">
 			<div class="modal-content">
