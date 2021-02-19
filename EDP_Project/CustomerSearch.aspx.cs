@@ -20,7 +20,7 @@ namespace EDP_Project
             if (!IsPostBack)
             {
                 //Testing
-                Session["userId"] = new Guid();
+                //Session["userId"] = new Guid();
 
 
                 if (Session["userId"] == null)
