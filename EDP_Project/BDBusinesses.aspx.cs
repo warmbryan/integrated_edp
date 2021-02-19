@@ -1,5 +1,7 @@
 ﻿using System;
 
+using EDP_Project.ServiceReference1;
+
 namespace EDP_Project
 {
     public partial class BDBusinesses : System.Web.UI.Page
@@ -13,10 +15,14 @@ namespace EDP_Project
                 return;
             }
 
-            ServiceReference1.IService1 client = new ServiceReference1.Service1Client();
+            Service1Client client = new Service1Client();
 
             lv_businesses.DataSource = client.GetAllBusinessByUserId(Session["userId"].ToString());
             lv_businesses.DataBind();
+
+
+            lv_sharedBusinesses.DataSource = client.GetAcceptedBusinessInviteByUserId(Session["userId"].ToString());
+            lv_sharedBusinesses.DataBind();
         }
     }
 }

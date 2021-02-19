@@ -20,6 +20,7 @@ namespace EDP_Project
 
             RouteTable.Routes.MapPageRoute("Business - My Businesses", "business/my-businesses", "~/BDBusinesses.aspx");
             RouteTable.Routes.MapPageRoute("Business - Add new business", "business/add/business", "~/BDAddBusiness.aspx");
+            RouteTable.Routes.MapPageRoute("Business Update Business", "business/update/business", "~/BDUpdateBusiness.aspx");
 
             RouteTable.Routes.MapPageRoute("Business Employees", "business/employees", "~/BDEmployees.aspx");
             RouteTable.Routes.MapPageRoute("Business Add Employees", "business/add/employee", "~/BDAddEmployee.aspx");
@@ -34,6 +35,10 @@ namespace EDP_Project
 
             RouteTable.Routes.MapPageRoute("Business Delete Business", "business/delete/business", "~/BDDeleteBusiness.aspx");
             RouteTable.Routes.MapPageRoute("Business Delete Employee", "business/delete/employee", "~/BDDeleteEmployee.aspx");
+
+            RouteTable.Routes.MapPageRoute("Business Branches", "business/branches", "~/BDBranches.aspx");
+            RouteTable.Routes.MapPageRoute("Business - Add new branch", "business/add/branch", "~/BDCreateBranch.aspx");
+            RouteTable.Routes.MapPageRoute("Business Update Branch", "business/update/branch", "~/BDUpdateBranch.aspx");
 
             RouteTable.Routes.MapPageRoute("Business Logout", "logout", "~/BDLogout.aspx");
 

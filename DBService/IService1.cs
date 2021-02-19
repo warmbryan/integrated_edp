@@ -58,6 +58,9 @@ namespace DBService
         [OperationContract]
         bool RejectBusinessInvite(string beaId);
 
+        [OperationContract]
+        List<BusinessEmployeeAccess> GetAcceptedBusinessInviteByUserId(string userId);
+
         // BusinessUser
         [OperationContract]
         bool CreateBusinessUser(string name, string email, string password, string phone);

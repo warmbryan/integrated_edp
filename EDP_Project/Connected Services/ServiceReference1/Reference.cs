@@ -105,6 +105,12 @@ namespace EDP_Project.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RejectBusinessInvite", ReplyAction="http://tempuri.org/IService1/RejectBusinessInviteResponse")]
         System.Threading.Tasks.Task<bool> RejectBusinessInviteAsync(string beaId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAcceptedBusinessInviteByUserId", ReplyAction="http://tempuri.org/IService1/GetAcceptedBusinessInviteByUserIdResponse")]
+        DBService.Models.BusinessEmployeeAccess[] GetAcceptedBusinessInviteByUserId(string userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAcceptedBusinessInviteByUserId", ReplyAction="http://tempuri.org/IService1/GetAcceptedBusinessInviteByUserIdResponse")]
+        System.Threading.Tasks.Task<DBService.Models.BusinessEmployeeAccess[]> GetAcceptedBusinessInviteByUserIdAsync(string userId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateBusinessUser", ReplyAction="http://tempuri.org/IService1/CreateBusinessUserResponse")]
         bool CreateBusinessUser(string name, string email, string password, string phone);
         
@@ -653,6 +659,14 @@ namespace EDP_Project.ServiceReference1 {
         
         public System.Threading.Tasks.Task<bool> RejectBusinessInviteAsync(string beaId) {
             return base.Channel.RejectBusinessInviteAsync(beaId);
+        }
+        
+        public DBService.Models.BusinessEmployeeAccess[] GetAcceptedBusinessInviteByUserId(string userId) {
+            return base.Channel.GetAcceptedBusinessInviteByUserId(userId);
+        }
+        
+        public System.Threading.Tasks.Task<DBService.Models.BusinessEmployeeAccess[]> GetAcceptedBusinessInviteByUserIdAsync(string userId) {
+            return base.Channel.GetAcceptedBusinessInviteByUserIdAsync(userId);
         }
         
         public bool CreateBusinessUser(string name, string email, string password, string phone) {

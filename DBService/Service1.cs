@@ -70,6 +70,12 @@ namespace DBService
             return bea.SelectAllByUserId(userId);
         }
 
+        public List<BusinessEmployeeAccess> GetAcceptedBusinessInviteByUserId(string userId)
+        {
+            BusinessEmployeeAccess bea = new BusinessEmployeeAccess();
+            return bea.SelectAcceptedByUserId(userId);
+        }
+
         public bool UpdateEmployeeAccess(string userId, string businessId, string roleId, bool rApp, bool wApp, bool rCC, bool wCC)
         {
             BusinessEmployeeAccess businessEmployeeAccess = new BusinessEmployeeAccess();
