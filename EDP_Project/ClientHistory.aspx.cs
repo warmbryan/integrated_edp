@@ -12,7 +12,7 @@ namespace EDP_Project
         {
             if (Session["userId"] == null)
             {
-                Response.Redirect("ClientSearch.aspx", false);
+                Response.Redirect("CustomerSearch.aspx", false);
             }
             else
             {
@@ -131,7 +131,7 @@ namespace EDP_Project
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Search.aspx");
+            Response.Redirect("CustomerSearch.aspx");
         }
 
         protected void LinkButtonClear_Click(object sender, EventArgs e)

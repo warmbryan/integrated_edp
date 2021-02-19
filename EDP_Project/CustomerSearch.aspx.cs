@@ -19,8 +19,8 @@ namespace EDP_Project
         {
             if (!IsPostBack)
             {
-                //Testing
-                Session["userId"] = new Guid();
+                //--------Testing with hard coded user id-------
+                //Session["userId"] = new Guid();
 
 
                 if (Session["userId"] == null)
@@ -38,8 +38,8 @@ namespace EDP_Project
 
                 ds = client.SelectDistinctCategoryFromBranch();
                 DropDownListCategory.DataSource = ds;
-                DropDownListCategory.DataTextField = "catrgory";
-                DropDownListCategory.DataValueField = "catrgory";
+                DropDownListCategory.DataTextField = "category";
+                DropDownListCategory.DataValueField = "category";
                 DropDownListCategory.DataBind();
                 DropDownListCategory.Items.Insert(0, new ListItem("All", "All"));
 

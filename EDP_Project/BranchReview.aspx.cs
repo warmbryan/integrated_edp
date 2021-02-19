@@ -87,7 +87,7 @@ namespace EDP_Project
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Search.aspx");
+            Response.Redirect("CustomerSearch.aspx");
         }
         protected void btnDeleteReview_Click(object sender, EventArgs e)
         {
