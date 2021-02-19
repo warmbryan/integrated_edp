@@ -113,6 +113,7 @@
     <Content Include="AdminBusinessAcceptance.aspx" />
     <Content Include="AdminHome.aspx" />
     <Content Include="AdminListBusinesses.aspx" />
+    <Content Include="AdminReportedReview.aspx" />
     <Content Include="AdminUserDetailed.aspx" />
     <Content Include="AdminUsers.aspx" />
     <Content Include="AppointmentPage.aspx" />
@@ -396,6 +397,13 @@
     </Compile>
     <Compile Include="AdminListBusinesses.aspx.designer.cs">
       <DependentUpon>AdminListBusinesses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminReportedReview.aspx.cs">
+      <DependentUpon>AdminReportedReview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminReportedReview.aspx.designer.cs">
+      <DependentUpon>AdminReportedReview.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminUserDetailed.aspx.cs">
       <DependentUpon>AdminUserDetailed.aspx</DependentUpon>
