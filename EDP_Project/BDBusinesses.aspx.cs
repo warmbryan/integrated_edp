@@ -9,7 +9,7 @@ namespace EDP_Project
             if (!AuthRequire.CheckIfUserLoggedIn())
             {
                 AuthRequire.Logout();
-                Response.Redirect("~/BDLogin");
+                Response.Redirect("~/CustomerLogin");
                 return;
             }
 

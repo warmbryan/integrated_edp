@@ -80,6 +80,17 @@ namespace DBService.Models
 
         public Business SelectOne(string businessId)
         {
+            try
+            {
+                Guid bId = Guid.Parse(businessId);
+                businessId = bId.ToString();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+
             Business business;
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {

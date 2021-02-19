@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
+using EDP_Project.ServiceReference1;
 using DBService.Models;
 
 namespace EDP_Project
 {
-    public partial class BDInvitations : System.Web.UI.Page
+    public partial class BDBranches : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -16,12 +20,12 @@ namespace EDP_Project
                 Response.Redirect("/CustomerLogin");
                 return;
             }
+        }
 
-            ServiceReference1.IService1 client = new ServiceReference1.Service1Client();
-            List<BusinessEmployeeAccess> invites = client.GetAllInvitationsByUserId(Session["userId"].ToString()).ToList();
-            lv_invitations.DataSource = invites;
-
-            lv_invitations.DataBind();
+        protected void LoadBusinessBranches(string businessId)
+        {
+            Service1Client client = new Service1Client();
+            client.
         }
     }
 }

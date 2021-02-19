@@ -1,5 +1,7 @@
 ﻿using System;
 
+using DBService.Models;
+
 namespace EDP_Project
 {
     public partial class BDDeleteEmployee : System.Web.UI.Page
@@ -13,12 +15,32 @@ namespace EDP_Project
                 return;
             }
 
-            if (Request.Params["employee"] != null && Request.Params["business"] != null)
+            Guid beaId, businessId;
+
+            BusinessEmployeeAccess bea = null;
+
+            try
             {
+                beaId = Guid.Parse(Request.Params["id"]);
                 ServiceReference1.IService1 client = new ServiceReference1.Service1Client();
+
+                bea = client.GetOneEmployeeAccess(beaId.ToString());
+                client.DeleteEmployeeAccess(bea.UserId, bea.BusinessId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString() + "\n" + ex.Message);
+                // log?
+            }
+            finally
+            {
+                if (bea != null)
+                    Response.Redirect("~/business/employees?business=" + bea.BusinessId);
+                else
+                    Response.Redirect("~/business/employees?business");
             }
 
-            Response.Redirect("~/BDEmployees.aspx");
+            
         }
     }
 }

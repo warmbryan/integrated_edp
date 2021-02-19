@@ -31,10 +31,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/BDHome">Home</a>
+                            <a class="nav-link" href="/business">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/BDViewAppointment">Appointments</a>
+                            <a class="nav-link" href="/business/appointments">Appointments</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
@@ -42,7 +42,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administration
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/BDBusinesses">Businesses</a>
+                                <a class="dropdown-item" href="/business/my-businesses">Businesses</a>
                             </div>
                         </li>
 
@@ -51,10 +51,10 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/BDMyAccount.aspx">My Account</a>
-                                <a class="dropdown-item" href="/BDInvitations.aspx">Invitations</a>
+                                <a class="dropdown-item" href="/business/my-account">My Account</a>
+                                <a class="dropdown-item" href="/business/my-invitations">Invitations</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/BDLogout.aspx">Logout</a>
+                                <a class="dropdown-item" href="/logout">Logout</a>
                             </div>
                         </li>
                     </ul>
