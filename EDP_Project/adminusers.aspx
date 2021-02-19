@@ -120,11 +120,10 @@
                 <table class="table" id="businesses">
                     <thead>
                         <tr>
-                            <th>Email</th>
-                            <th>Phone Number</th>
-                            <th>Date of birth</th>
-                            <th>Blacklisted (T/F)</th>
-                            <th>Options</th>
+                            <th>Admin Name</th>
+                            <th>User Name</th>
+                            <th>Created On</th>
+                            <th>Role</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -135,22 +134,16 @@
             <ItemTemplate>
                 <tr runat="server">
                     <td>
-                        <asp:Label ID="lbl_name" runat="server" Text='<%# Eval("FirstName") %>' />
+                        <asp:Label ID="lbl_name" runat="server" Text='<%# Eval("AdminName") %>' />
                     </td>
                     <td>
-                        <asp:Label ID="lbl_regNum" runat="server" Text='<%# Eval("LastName") %>' />
+                        <asp:Label ID="lbl_regNum" runat="server" Text='<%# Eval("UserName") %>' />
                     </td>
                     <td>
-                        <asp:Label ID="lbl_type" runat="server" Text='<%# Eval("Email") %>' />
+                        <asp:Label ID="Label4" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"CreatedAt","{0:d}") %>' />
                     </td>
                     <td>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("PhoneNumber") %>' />
-                    </td>
-                    <td>
-                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("DateOfBirth") %>' />
-                    </td>
-                    <td>
-                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("blackListed") %>' />
+                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("Role") %>' />
                     </td>
                 </tr>
             </ItemTemplate>
