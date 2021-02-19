@@ -15,7 +15,6 @@ namespace EDP_Project
 {
     public partial class CustomerLogin : System.Web.UI.Page
     {
-
         protected void submit_Click(object sender, EventArgs e)
         {
             String username = (String)tbUsername.Text.Trim().ToLower();

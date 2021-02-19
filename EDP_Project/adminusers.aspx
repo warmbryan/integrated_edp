@@ -2,10 +2,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="extraHead" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <p class="display-4">
+        Users
+    </p>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><asp:HyperLink runat="server" NavigateUrl="~/AdminHome">Home</asp:HyperLink></li>
+            <li class="breadcrumb-item active" aria-current="page">List of users</li>
+        </ol>
+    </nav>
     <div class="">
-        <p class="display-4">
-            Users
-        </p>
         <div class="d-flex justify-content-center align-items-center mb-3">
             <style>
                 .no-wrap{
@@ -23,29 +29,133 @@
         </div>
     </div>
     <div style="text-align:center; width: 100%; height: 400px; overflow: auto;">
-        
-        <asp:GridView runat="server" ID="gvUsers" HorizontalAlign="Center" AutoGenerateColumns="False" CellPadding="3" CssClass="table table-responsive text-start" OnRowDataBound="gvUsers_RowDataBound" OnSelectedIndexChanged="gvUsers_SelectedIndexChanged" ForeColor="Black" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
-            <AlternatingRowStyle BackColor="#CCCCCC" />
-            <RowStyle Width="100%" />
-            <Columns>
-                <asp:BoundField DataField="FirstName" HeaderText="First Name" NullDisplayText="True" ReadOnly="True" />
-                <asp:BoundField DataField="LastName" HeaderText="Last Name" ReadOnly="True" />
-                <asp:BoundField DataField="Email"  HeaderText="Email" ReadOnly="True" />
-                <asp:BoundField DataField="PhoneNumber"  HeaderText="Phone Number" ReadOnly="True" />
-                <asp:BoundField DataField="DateOfBirth"  DataFormatString="{0:d}" HeaderText="Date Of Birth" />
-                <asp:BoundField DataField="blackListed"  HeaderText="Black Listed (T/F)" ReadOnly="True" />
-            </Columns>
-            <FooterStyle BackColor="#CCCCCC" />
-            <HeaderStyle BackColor="Black" HorizontalAlign="Left" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-            <RowStyle BackColor="#FFFBD6" HorizontalAlign="Left" ForeColor="#333333" />
-            <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-            <SortedAscendingCellStyle BackColor="#F1F1F1" />
-            <SortedAscendingHeaderStyle BackColor="#808080" />
-            <SortedDescendingCellStyle BackColor="#CAC9C9" />
-            <SortedDescendingHeaderStyle BackColor="#383838" />
-        </asp:GridView>
-        <asp:GridView runat="server" ID="gvBusiness" HorizontalAlign="Center" AutoGenerateColumns="False" CellPadding="3" CssClass="table table-responsive text-start" OnRowDataBound="gvUsers_RowDataBound" OnSelectedIndexChanged="gvUsers_SelectedIndexChanged" ForeColor="Black" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
+        <asp:ListView ID="lvUsers" runat="server">
+            <LayoutTemplate>
+                <table class="table" id="businesses">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Created On</th>
+                            <th>Deleting (T/F)</th>
+                            <th>Blacklisted (T/F)</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr runat="server" id="itemPlaceholder" />
+                    </tbody>
+                </table>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <tr runat="server">
+                    <td>
+                        <asp:Label ID="lbl_name" runat="server" Text='<%# Eval("FirstName") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="lbl_regNum" runat="server" Text='<%# Eval("LastName") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="lbl_type" runat="server" Text='<%# Eval("Email") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"createdAt","{0:d}") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("delete") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("blackListed") %>' />
+                    </td>
+                    <td>
+                        <asp:HyperLink NavigateUrl='<%# "~/AdminUserDetailed.aspx?email=" + Eval("Email") + "&purpose=Customer" %>' runat="server" CssClass="btn-sm btn btn-link">More Details</asp:HyperLink>
+                    </td>
+                </tr>
+            </ItemTemplate>
+        </asp:ListView>
+        <asp:ListView ID="lvBusiness" runat="server">
+            <LayoutTemplate>
+                <table class="table" id="businesses">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Created On</th>
+                            <th>Deleting (T/F)</th>
+                            <th>Blacklisted (T/F)</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr runat="server" id="itemPlaceholder" />
+                    </tbody>
+                </table>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <tr runat="server">
+                    <td>
+                        <asp:Label ID="lbl_regNum" runat="server" Text='<%# Eval("Name") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="lbl_type" runat="server" Text='<%# Eval("Email") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"createdAt","{0:d}") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("delete") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("blackListed") %>' />
+                    </td>
+                    <td>
+                        <asp:HyperLink NavigateUrl='<%# "~/AdminUserDetailed.aspx?email=" + Eval("Email") + "&purpose=Business" %>' runat="server" CssClass="btn-sm btn btn-link">More Details</asp:HyperLink>
+                    </td>
+                </tr>
+            </ItemTemplate>
+        </asp:ListView>
+        <asp:ListView ID="lvAdmin" runat="server">
+            <LayoutTemplate>
+                <table class="table" id="businesses">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Date of birth</th>
+                            <th>Blacklisted (T/F)</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr runat="server" id="itemPlaceholder" />
+                    </tbody>
+                </table>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <tr runat="server">
+                    <td>
+                        <asp:Label ID="lbl_name" runat="server" Text='<%# Eval("FirstName") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="lbl_regNum" runat="server" Text='<%# Eval("LastName") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="lbl_type" runat="server" Text='<%# Eval("Email") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("PhoneNumber") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("DateOfBirth") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("blackListed") %>' />
+                    </td>
+                </tr>
+            </ItemTemplate>
+        </asp:ListView>
+        <asp:GridView runat="server" ID="gvBusiness" HorizontalAlign="Center" AutoGenerateColumns="False" CellPadding="3" CssClass="table table-responsive text-start" ForeColor="Black" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
             <AlternatingRowStyle BackColor="#CCCCCC" />
             <RowStyle Width="100%" />
             <Columns>
@@ -63,7 +173,7 @@
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#383838" />
         </asp:GridView>
-        <asp:GridView runat="server" ID="gvAdmin" HorizontalAlign="Center" AutoGenerateColumns="False" CellPadding="3" CssClass="table table-responsive text-start" OnRowDataBound="gvUsers_RowDataBound" OnSelectedIndexChanged="gvUsers_SelectedIndexChanged" ForeColor="Black" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
+        <asp:GridView runat="server" ID="gvAdmin" HorizontalAlign="Center" AutoGenerateColumns="False" CellPadding="3" CssClass="table table-responsive text-start" ForeColor="Black" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
             <AlternatingRowStyle BackColor="#CCCCCC" />
             <RowStyle Width="100%" />
             <Columns>

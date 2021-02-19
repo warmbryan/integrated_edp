@@ -24,8 +24,8 @@ namespace EDP_Project
 
         protected void LoadBusinessBranches(string businessId)
         {
-            Service1Client client = new Service1Client();
-            client.
+            //Service1Client client = new Service1Client();
+            //client.
         }
     }
 }

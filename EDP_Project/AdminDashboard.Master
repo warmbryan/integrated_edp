@@ -69,16 +69,11 @@
             </div>
         </nav>
     </header>
-        <div class="container-fluid">
-            <main role="main" class="mt-3" style="margin-left:7em;margin-right:7em">
-                <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                </asp:ContentPlaceHolder>
-                <hr />
-                <footer>
-                    <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-                </footer>
-            </main>
+    <main>
+        <div class="container my-3">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
         </div>
+    </main>
     </form>
 
 </body>

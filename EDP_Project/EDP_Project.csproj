@@ -124,6 +124,7 @@
     <Content Include="App_Data\MySecretDB_log.ldf">
       <DependentUpon>MySecretDB.mdf</DependentUpon>
     </Content>
+    <Content Include="assets\Logos\87229add-f83d-40c3-8a24-274c0f42710e.png" />
     <Content Include="BDAddBusiness.aspx" />
     <Content Include="BDAddEmployee.aspx" />
     <Content Include="BDBranches.aspx" />
@@ -182,6 +183,7 @@
     <Content Include="CustomerVerifyEmail.aspx" />
     <Content Include="Global.asax" />
     <Content Include="AdminDashboard.Master" />
+    <Content Include="assets\Documents\970673e6-94c0-4425-9aa0-7e68c441324b.pdf" />
     <None Include="Connected Services\ServiceReference1\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>

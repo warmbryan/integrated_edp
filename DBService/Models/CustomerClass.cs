@@ -21,6 +21,7 @@ namespace DBService.Models
         public Boolean delete { get; set; }
         public DateTime deleteDate { get; set; }
         public Boolean blackListed { get; set; }
+        public DateTime createdAt { get; set; }
         protected Boolean created { get; set; }
         protected String salt { get; set; }
         protected byte[] key { get; set; }
@@ -498,6 +499,7 @@ namespace DBService.Models
                             tmpClass.emailVerified = (Boolean)row["emailVerified"];
                             tmpClass.delete = (Boolean)row["delete"];
                             tmpClass.blackListed = (Boolean)row["blackListed"];
+                            tmpClass.createdAt = (DateTime)row["createdAt"];
                             using (SqlCommand cmdTwo = new SqlCommand("SelectOneEncryption", connTwo))
                             {
                                 cmdTwo.CommandType = CommandType.StoredProcedure;
@@ -563,6 +565,7 @@ namespace DBService.Models
                                         tmpClass.deleteDate = (DateTime)reader["deleteDate"];
                                         tmpClass.delete = (Boolean)reader["delete"];
                                         tmpClass.blackListed = (Boolean)reader["blackListed"];
+                                        tmpClass.createdAt = (DateTime)reader["createdAt"];
                                         tmpFirstName = (String)reader["firstName"];
                                         tmpLastName = (String)reader["lastName"];
                                         tmpPhoneNumber = (String)reader["phoneNumber"];

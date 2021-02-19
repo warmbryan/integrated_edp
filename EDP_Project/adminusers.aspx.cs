@@ -15,24 +15,9 @@ namespace EDP_Project
             Service1Client client = new Service1Client();
             List<CustomerClass> cList = client.SelectAllCustomer().ToList<CustomerClass>();
 
-            gvUsers.Visible = true;
-            gvUsers.DataSource = cList;
-            gvUsers.DataBind();
-        }
-
-        protected void gvUsers_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gvUsers, "Select$" + e.Row.RowIndex);
-                e.Row.Attributes["style"] = "cursor:pointer";
-            }
-        }
-
-        protected void gvUsers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string Email = gvUsers.SelectedRow.Cells[2].Text;
-            Response.Redirect("~/AdminUserDetailed?Email=" + Email);
+            lvUsers.Visible = true;
+            lvUsers.DataSource = cList;
+            lvUsers.DataBind();
         }
 
         protected void filterBtn_Click(object sender, EventArgs e)
@@ -43,39 +28,39 @@ namespace EDP_Project
                 Service1Client client = new Service1Client();
                 List<CustomerClass> cList = client.SelectAllCustomer().ToList<CustomerClass>();
 
-                gvUsers.Visible = true;
-                gvUsers.DataSource = cList;
-                gvUsers.DataBind();
-                gvBusiness.DataSource = null;
-                gvBusiness.DataBind();
-                gvAdmin.DataSource = null;
-                gvAdmin.DataBind();
+                lvUsers.Visible = true;
+                lvUsers.DataSource = cList;
+                lvUsers.DataBind();
+                lvBusiness.DataSource = null;
+                lvBusiness.DataBind();
+                lvAdmin.DataSource = null;
+                lvAdmin.DataBind();
             }
             else if (tmpValue == "1")
             {
                 Service1Client client = new Service1Client();
                 List<BusinessUser> cList = client.SelectAllBusiness().ToList<BusinessUser>();
 
-                gvBusiness.Visible = true;
-                gvBusiness.DataSource = cList;
-                gvBusiness.DataBind();
-                gvUsers.DataSource = null;
-                gvUsers.DataBind();
-                gvAdmin.DataSource = null;
-                gvAdmin.DataBind();
+                lvBusiness.Visible = true;
+                lvBusiness.DataSource = cList;
+                lvBusiness.DataBind();
+                lvUsers.DataSource = null;
+                lvUsers.DataBind();
+                lvAdmin.DataSource = null;
+                lvAdmin.DataBind();
             }
             else if (tmpValue == "2")
             {
                 Service1Client client = new Service1Client();
                 List<AdminClass> cList = client.SelectAllAdmin().ToList<AdminClass>();
 
-                gvAdmin.Visible = true;
-                gvAdmin.DataSource = cList;
-                gvAdmin.DataBind();
-                gvUsers.DataSource = null;
-                gvUsers.DataBind();
-                gvBusiness.DataSource = null;
-                gvBusiness.DataBind();
+                lvAdmin.Visible = true;
+                lvAdmin.DataSource = cList;
+                lvAdmin.DataBind();
+                lvUsers.DataSource = null;
+                lvUsers.DataBind();
+                lvBusiness.DataSource = null;
+                lvBusiness.DataBind();
             }
         }
     }
