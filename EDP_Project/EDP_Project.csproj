@@ -110,7 +110,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminBusinessAcceptance.aspx" />
     <Content Include="AdminHome.aspx" />
+    <Content Include="AdminListBusinesses.aspx" />
     <Content Include="AdminUserDetailed.aspx" />
     <Content Include="AdminUsers.aspx" />
     <Content Include="AppointmentPage.aspx" />
@@ -359,6 +361,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminBusinessAcceptance.aspx.cs">
+      <DependentUpon>AdminBusinessAcceptance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminBusinessAcceptance.aspx.designer.cs">
+      <DependentUpon>AdminBusinessAcceptance.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminDashboard.Master.cs">
       <DependentUpon>AdminDashboard.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -372,6 +381,13 @@
     </Compile>
     <Compile Include="AdminHome.aspx.designer.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminListBusinesses.aspx.cs">
+      <DependentUpon>AdminListBusinesses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminListBusinesses.aspx.designer.cs">
+      <DependentUpon>AdminListBusinesses.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminUserDetailed.aspx.cs">
       <DependentUpon>AdminUserDetailed.aspx</DependentUpon>
@@ -494,7 +510,6 @@
     <Compile Include="CustomerSearch.aspx.designer.cs">
       <DependentUpon>CustomerSearch.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SMTPEmail.cs" />
     <Compile Include="WRCustomerLogin.Master.cs">
       <DependentUpon>WRCustomerLogin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

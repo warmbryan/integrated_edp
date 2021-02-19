@@ -45,6 +45,12 @@ namespace DBService
             return b.Update(businessId, name, registrationNumber, url, type, acra, logoId);
         }
 
+        public Int16 UpdateBusinessVerification(string businessId, bool value)
+        {
+            Business b = new Business();
+            return b.UpdateBusinessVerification(businessId, value);
+        }
+
         public bool DeleteBusiness(string businessId)
         {
             Business b = new Business();
@@ -124,6 +130,18 @@ namespace DBService
         {
             CustomerClass cust = new CustomerClass();
             return cust.SelectAllCustomers();
+        }
+
+        public Int16 UpdateBusinessStatus(String PastEmail, String purpose, Boolean status)
+        {
+            BusinessUser busi = new BusinessUser();
+            return busi.UpdateBusinessStatus(PastEmail, purpose, status);
+        }
+
+        public Int16 DeleteBusinessUser(String Email, DateTime deleteDate)
+        {
+            BusinessUser busi = new BusinessUser();
+            return busi.DeleteBusinessUser(Email, deleteDate);
         }
 
         public CustomerClass VerifyCustomer(String Email)

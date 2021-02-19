@@ -53,6 +53,10 @@
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="blackListed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="delete" type="xs:boolean" />
+      <xs:element minOccurs="0" name="deleteDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="emailVerified" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BusinessUser" nillable="true" type="tns:BusinessUser" />

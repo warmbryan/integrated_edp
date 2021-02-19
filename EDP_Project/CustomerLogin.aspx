@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <p class="text-muted">Already have an account? <a runat="server" href="~/CustomerRegistration">Click here</a></p>
+                    <p class="text-muted">Don't have an account? <a runat="server" href="~/CustomerRegistration">Click here</a></p>
                 </div>
             </div>
         </div>

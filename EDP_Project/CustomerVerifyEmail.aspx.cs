@@ -10,30 +10,56 @@ namespace EDP_Project
         protected void Page_Load(object sender, EventArgs e)
         {
             String email = (String)Request.Params["email"];
+            String purpose = (String)Request.Params["purpose"];
             Int16 result = 0;
             Service1Client client = new Service1Client();
             if (!String.IsNullOrEmpty(email))
             {
-
-                CustomerClass cust = client.VerifyCustomer(email);
-                if (cust != null)
+                if (purpose == "Customer")
                 {
-                    result = client.UpdateCustomerStatus(cust.ID, cust.Email, "emailStatus", true);
+                    CustomerClass cust = client.VerifyCustomer(email);
+                    if (cust != null)
+                    {
+                        result = client.UpdateCustomerStatus(cust.ID, cust.Email, "emailStatus", true);
+                    }
+                    else
+                    {
+                        successAlert.Visible = false;
+                        dangerAlert.Visible = true;
+                    }
+                    if (result == 1)
+                    {
+                        successAlert.Visible = true;
+                        dangerAlert.Visible = false;
+                    }
+                    else
+                    {
+                        successAlert.Visible = false;
+                        dangerAlert.Visible = true;
+                    }
                 }
-                else
+                else if (purpose == "Business")
                 {
-                    successAlert.Visible = false;
-                    dangerAlert.Visible = true;
-                }
-                if (result == 1)
-                {
-                    successAlert.Visible = true;
-                    dangerAlert.Visible = false;
-                }
-                else
-                {
-                    successAlert.Visible = false;
-                    dangerAlert.Visible = true;
+                    Boolean busi = client.BusinessUserExists(email);
+                    if (busi == true)
+                    {
+                        result = client.UpdateBusinessStatus(email, "emailStatus", true);
+                    }
+                    else
+                    {
+                        successAlert.Visible = false;
+                        dangerAlert.Visible = true;
+                    }
+                    if (result == 1)
+                    {
+                        successAlert.Visible = true;
+                        dangerAlert.Visible = false;
+                    }
+                    else
+                    {
+                        successAlert.Visible = false;
+                        dangerAlert.Visible = true;
+                    }
                 }
             }
             else
@@ -49,7 +75,6 @@ namespace EDP_Project
             Service1Client client = new Service1Client();
             if (!String.IsNullOrEmpty(email))
             {
-
                 SMTPMailer smtpemail = new SMTPMailer();
                 Boolean result = false;
                 smtpemail.addEmail(email);

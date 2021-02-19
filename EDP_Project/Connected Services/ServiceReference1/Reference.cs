@@ -105,6 +105,24 @@ namespace EDP_Project.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBusinessUserByEmail", ReplyAction="http://tempuri.org/IService1/GetBusinessUserByEmailResponse")]
         System.Threading.Tasks.Task<DBService.Models.BusinessUser> GetBusinessUserByEmailAsync(string email);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateBusinessStatus", ReplyAction="http://tempuri.org/IService1/UpdateBusinessStatusResponse")]
+        short UpdateBusinessStatus(string PastEmail, string purpose, bool status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateBusinessStatus", ReplyAction="http://tempuri.org/IService1/UpdateBusinessStatusResponse")]
+        System.Threading.Tasks.Task<short> UpdateBusinessStatusAsync(string PastEmail, string purpose, bool status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteBusinessUser", ReplyAction="http://tempuri.org/IService1/DeleteBusinessUserResponse")]
+        short DeleteBusinessUser(string Email, System.DateTime deleteDate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteBusinessUser", ReplyAction="http://tempuri.org/IService1/DeleteBusinessUserResponse")]
+        System.Threading.Tasks.Task<short> DeleteBusinessUserAsync(string Email, System.DateTime deleteDate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateBusinessVerification", ReplyAction="http://tempuri.org/IService1/UpdateBusinessVerificationResponse")]
+        short UpdateBusinessVerification(string businessId, bool value);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateBusinessVerification", ReplyAction="http://tempuri.org/IService1/UpdateBusinessVerificationResponse")]
+        System.Threading.Tasks.Task<short> UpdateBusinessVerificationAsync(string businessId, bool value);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsertCustomer", ReplyAction="http://tempuri.org/IService1/InsertCustomerResponse")]
         short InsertCustomer(string firstName, string lastName, string email, string password, string phoneNumber, System.DateTime dateOfBirth);
         
@@ -593,6 +611,30 @@ namespace EDP_Project.ServiceReference1 {
         
         public System.Threading.Tasks.Task<DBService.Models.BusinessUser> GetBusinessUserByEmailAsync(string email) {
             return base.Channel.GetBusinessUserByEmailAsync(email);
+        }
+        
+        public short UpdateBusinessStatus(string PastEmail, string purpose, bool status) {
+            return base.Channel.UpdateBusinessStatus(PastEmail, purpose, status);
+        }
+        
+        public System.Threading.Tasks.Task<short> UpdateBusinessStatusAsync(string PastEmail, string purpose, bool status) {
+            return base.Channel.UpdateBusinessStatusAsync(PastEmail, purpose, status);
+        }
+        
+        public short DeleteBusinessUser(string Email, System.DateTime deleteDate) {
+            return base.Channel.DeleteBusinessUser(Email, deleteDate);
+        }
+        
+        public System.Threading.Tasks.Task<short> DeleteBusinessUserAsync(string Email, System.DateTime deleteDate) {
+            return base.Channel.DeleteBusinessUserAsync(Email, deleteDate);
+        }
+        
+        public short UpdateBusinessVerification(string businessId, bool value) {
+            return base.Channel.UpdateBusinessVerification(businessId, value);
+        }
+        
+        public System.Threading.Tasks.Task<short> UpdateBusinessVerificationAsync(string businessId, bool value) {
+            return base.Channel.UpdateBusinessVerificationAsync(businessId, value);
         }
         
         public short InsertCustomer(string firstName, string lastName, string email, string password, string phoneNumber, System.DateTime dateOfBirth) {

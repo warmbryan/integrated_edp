@@ -239,6 +239,52 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="UpdateBusinessStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PastEmail" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="purpose" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="status" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBusinessStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateBusinessStatusResult" type="xs:short" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteBusinessUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="deleteDate" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteBusinessUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteBusinessUserResult" type="xs:short" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBusinessVerification">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="businessId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="value" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBusinessVerificationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateBusinessVerificationResult" type="xs:short" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="InsertCustomer">
     <xs:complexType>
       <xs:sequence>
@@ -1177,7 +1223,7 @@
   <xs:element name="SelectAllAdminResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllAdminResult" nillable="true" type="q46:ArrayOfAdminClass" />
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllAdminResult" nillable="true" type="q50:ArrayOfAdminClass" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1189,7 +1235,7 @@
   <xs:element name="SelectAllBusinessResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllBusinessResult" nillable="true" type="q47:ArrayOfBusinessUser" />
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllBusinessResult" nillable="true" type="q51:ArrayOfBusinessUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

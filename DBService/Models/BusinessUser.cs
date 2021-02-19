@@ -18,6 +18,10 @@ namespace DBService.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Password { get; set; }
+        public Boolean emailVerified { get; set; }
+        public Boolean delete { get; set; }
+        public DateTime deleteDate { get; set; }
+        public Boolean blackListed { get; set; }
         protected String salt { get; set; }
         protected byte[] key { get; set; }
         protected byte[] iv { get; set; }
@@ -46,7 +50,7 @@ namespace DBService.Models
             {
                 using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
                 {
-                    using (SqlCommand cmdOne = new SqlCommand("InsertBusiness", connOne))
+                    using (SqlCommand cmdOne = new SqlCommand("InsertBusinessUser", connOne))
                     {
                         using (SqlCommand cmdTwo = new SqlCommand("InsertEncryption", connTwo))
                         {
@@ -65,7 +69,18 @@ namespace DBService.Models
                                 connOne.Open();
                                 connTwo.Open();
                                 result = (Int16)cmdOne.ExecuteNonQuery();
+                                if (result < 0)
+                                {
+                                    BusinessUser tmpClass = SelectOneByEmail(this.Email);
+                                    throw new OverflowException();
+                                }
                                 result = (Int16)cmdTwo.ExecuteNonQuery();
+                                if (result < 0)
+                                {
+                                    BusinessUser tmpClass = SelectOneByEmail(this.Email);
+                                    DeleteBusinessUser(tmpClass.Email, DateTime.Now.AddDays(-30));
+                                    throw new OverflowException();
+                                }
                             }
                             catch (SqlException err)
                             {
@@ -89,6 +104,86 @@ namespace DBService.Models
                     }
                 }
                 return result == 1;
+            }
+        }
+
+        protected Int16 DeleteEncryption(String emailVal)
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
+            {
+                using (SqlCommand cmd = new SqlCommand("DeleteEncryption", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Identity", emailVal);
+                    Int16 result;
+                    try
+                    {
+                        conn.Open();
+                        result = (Int16)cmd.ExecuteNonQuery();
+                        if (result < 0)
+                        {
+                            throw new OverflowException();
+                        }
+                    }
+                    catch
+                    {
+                        result = -4;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                    return result;
+                }
+            }
+        }
+
+        public Int16 DeleteBusinessUser(String Email, DateTime deleteDate)
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
+            {
+                using (SqlCommand cmd = new SqlCommand("DeleteBusinessUser", conn))
+                {
+                    Int16 result = 0;
+                    if (DateTime.Now.CompareTo(deleteDate) > 0)
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@Email", Email);
+                        try
+                        {
+                            conn.Open();
+                            result = (Int16)cmd.ExecuteNonQuery();
+                            if (result < 0)
+                            {
+                                throw new OverflowException();
+                            }
+                            result = DeleteEncryption(Email);
+                        }
+                        catch (SqlException err)
+                        {
+                            Console.WriteLine(err);
+                            result = -3;
+                        }
+                        catch (OverflowException)
+                        {
+                            result = -2;
+                        }
+                        catch
+                        {
+                            result = -1;
+                        }
+                        finally
+                        {
+                            conn.Close();
+                        }
+                    }
+                    else
+                    {
+                        result = -1;
+                    }
+                    return result;
+                    
+                }
             }
         }
 
@@ -170,6 +265,67 @@ namespace DBService.Models
             }
         }
 
+        public BusinessUser SelectOneByEmail(string email)
+        {
+            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
+            {
+                using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
+                {
+                    using (SqlCommand cmdOne = new SqlCommand("SelectOneBusinessByEmail", connOne))
+                    {
+                        using (SqlCommand cmdTwo = new SqlCommand("SelectOneEncryption", connTwo))
+                        {
+                            BusinessUser bUser = new BusinessUser();
+                            cmdOne.CommandType = CommandType.StoredProcedure;
+                            cmdTwo.CommandType = CommandType.StoredProcedure;
+                            cmdOne.Parameters.AddWithValue("@Email", email);
+                            cmdTwo.Parameters.AddWithValue("@Identity", email);
+                            try
+                            {
+                                connOne.Open();
+                                connTwo.Open();
+                                using (SqlDataReader reader = cmdTwo.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        bUser.salt = (String)reader["salt"];
+                                        bUser.key = Convert.FromBase64String((String)reader["key"]);
+                                        bUser.iv = Convert.FromBase64String((String)reader["iv"]);
+                                    }
+                                }
+                                using (SqlDataReader reader = cmdOne.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        bUser.Id = reader["id"].ToString();
+                                        bUser.Password = (String)reader["password"];
+                                        bUser.Name = bUser.generateDecryptor((String)reader["name"]);
+                                        bUser.Email = (String)reader["email"];
+                                        bUser.Phone = bUser.generateDecryptor((String)reader["phone"]);
+                                        bUser.deleteDate = (DateTime)reader["deleteDate"];
+                                        bUser.emailVerified = (Boolean)reader["verified"];
+                                        bUser.delete = (Boolean)reader["delete"];
+                                        bUser.blackListed = (Boolean)reader["blackListed"];
+                                    }
+                                }
+                            }
+                            catch (Exception err)
+                            {
+                                Console.WriteLine(err);
+                                return null;
+                            }
+                            finally
+                            {
+                                connOne.Close();
+                                connTwo.Close();
+                            }
+                            return bUser;
+                        }
+                    }
+                }
+            }
+        }
+
         public List<BusinessUser> SelectAllBusiness()
         {
             using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
@@ -221,63 +377,6 @@ namespace DBService.Models
             }
         }
 
-        public BusinessUser SelectOneByEmail(string email)
-        {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
-            {
-                using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
-                {
-                    using (SqlCommand cmdOne = new SqlCommand("SelectOneBusinessByEmail", connOne))
-                    {
-                        using (SqlCommand cmdTwo = new SqlCommand("SelectOneEncryption", connTwo))
-                        {
-                            BusinessUser bUser = new BusinessUser();
-                            cmdOne.CommandType = CommandType.StoredProcedure;
-                            cmdTwo.CommandType = CommandType.StoredProcedure;
-                            cmdOne.Parameters.AddWithValue("@Email", email);
-                            cmdTwo.Parameters.AddWithValue("@Identity", email);
-                            try
-                            {
-                                connOne.Open();
-                                connTwo.Open();
-                                using (SqlDataReader reader = cmdTwo.ExecuteReader())
-                                {
-                                    if (reader.Read())
-                                    {
-                                        bUser.salt = (String)reader["salt"];
-                                        bUser.key = Convert.FromBase64String((String)reader["key"]);
-                                        bUser.iv = Convert.FromBase64String((String)reader["iv"]);
-                                    }
-                                }
-                                using (SqlDataReader reader = cmdOne.ExecuteReader())
-                                {
-                                    if (reader.Read())
-                                    {
-                                        bUser.Id = reader["id"].ToString();
-                                        bUser.Password = (String)reader["password"];
-                                        bUser.Name = bUser.generateDecryptor((String)reader["name"]);
-                                        bUser.Email = (String)reader["email"];
-                                        bUser.Phone = bUser.generateDecryptor((String)reader["phone"]);
-                                    }
-                                }
-                            }
-                            catch (Exception err)
-                            {
-                                Console.WriteLine(err);
-                                return null;
-                            }
-                            finally
-                            {
-                                connOne.Close();
-                                connTwo.Close();
-                            }
-                            return bUser;
-                        }
-                    }
-                }
-            }
-        }
-
         public bool Exists(string email)
         {
             using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
@@ -309,6 +408,113 @@ namespace DBService.Models
                     }
                     return exists;
                 }
+            }
+        }
+
+        public Int16 UpdateBusinessStatus(String PastEmail, String purpose, Boolean status)
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
+            {
+                Int16 result = 0;
+                BusinessUser tmpClass = new BusinessUser();
+                if (purpose == "deleteStatus")
+                {
+                    using (SqlCommand cmd = new SqlCommand("UpdateBusinessUserDeleteStatus", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
+                        cmd.Parameters.AddWithValue("@ValueOne", status);
+                        try
+                        {
+                            conn.Open();
+                            result = (Int16)cmd.ExecuteNonQuery();
+                        }
+                        catch (SqlException err)
+                        {
+                            Console.WriteLine(err);
+                            result = -3;
+                        }
+                        catch (OverflowException)
+                        {
+                            result = -2;
+                        }
+                        catch
+                        {
+                            result = -1;
+                        }
+                        finally
+                        {
+                            conn.Close();
+                        }
+                        return result;
+                    }
+                }
+                else if (purpose == "emailStatus")
+                {
+                    using (SqlCommand cmd = new SqlCommand("UpdateBusinessUserEmailVerified", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
+                        cmd.Parameters.AddWithValue("@ValueOne", status);
+                        try
+                        {
+                            conn.Open();
+                            result = (Int16)cmd.ExecuteNonQuery();
+                        }
+                        catch (SqlException err)
+                        {
+                            Console.WriteLine(err);
+                            result = -3;
+                        }
+                        catch (OverflowException)
+                        {
+                            result = -2;
+                        }
+                        catch
+                        {
+                            result = -1;
+                        }
+                        finally
+                        {
+                            conn.Close();
+                        }
+                        return result;
+                    }
+                }
+                else if (purpose == "blackListedStatus")
+                {
+                    using (SqlCommand cmd = new SqlCommand("UpdateBusinessUserBlackListed", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@PastEmail", PastEmail);
+                        cmd.Parameters.AddWithValue("@ValueOne", status);
+                        try
+                        {
+                            conn.Open();
+                            result = (Int16)cmd.ExecuteNonQuery();
+                        }
+                        catch (SqlException err)
+                        {
+                            Console.WriteLine(err);
+                            result = -3;
+                        }
+                        catch (OverflowException)
+                        {
+                            result = -2;
+                        }
+                        catch
+                        {
+                            result = -1;
+                        }
+                        finally
+                        {
+                            conn.Close();
+                        }
+                        return result;
+                    }
+                }
+                return result;
+
             }
         }
 

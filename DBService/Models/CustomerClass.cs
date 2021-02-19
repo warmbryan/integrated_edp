@@ -72,7 +72,17 @@ namespace DBService.Models
                                     connOne.Open();
                                     connTwo.Open();
                                     result = (Int16)cmdOne.ExecuteNonQuery();
+                                    if (result < 0)
+                                    {
+                                        throw new OverflowException();
+                                    }
                                     result = (Int16)cmdTwo.ExecuteNonQuery();
+                                    if (result <0)
+                                    {
+                                        CustomerClass tmpClass = SelectOneCustomer(this.Email);
+                                        FullDeleteCustomer(tmpClass.ID, tmpClass.Email, DateTime.Now.AddDays(-30));
+                                        throw new OverflowException();
+                                    }
                                 }
                                 catch (SqlException err)
                                 {
@@ -101,6 +111,46 @@ namespace DBService.Models
             else
             {
                 return 0;
+            }
+        }
+
+        protected Int16 DeleteEncryption(String emailVal)
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
+            {
+                using (SqlCommand cmd = new SqlCommand("DeleteEncryption", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Identity", emailVal);
+                    Int16 result;
+                    try
+                    {
+                        conn.Open();
+                        result = (Int16)cmd.ExecuteNonQuery();
+                        if (result < 0)
+                        {
+                            throw new OverflowException();
+                        }
+                    }
+                    catch (SqlException err)
+                    {
+                        Console.WriteLine(err);
+                        result = -3;
+                    }
+                    catch (OverflowException)
+                    {
+                        result = -2;
+                    }
+                    catch
+                    {
+                        result = -1;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                    return result;
+                }
             }
         }
 
@@ -169,55 +219,49 @@ namespace DBService.Models
 
         public Int16 FullDeleteCustomer(Guid ID, String Email, DateTime deleteDate)
         {
-            using (SqlConnection connOne = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString.ToString()))
             {
-                using (SqlConnection connTwo = new SqlConnection(ConfigurationManager.ConnectionStrings["MySecretDB"].ConnectionString.ToString()))
+                using (SqlCommand cmd = new SqlCommand("DeleteCustomer", conn))
                 {
-                    using (SqlCommand cmdOne = new SqlCommand("DeleteCustomer", connOne))
+                    Int16 result = 0;
+                    if (DateTime.Now.CompareTo(deleteDate) > 0)
                     {
-                        using (SqlCommand cmdTwo = new SqlCommand("DeleteEncryption", connTwo))
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@ID", ID);
+                        cmd.Parameters.AddWithValue("@Email", Email);
+                        try
                         {
-                            Int16 result = 0;
-                            if (DateTime.Now.CompareTo(deleteDate) > 0)
+                            conn.Open();
+                            result = (Int16)cmd.ExecuteNonQuery();
+                            if (result < 0)
                             {
-                                cmdOne.CommandType = CommandType.StoredProcedure;
-                                cmdTwo.CommandType = CommandType.StoredProcedure;
-                                cmdOne.Parameters.AddWithValue("@ID", ID);
-                                cmdOne.Parameters.AddWithValue("@Email", Email);
-                                cmdTwo.Parameters.AddWithValue("@Identity", Email);
-                                try
-                                {
-                                    connOne.Open();
-                                    connTwo.Open();
-                                    result = (Int16)cmdOne.ExecuteNonQuery();
-                                    result = (Int16)cmdTwo.ExecuteNonQuery();
-                                }
-                                catch (SqlException err)
-                                {
-                                    Console.WriteLine(err);
-                                    result = -3;
-                                }
-                                catch (OverflowException)
-                                {
-                                    result = -2;
-                                }
-                                catch
-                                {
-                                    result = -1;
-                                }
-                                finally
-                                {
-                                    connOne.Close();
-                                    connTwo.Close();
-                                }
+                                throw new OverflowException();
                             }
-                            else
-                            {
-                                result = -1;
-                            }
-                            return result;
+                            result = DeleteEncryption(Email);
+                        }
+                        catch (SqlException err)
+                        {
+                            Console.WriteLine(err);
+                            result = -3;
+                        }
+                        catch (OverflowException)
+                        {
+                            result = -2;
+                        }
+                        catch
+                        {
+                            result = -1;
+                        }
+                        finally
+                        {
+                            conn.Close();
                         }
                     }
+                    else
+                    {
+                        result = -1;
+                    }
+                    return result;
                 }
             }
         }
@@ -426,7 +470,6 @@ namespace DBService.Models
                     }
                 }
                 return result;
-
             }
         }
 
@@ -643,7 +686,14 @@ namespace DBService.Models
                         {
                             using (StreamReader srDecrypt = new StreamReader(csDecrypt))
                             {
-                                return srDecrypt.ReadToEnd();
+                                try
+                                {
+                                    return srDecrypt.ReadToEnd();
+                                }
+                                catch
+                                {
+                                    return "";
+                                }
                             }
                         }
                     }

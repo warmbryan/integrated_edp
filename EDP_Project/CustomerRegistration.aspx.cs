@@ -222,7 +222,18 @@ namespace EDP_Project
                     Int16 result = 0;
                     try
                     {
+                        SMTPMailer smtpemail = new SMTPMailer();
+                        smtpemail.addEmail(Email);
+                        smtpemail.addSubject("Welcome!");
+                        String link = $"https://localhost:{Request.Url.Port}/ CustomerVerifyEmail?email={Email}&purpose=Customer";
+                        smtpemail.addBody($"<a href='{link}'> Click here to verify your account</a>");
+                        smtpemail.SetHTML(true);
                         result = client.InsertCustomer(FirstName, LastName, Email, Password, PhoneNumber, BirthDate);
+                        if (result >= 0)
+                        {
+                            Boolean resultTmp = smtpemail.sendEmail();
+                            lbErrorMsg.Text = "Email failed to register!";
+                        }
                     }
                     catch (SqlException)
                     {
@@ -261,7 +272,21 @@ namespace EDP_Project
                     Boolean result = false;
                     try
                     {
+                        SMTPMailer smtpemail = new SMTPMailer();
+                        smtpemail.addEmail(Email);
+                        smtpemail.addSubject("Welcome!");
+                        String link = $"https://localhost:{Request.Url.Port}/ CustomerVerifyEmail?email={Email}&purpose=Business";
+                        smtpemail.addBody($"<a href='{link}'> Click here to verify your account</a>");
+                        smtpemail.SetHTML(true);
                         result = client.CreateBusinessUser(FullName, Email, Password, PhoneNumber);
+                        if (result == true)
+                        {
+                            Boolean resultTmp = smtpemail.sendEmail();
+                            if (resultTmp != true)
+                            {
+                                lbErrorMsg.Text = "Email failed to register!";
+                            }
+                        }
                     }
                     catch (SqlException)
                     {

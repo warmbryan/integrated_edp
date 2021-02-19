@@ -241,6 +241,43 @@ namespace DBService.Models
             return success;
         }
 
+        public Int16 UpdateBusinessVerification(string businessId, bool value)
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("UpdateBusinessVerified", conn))
+                {
+                    Int16 result = 0;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@businessId", businessId);
+                    cmd.Parameters.AddWithValue("@Value", value);
+                    try
+                    {
+                        conn.Open();
+                        result = (Int16)cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException err)
+                    {
+                        Console.WriteLine(err);
+                        result = -3;
+                    }
+                    catch (OverflowException)
+                    {
+                        result = -2;
+                    }
+                    catch
+                    {
+                        result = -1;
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                    return result;
+                }
+            }
+        }
+
         public bool Delete(string businessId)
         {
             bool success = true;

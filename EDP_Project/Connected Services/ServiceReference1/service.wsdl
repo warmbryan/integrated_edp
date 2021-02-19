@@ -99,6 +99,24 @@
   <wsdl:message name="IService1_GetBusinessUserByEmail_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetBusinessUserByEmailResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_UpdateBusinessStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBusinessStatus" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateBusinessStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBusinessStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteBusinessUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBusinessUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteBusinessUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBusinessUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateBusinessVerification_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBusinessVerification" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateBusinessVerification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBusinessVerificationResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_InsertCustomer_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertCustomer" />
   </wsdl:message>
@@ -502,6 +520,18 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBusinessUserByEmail" message="tns:IService1_GetBusinessUserByEmail_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBusinessUserByEmailResponse" message="tns:IService1_GetBusinessUserByEmail_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="UpdateBusinessStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateBusinessStatus" message="tns:IService1_UpdateBusinessStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateBusinessStatusResponse" message="tns:IService1_UpdateBusinessStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBusinessUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteBusinessUser" message="tns:IService1_DeleteBusinessUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteBusinessUserResponse" message="tns:IService1_DeleteBusinessUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBusinessVerification">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateBusinessVerification" message="tns:IService1_UpdateBusinessVerification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateBusinessVerificationResponse" message="tns:IService1_UpdateBusinessVerification_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="InsertCustomer">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/InsertCustomer" message="tns:IService1_InsertCustomer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/InsertCustomerResponse" message="tns:IService1_InsertCustomer_OutputMessage" />
@@ -861,6 +891,33 @@
     </wsdl:operation>
     <wsdl:operation name="GetBusinessUserByEmail">
       <soap:operation soapAction="http://tempuri.org/IService1/GetBusinessUserByEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBusinessStatus">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateBusinessStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBusinessUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteBusinessUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBusinessVerification">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateBusinessVerification" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

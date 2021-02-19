@@ -59,8 +59,18 @@ namespace DBService
         [OperationContract]
         BusinessUser GetBusinessUserByEmail(string email);
 
+        [OperationContract]
+        Int16 UpdateBusinessStatus(String PastEmail, String purpose, Boolean status);
+
+        [OperationContract]
+        Int16 DeleteBusinessUser(String Email, DateTime deleteDate);
+
         // START WEI RONG
         // Customer
+
+        [OperationContract]
+        Int16 UpdateBusinessVerification(string businessId, bool value);
+
         [OperationContract]
         Int16 InsertCustomer(String firstName, String lastName, String email, String password, String phoneNumber, DateTime dateOfBirth);
 

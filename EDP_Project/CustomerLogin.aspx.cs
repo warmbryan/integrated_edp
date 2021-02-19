@@ -100,10 +100,57 @@ namespace EDP_Project
                 {
                     if (client.VerifyPassword(business.Email, password, "Business"))
                     {
-                        Boolean result = AuthRequire.SetUserSession(Guid.Parse(business.Id), business.Email, "Business");
-                        if (result == true)
+                        Boolean setSession = true;
+                        if (business.blackListed)
                         {
-                            Response.Redirect("/BDHome.aspx", false);
+                            List<BlackListClass> resultOne = client.SelectAllBlacklist(username).ToList();
+                            for (int i = 0; i < resultOne.Count; i++)
+                            {
+                                if (resultOne[i].Deleted == false)
+                                {
+                                    Int16 rtmpesult = client.UpdateBlacklistDeleted(resultOne[i].ID, resultOne[i].CustomerID, true);
+                                    if (rtmpesult == -4)
+                                    {
+                                        divErrorMsg.Visible = true;
+                                        lbErrorMsg.Text = "You have been blacklisted. Reason: " + HttpUtility.HtmlEncode(resultOne[i].Reason);
+                                        setSession = false;
+                                    }
+                                    else if (rtmpesult > 0)
+                                    {
+                                        client.UpdateBusinessStatus(business.Email, "blackListedStatus", false);
+                                    }
+                                    else if (rtmpesult != 1)
+                                    {
+                                        setSession = false;
+                                    }
+                                }
+                            }
+                        }
+                        if (!business.emailVerified)
+                        {
+                            divErrorMsg.Visible = true;
+                            lbErrorMsg.Text = "You have changed your email, please verify before proceeding";
+                            setSession = false;
+                        }
+                        if (business.delete)
+                        {
+                            Int16 resultOne = client.DeleteBusinessUser(business.Email, business.deleteDate.AddDays(30));
+                            if (resultOne != 1)
+                            {
+                                Int16 rtmpesult = client.UpdateBusinessStatus(business.Email, "deleteStatus", false);
+                                if (rtmpesult != 1)
+                                {
+                                    setSession = false;
+                                }
+                            }
+                        }
+                        if (setSession)
+                        {
+                            Boolean result = AuthRequire.SetUserSession(Guid.Parse(business.Id), business.Email, "Customer");
+                            if (result == true)
+                            {
+                                Response.Redirect("/BDHome.aspx", false);
+                            }
                         }
                     }
                     else
