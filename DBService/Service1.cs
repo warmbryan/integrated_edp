@@ -326,6 +326,31 @@ namespace DBService
             return branch.SelectById(id);
         }
 
+        public bool CreateBranch(Guid businessId, string name, string description, string address, string address2, string city, string state, string zip, string country, string phone, string email, bool isMainBranch)
+        {
+            Branch b = new Branch();
+            return b.Create(businessId, name, description, address, address2, city, state, zip, country, phone, email, isMainBranch);
+        }
+
+        public bool UpdateBranch(Guid id, string name, string description, string address, string address2, string city, string state, string zip, string country, string phone, string email, bool isMainBranch)
+        {
+            Branch b = new Branch();
+            return b.Update(id, name, description, address, address2, city, state, zip, country, phone, email, isMainBranch);
+        }
+
+        public bool DeleteBranch(Guid id)
+        {
+            Branch b = new Branch();
+            return b.Delete(id);
+        }
+
+        public List<Branch> SelectBranchesByBusinessId(Guid businessId)
+        {
+            Branch b = new Branch();
+            return b.SelectByBusinessId(businessId);
+        }
+
+
         //----------------------Search--------------------
         public int CreateSearch(string searchString, Guid customerId)
         {

@@ -219,6 +219,30 @@
   <wsdl:message name="IService1_SelectByIdFromBranch_OutputMessage">
     <wsdl:part name="parameters" element="tns:SelectByIdFromBranchResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_CreateBranch_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateBranch" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateBranch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateBranchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateBranch_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBranch" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateBranch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBranchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteBranch_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBranch" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteBranch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBranchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectBranchesByBusinessId_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectBranchesByBusinessId" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SelectBranchesByBusinessId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectBranchesByBusinessIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_CreateSearch_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateSearch" />
   </wsdl:message>
@@ -617,6 +641,22 @@
     <wsdl:operation name="SelectByIdFromBranch">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectByIdFromBranch" message="tns:IService1_SelectByIdFromBranch_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectByIdFromBranchResponse" message="tns:IService1_SelectByIdFromBranch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateBranch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateBranch" message="tns:IService1_CreateBranch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateBranchResponse" message="tns:IService1_CreateBranch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBranch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateBranch" message="tns:IService1_UpdateBranch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateBranchResponse" message="tns:IService1_UpdateBranch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBranch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteBranch" message="tns:IService1_DeleteBranch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteBranchResponse" message="tns:IService1_DeleteBranch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectBranchesByBusinessId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SelectBranchesByBusinessId" message="tns:IService1_SelectBranchesByBusinessId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SelectBranchesByBusinessIdResponse" message="tns:IService1_SelectBranchesByBusinessId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CreateSearch">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateSearch" message="tns:IService1_CreateSearch_InputMessage" />
@@ -1101,6 +1141,42 @@
     </wsdl:operation>
     <wsdl:operation name="SelectByIdFromBranch">
       <soap:operation soapAction="http://tempuri.org/IService1/SelectByIdFromBranch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBranch">
+      <soap:operation soapAction="http://tempuri.org/IService1/CreateBranch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBranch">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateBranch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBranch">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteBranch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectBranchesByBusinessId">
+      <soap:operation soapAction="http://tempuri.org/IService1/SelectBranchesByBusinessId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

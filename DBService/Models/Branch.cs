@@ -151,5 +151,150 @@ namespace DBService.Models
                 }
             }
         }
+
+        public List<Branch> SelectByBusinessId(Guid businessId)
+        {
+            List<Branch> branches = new List<Branch>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM Branch WHERE [businessId] = @BusinessId", con))
+                    {
+                        sda.SelectCommand.Parameters.AddWithValue("@BusinessId", businessId);
+                        DataSet ds = new DataSet();
+                        sda.Fill(ds);
+
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            foreach (DataRow row in ds.Tables[0].Rows)
+                            {
+                                Branch branch = new Branch();
+
+                                branch.Id = (Guid)row["id"];
+                                branch.ShopName = row["name"].ToString();
+                                branch.PhoneNumber = row["phone"].ToString();
+                                branch.Email = row["email"].ToString();
+                                branch.Description = row["description"].ToString();
+                                branch.Location = row["city"].ToString();
+                                branch.Address = row["address"].ToString();
+
+                                branches.Add(branch);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Branch SelectByBusinessId " + ex + " message: " + ex.Message);
+            }
+
+            return branches;
+        }
+
+        // create
+        public bool Create(Guid businessId, string name, string description, string address, string address2, string city, string state, string zip, string country, string phone, string email, bool isMainBranch)
+        {
+            bool created = false;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO Branch ([name], [description], [address], [address2], [city], [state], [zip], [country], [phone], [email], [isMainBranch]) VALUES (@Name, @Description, @Address, @Address2, @City, @State, @Zip, @Country, @Phone, @Email, @IsMainBranch);"))
+                    {
+                        cmd.Parameters.AddWithValue("@BusinessId", businessId);
+                        cmd.Parameters.AddWithValue("@Name", name);
+                        cmd.Parameters.AddWithValue("@Description", description);
+                        cmd.Parameters.AddWithValue("@Address", address);
+                        cmd.Parameters.AddWithValue("@Address2", address2);
+                        cmd.Parameters.AddWithValue("@City", city);
+                        cmd.Parameters.AddWithValue("@State", state);
+                        cmd.Parameters.AddWithValue("@Zip", zip);
+                        cmd.Parameters.AddWithValue("@Country", country);
+                        cmd.Parameters.AddWithValue("@Phone", phone);
+                        cmd.Parameters.AddWithValue("@Email", email);
+                        cmd.Parameters.AddWithValue("@IsMainBranch", isMainBranch);
+
+                        con.Open();
+                        created = cmd.ExecuteNonQuery() > 0;
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Branch Create " + ex + " message: " + ex.Message);
+            }
+
+            return created;
+        }
+
+        // update
+        public bool Update(Guid id, string name, string description, string address, string address2, string city, string state, string zip, string country, string phone, string email, bool isMainBranch)
+        {
+            bool updated = false;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("UPDATE Branch SET [name] = @Name, [description] = @Description, [address] = @Address, [address2] = @Address2, [city] = @City, [state] = @State, [zip] = @Zip, [country] = @Country, [phone] = @Phone, [email] = @Email, [isMainBranch] = @IsMainBranch WHERE [id] = @Id;"))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", id);
+                        cmd.Parameters.AddWithValue("@Name", name);
+                        cmd.Parameters.AddWithValue("@Description", description);
+                        cmd.Parameters.AddWithValue("@Address", address);
+                        cmd.Parameters.AddWithValue("@Address2", address2);
+                        cmd.Parameters.AddWithValue("@City", city);
+                        cmd.Parameters.AddWithValue("@State", state);
+                        cmd.Parameters.AddWithValue("@Zip", zip);
+                        cmd.Parameters.AddWithValue("@Country", country);
+                        cmd.Parameters.AddWithValue("@Phone", phone);
+                        cmd.Parameters.AddWithValue("@Email", email);
+                        cmd.Parameters.AddWithValue("@IsMainBranch", isMainBranch);
+
+                        con.Open();
+                        updated = cmd.ExecuteNonQuery() > 0;
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Branch Update " + ex + " message: " + ex.Message);
+            }
+
+            return updated;
+        }
+
+        // delete
+        public bool Delete(Guid id)
+        {
+            bool deleted = false;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("DELETE FROM Branch WHERE [id] = @Id;"))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", id);
+
+                        con.Open();
+                        deleted = cmd.ExecuteNonQuery() > 0;
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Branch Delete " + ex + " message: " + ex.Message);
+            }
+
+            return deleted;
+        }
     }
 }
