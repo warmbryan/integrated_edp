@@ -63,7 +63,7 @@ namespace DBService.Models
         }
         public DataSet SelectDistinctCategory()
         {
-            string SQL = "SELECT DISTINCT bc.name as catrgory from ((Branch br INNER JOIN Business bu on br.businessId = bu.id) INNER JOIN BusinessCategory bc on bu.categoryId = bc.id) ORDER BY bc.name";
+            string SQL = "SELECT DISTINCT bc.name as category from ((Branch br INNER JOIN Business bu on br.businessId = bu.id) INNER JOIN BusinessCategory bc on bu.categoryId = bc.id) ORDER BY bc.name";
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnection"].ConnectionString))
             {
                 using (SqlDataAdapter sda = new SqlDataAdapter(SQL, conn))
