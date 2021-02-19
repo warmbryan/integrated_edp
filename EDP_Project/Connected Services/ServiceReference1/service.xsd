@@ -1277,7 +1277,7 @@
   <xs:element name="SelectAllBusinessResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllBusinessResult" nillable="true" type="q47:ArrayOfBusinessUser" />
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/DBService.Models" minOccurs="0" name="SelectAllBusinessResult" nillable="true" type="q52:ArrayOfBusinessUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
