@@ -4,9 +4,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="~/AdminHome">Home</a></li>
-            <li class="breadcrumb-item"><asp:HyperLink runat="server" NavigateUrl="~/AdminListBusinesses">Verify Businesses </asp:HyperLink></li>
-            <li class="breadcrumb-item active" aria-current="page">Data</li>
+            <li class="breadcrumb-item"><asp:HyperLink runat="server" NavigateUrl="~/AdminHome">Home</asp:HyperLink></li>
+            <li class="breadcrumb-item"><asp:HyperLink runat="server" NavigateUrl="~/AdminListBusinesses">Verify Businesses</asp:HyperLink></li>
+            <li class="breadcrumb-item active" aria-current="page">Business</li>
         </ol>
     </nav>
     <div class="text-left">

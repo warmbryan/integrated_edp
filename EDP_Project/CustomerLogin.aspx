@@ -3,8 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-1 col-lg-3 col-xl-3"></div>
-        <div class="col-12 col-sm-12 col-md-10 col-lg-6 col-xl-6">
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2"></div>
+        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
             <div class="alert alert-danger" runat="server" id="divErrorMsg" visible="false" role="alert">
                 <asp:Label runat="server" ID="lbErrorMsg" />
             </div>
@@ -25,32 +25,31 @@
                         </li>
                     </ul>
                     <asp:TextBox runat="server" Visible="false" ID="Submit_Role_Value" TextMode="Number" Text="0"/>
-                    <div runat="server">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-12 col-sm-12 col-md-7 col-lg-4 col-xl-4 d-flex align-items-center justify-content-end" style="text-align:right;">
-                                        <asp:Label runat="server" ID="lbUserName" Text="Email:" />
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                                        <asp:TextBox runat="server" TextMode="Email" placeholder="Email" ID="tbUsername" CssClass="form-control" />
-                                    </div>
+                </div>
+                <div runat="server">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 d-flex align-items-center justify-content-end" style="text-align:right;">
+                                    <asp:Label runat="server" ID="lbUserName" Text="Email:" />
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                                    <asp:TextBox runat="server" TextMode="Email" placeholder="Email" ID="tbUsername" CssClass="form-control" />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 d-flex align-items-center justify-content-end" style="text-align:right;">
-                                        <asp:Label runat="server" Text="Password:" />
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                                        <asp:TextBox runat="server" TextMode="Password" placeholder="Password" ID="tbPassword" CssClass="form-control" />
-                                    </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 d-flex align-items-center justify-content-end" style="text-align:right;">
+                                    <asp:Label runat="server" Text="Password:" />
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                                    <asp:TextBox runat="server" TextMode="Password" placeholder="Password" ID="tbPassword" CssClass="form-control" />
                                 </div>
                             </div>
-                            <div class="text-right">
-                                <button type="button" class="btn btn-secondary">Close</button>
-                                <asp:Button runat="server" CssClass="btn btn-primary" Text="Login" ID="submit" OnClick="submit_Click"/>
-                            </div>
+                        </div>
+                        <div class="text-right">
+                            <asp:Button runat="server" CssClass="btn btn-primary" Text="Login" ID="submit" OnClick="submit_Click"/>
                         </div>
                     </div>
                 </div>
@@ -59,7 +58,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-1 col-lg-3 col-xl-3"></div>
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2"></div>
     </div>
     <script>
         $("#<%: CustomerSide.ClientID %>").click(function () {

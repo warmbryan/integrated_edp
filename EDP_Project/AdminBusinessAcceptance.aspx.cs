@@ -28,13 +28,8 @@ namespace EDP_Project
                     lbRegisteredBy.Text = tmpUser.Name;
                     if (tmpClass.LogoId != null)
                     {
-
+                        imgBusinessLogo.ImageUrl = $"assets/Logos/" + tmpClass.LogoId + ".png";
                     }
-                    else
-                    {
-                        imgBusinessLogo.ImageUrl = "~/" + tmpClass.LogoId +".png";
-                    }
-                    testImage.ImageUrl = "~/" +tmpClass.AcraCertificate + ".pdf";
                 }
             }
             else
