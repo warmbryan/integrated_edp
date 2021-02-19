@@ -80,24 +80,19 @@ namespace EDP_Project
         protected void AddBlackListBtn_Click(object sender, EventArgs e)
         {
             String email = Request.QueryString["Email"];
+            String purpose = Request.Params["purpose"];
             if (email != null)
             {
-                Service1Client client = new Service1Client();
-                CustomerClass tmpClass = client.SelectOneCustomer(email);
-                Int16 duration;
-                Int16.TryParse(tbDuration.Text, out duration);
-                String reason = (String)tbReason.Text.Trim();
-                if (!String.IsNullOrEmpty(reason) && duration != 0 && tmpClass.blackListed != true)
+                if (purpose == "Customer")
                 {
-                    Int16 result = client.InsertOneBlacklist(duration, reason, tmpClass.Email, tmpClass.FirstName + tmpClass.LastName);
-                    if (result != 1 || tmpClass.blackListed == true)
+                    Service1Client client = new Service1Client();
+                    CustomerClass tmpClass = client.SelectOneCustomer(email);
+                    Int16 duration;
+                    Int16.TryParse(tbDuration.Text, out duration);
+                    String reason = (String)tbReason.Text.Trim();
+                    if (!String.IsNullOrEmpty(reason) && duration != 0 && tmpClass.blackListed != true)
                     {
-                        divError.Visible = false;
-                        lbError.Text = "Insert failed";
-                    }
-                    else
-                    {
-                        result = client.UpdateCustomerStatus(tmpClass.ID, tmpClass.Email, "blackListedStatus", true);
+                        Int16 result = client.InsertOneBlacklist(duration, reason, tmpClass.Email, tmpClass.FirstName + tmpClass.LastName);
                         if (result != 1 || tmpClass.blackListed == true)
                         {
                             divError.Visible = false;
@@ -105,12 +100,52 @@ namespace EDP_Project
                         }
                         else
                         {
-                            Response.Redirect("~/AdminUserDetailed?=" + email);
+                            result = client.UpdateCustomerStatus(tmpClass.ID, tmpClass.Email, "blackListedStatus", true);
+                            if (result != 1 || tmpClass.blackListed == true)
+                            {
+                                divError.Visible = false;
+                                lbError.Text = "Insert failed";
+                            }
+                            else
+                            {
+                                Response.Redirect("~/AdminUserDetailed?=" + email + "&purpose=Customer");
+                            }
                         }
                     }
                 }
+                else if (purpose == "Business")
+                {
+                    if (purpose == "Customer")
+                    {
+                        Service1Client client = new Service1Client();
+                        BusinessUser tmpClass = client.GetBusinessUserByEmail(email);
+                        Int16 duration;
+                        Int16.TryParse(tbDuration.Text, out duration);
+                        String reason = (String)tbReason.Text.Trim();
+                        if (!String.IsNullOrEmpty(reason) && duration != 0 && tmpClass.blackListed != true)
+                        {
+                            Int16 result = client.InsertOneBlacklist(duration, reason, tmpClass.Email, tmpClass.Name);
+                            if (result != 1 || tmpClass.blackListed == true)
+                            {
+                                divError.Visible = false;
+                                lbError.Text = "Insert failed";
+                            }
+                            else
+                            {
+                                result = client.UpdateBusinessStatus(tmpClass.Email, "blackListedStatus", true);
+                                if (result != 1 || tmpClass.blackListed == true)
+                                {
+                                    divError.Visible = false;
+                                    lbError.Text = "Insert failed";
+                                }
+                                else
+                                {
+                                    Response.Redirect("~/AdminUserDetailed?=" + email + "&purpose=Business");
+                                }
+                            }
+                        }
+                    }
             }
-
         }
     }
 }
